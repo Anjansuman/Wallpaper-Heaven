@@ -1,5 +1,5 @@
 {
-  "name": "Wallpaper-Heaven",
+  "name": "allpaperpaper",
   "private": true,
   "scripts": {
     "build": "turbo run build",
