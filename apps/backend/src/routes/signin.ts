@@ -1,5 +1,7 @@
 import { Router } from "express";
+
 import { user } from "@repo/zod/index";
+import { jwtSigner } from "../utils/jwtSigner";
 
 const router = Router();
 
@@ -17,6 +19,9 @@ router.post("", (req, res) => {
             return;
         }
 
+        // db call
+
+        const toekn = jwtSigner(userId);
         
         
 
