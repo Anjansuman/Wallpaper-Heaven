@@ -2,7 +2,7 @@ import BrandName from "../ui/Customs/BrandName"
 
 
 export const NavBar2 = () => {
-    return <div className="w-screen fixed flex justify-between items-center px-5 ">
+    return <div className="w-screen fixed z-40 flex justify-between items-center px-5 ">
         <BrandName size={"sm"} />
         <div className="flex justify-center items-center gap-x-3 ">
             <div className="flex justify-center items-center gap-x-6 text-[#0B2814] font-semibold ">

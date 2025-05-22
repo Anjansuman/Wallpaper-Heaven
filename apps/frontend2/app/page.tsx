@@ -6,17 +6,26 @@ import Footer from "../Components/Footer/Footer";
 import { NavBar2 } from "@/Components/Nav-Bar/NavBar2";
 import { Navbar, NavBody, NavItems, NavbarLogo, NavbarButton } from "@/components/ui/resizable-navbar";
 import BrandName from "@/Components/ui/Customs/BrandName";
+import Creators from "@/Components/Creators/Creators";
+import Genre from "@/Components/Genre/Genre";
+import Designs from "@/Components/Designs/Designs";
 
 export default function Home() {
-  return <div className="h-full w-full">
-    <NavBar />
-
-    <main className=" flex flex-col items-center justify-center h-[calc(100vh-6rem)]">
-      <div className="h-[80%] w-full flex justify-center items-center mt-14 ">
-        <Image src={homePage} alt="home page" className="w-full rounded-lg" />
+  return (
+    <div className=" h-full px-10 pt-5 flex flex-col gap-7 bg-[#E4E4E4] items-center ">
+      <NavBar2 />
+      <div className="w-full flex justify-center mt-14 ">
+        <Image src={homePage} alt="Home" className="rounded-2xl w-[80%] " />
       </div>
-    </main>
-  </div>
+      <div className="flex justify-center items-center font-semibold text-lg text-[#0B2814]">
+        Give your home a heavenly vibe.
+      </div>
+      <Designs />
+      <Genre />
+      <Creators />
+      <Footer />
+    </div>
+  );
 }
 
 /*

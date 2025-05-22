@@ -1,9 +1,10 @@
 import Image from "next/image";
 import BrandName from "../ui/Customs/BrandName";
+import { LinkTabsAnimation } from "./LinkTabsAnimation";
 
 export default function Footer() {
   return (
-    <div className="w-[90%] rounded-2xl p-4 bg-[#51794b] relative overflow-hidden">
+    <div className="w-full rounded-2xl p-4 bg-[#51794b] relative overflow-hidden">
       {/* Background image using next/image */}
       <Image
         src="/footer.jpeg"
@@ -22,7 +23,7 @@ export default function Footer() {
       </div>
 
       <div className="h-80 w-full rounded-2xl bg-white/10 backdrop-blur-xs border-2 border-[#6DA165] relative z-10 mt-4">
-        {/* Additional content here */}
+        <LinkTabsAnimation />
       </div>
     </div>
   );

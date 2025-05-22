@@ -3,7 +3,7 @@ import homeImage from "../../public/home.jpeg";
 import ImageBlock1 from "../ui/Customs/ImageBlock1";
 
 export default function BrickGrid() {
-    return <div className="w-[] h-[] bg-[#0B2814] py-[2px] ">
+    return <div className="w-[100%] h-[] bg-[#0B2814] py-[2px] ">
         <div className="flex gap-[2px] mb-[2px] ">
             {[1, 2, 3, 4].map((key) => (
                 key === 1 ?

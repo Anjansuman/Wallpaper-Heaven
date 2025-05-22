@@ -1,13 +1,14 @@
 "use client";
 import { Navbar, NavBody, NavItems, NavbarLogo, NavbarButton } from "@/components/ui/resizable-navbar";
 import Image from "next/image";
-import homePage from "../../public/home.jpeg";
 import BrandName from "../ui/Customs/BrandName";
+import homePage from "../../public/home.jpeg"
+import BrickGrid from "../Grids/BrickGrid";
 
 export default function NavBar() {
     return (
         <div className="h-full w-full">
-            <Navbar>
+            <Navbar className="top-20 ">
                 <NavBody>
                     {/* <NavbarLogo  /> */}
                     <BrandName size={"sm"} />
@@ -24,6 +25,13 @@ export default function NavBar() {
                     </div>
                 </NavBody>
             </Navbar>
+
+            <main className=" flex flex-col items-center justify-center h-[calc(100vh-6rem)]">
+                <div className="h-full w-full flex justify-center items-center mt-14 ">
+                    <Image src={homePage} alt="home page" className="w-full rounded-lg" />
+                </div>
+                <BrickGrid />
+            </main>
         </div>
     );
 }
