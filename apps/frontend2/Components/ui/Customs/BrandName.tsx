@@ -1,10 +1,11 @@
-type Size = "sm" | "md" | "lg";
+type Size = "xs" | "sm" | "md" | "lg";
 
 interface BrandNameProps {
   size: Size;
 }
 
 const sizing: Record<Size, string> = {
+  xs: "w-40 text-md px-4 py-1.5",
   sm: "w-50 text-lg px-4 py-2",
   md: "w-60 text-xl px-4 py-2.5 ",
   lg: "w-70 text-2xl px-5 py-3 "

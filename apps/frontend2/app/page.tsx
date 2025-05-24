@@ -12,17 +12,19 @@ import Designs from "@/Components/Designs/Designs";
 
 export default function Home() {
   return (
-    <div className=" h-full px-10 pt-5 flex flex-col gap-7 bg-[#E4E4E4] items-center ">
+    <div className=" h-full bg-[#E4E4E4] ">
       <NavBar2 />
-      <div className="w-full flex justify-center mt-14 ">
-        <Image src={homePage} alt="Home" className="rounded-2xl w-[80%] " />
+      <div className="w-full flex justify-center " >
+        <Image src={homePage} alt="Home" className="w-full max-h-[800px] object-cover object-center z-0 " />
       </div>
-      <div className="flex justify-center items-center font-semibold text-lg text-[#0B2814]">
-        Give your home a heavenly vibe.
+      <div className="w-full flex flex-col items-start mt-7 px-10 gap-7 ">
+        <div className="w-full flex justify-center items-center font-semibold text-lg text-[#0B2814]">
+          Give your home a heavenly vibe.
+        </div>
+        <Designs />
+        <Genre />
+        <Creators />
       </div>
-      <Designs />
-      <Genre />
-      <Creators />
       <Footer />
     </div>
   );

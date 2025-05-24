@@ -4,7 +4,7 @@ import { LinkTabsAnimation } from "./LinkTabsAnimation";
 
 export default function Footer() {
   return (
-    <div className="w-full rounded-2xl p-4 bg-[#51794b] relative overflow-hidden">
+    <div className="w-full p-4 bg-[#51794b] relative overflow-hidden">
       {/* Background image using next/image */}
       <Image
         src="/footer.jpeg"
@@ -15,14 +15,44 @@ export default function Footer() {
         />
 
       {/* Content on top of image */}
-      <div className="relative z-10">
+      <div className="w-fit relative z-10">
         <BrandName size="lg" />
-        <div className="w-full flex items-center text-white font-semibold mt-2">
+        <div className=" flex justify-center items-center text-white font-semibold mt-2">
           YOU SAY AND WE MAKE
         </div>
       </div>
 
-      <div className="h-80 w-full rounded-2xl bg-white/10 backdrop-blur-xs border-2 border-[#6DA165] relative z-10 mt-4">
+      <div className="h-80 w-full rounded-2xl px-10 py-5 bg-white/10 backdrop-blur-xs border-2 border-[#6DA165] flex justify-between relative z-10 mt-4">
+        
+        {/* Connect center */}
+        <div className="flex flex-col gap-y-2 w-full">
+          <div className="text-xl font-bold ">Connect</div>
+          {["Call", "Whatsapp", "E-mail", "Address"].map((tags, key) => (
+            <div key={key} className="text-md font-medium hover:underline cursor-pointer" >
+              {tags}
+            </div>
+          ))}
+        </div>
+
+        {/* Shop Links */}
+        <div className="flex flex-col gap-y-2 w-full">
+          <div className="text-xl font-bold ">Shop Links</div>
+          {["Designers Collection", "Shop by Brand", "Shop by Design", "Shop by Genre", "Trending Collecitons", "Custom Wallpapers"].map((tags, key) => (
+            <div key={key} className="text-md font-medium hover:underline cursor-pointer" >
+              {tags}
+            </div>
+          ))}
+        </div>
+
+        {/* Help Center */}
+        <div className="flex flex-col gap-y-2 w-full">
+          <div className="text-xl font-bold ">Help</div>
+          {["Contract Us", "Privacy Policy", "Terms & Conditions", "Installation Guidlines"].map((tags, key) => (
+            <div key={key} className="text-md font-medium hover:underline cursor-pointer" >
+              {tags}
+            </div>
+          ))}
+        </div>
         <LinkTabsAnimation />
       </div>
     </div>
