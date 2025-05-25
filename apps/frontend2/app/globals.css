@@ -3,6 +3,12 @@
 
 @custom-variant dark (&:is(.dark *));
 
+.custom-resizer::-webkit-resizer {
+    border-right: 1px solid gray;
+    border-bottom: 1px solid gray;
+    border-radius: 0 0 7px 0;
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
