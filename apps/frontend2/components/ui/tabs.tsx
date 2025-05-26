@@ -30,12 +30,12 @@ export const Tabs = ({
   return (
     <div
       className={cn(
-        "h-full flex flex-col md:flex-row gap-6 w-full max-w-5xl mx-auto",
+        "h-[400px] flex flex-col justify-center items-center md:flex-row gap-16 w-full max-w-5xl mx-auto",
         containerClassName
       )}
     >
       {/* Tag content on left */}
-      <div className={cn("w-full md:w-2/3", contentClassName)}>
+      <div className={cn("h-full w-full md:w-2/3", contentClassName)}>
         <AnimatePresence mode="wait">
           <motion.div
             key={active.value}
@@ -51,25 +51,30 @@ export const Tabs = ({
       </div>
 
       {/* Tabs buttons on right */}
-<div className="flex flex-col gap-3 w-full md:w-1/3">
-  {tabs.map((tab) => (
-    <button
-      key={tab.value}
-      onClick={() => setActiveTab(tab.value)}
-      className={cn(
-        "h-16 relative px-6 py-3 rounded-xl text-left text-gray-800 font-medium border border-green-300 backdrop-blur-lg bg-white/40 dark:bg-white/10 transition-all",
-        tabButtonClassName,
-        activeTab === tab.value &&
-          cn(
-            "bg-green-100/60 border-green-500 shadow-md",
-            activeTabClassName
+      <div className="w-full grid grid-cols-3 gap-3 ">
+        {[...tabs, ...Array(12 - tabs.length).fill(null)].map((tab, index) => (
+          tab ? (
+            <button
+              key={tab.value}
+              onClick={() => setActiveTab(tab.value)}
+              className={cn(
+                "h-20 relative px-6 py-3 rounded-xl text-center text-gray-800 font-medium border border-green-300 backdrop-blur-lg bg-white/40 dark:bg-white/10 transition-all",
+                tabButtonClassName,
+                activeTab === tab.value &&
+                cn(
+                  "bg-green-100/60 border-green-500 shadow-md",
+                  activeTabClassName
+                )
+              )}
+            >
+              {tab.title}
+            </button>
+          ) : (
+            <div key={`placeholder-${index}`} className="h-16" />
           )
-      )}
-    >
-      {tab.title}
-    </button>
-  ))}
-</div>
+        ))}
+      </div>
+
 
 
     </div>

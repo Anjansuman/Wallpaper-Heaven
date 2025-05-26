@@ -1,5 +1,5 @@
 import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
-import { GiantSlider } from "../Slider/GiantSlider";
+import { GiantSlider } from "../../Slider/GiantSlider";
 
 const people = [
   {

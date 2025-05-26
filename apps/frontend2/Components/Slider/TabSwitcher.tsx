@@ -10,36 +10,85 @@ export function TabSwitcher() {
       title: "Pichwai",
       value: "Pichwai",
       content: (
-          <Content title={"Pichwai"} />
+        <Content title={"Pichwai"} />
       ),
     },
     {
       title: "3D",
       value: "3D",
       content: (
-          <Content title={"3D"} />
+        <Content title={"3D"} />
       ),
     },
     {
       title: "Space",
       value: "Space",
       content: (
-          <Content title={"Space"} />
+        <Content title={"Space"} />
       ),
     },
     {
       title: "Floral",
       value: "Floral",
       content: (
-          <Content title={"Floral"} />
+        <Content title={"Floral"} />
       ),
     },
     {
       title: "Tropical",
       value: "Tropical",
       content: (
-          <Content title={"Tropical"} />
+        <Content title={"Tropical"} />
       ),
+    },
+    {
+      title: "something",
+      value: "something",
+      content: (
+        <Content title={"something"} />
+      )
+    },
+    {
+      title: "something",
+      value: "something",
+      content: (
+        <Content title={"something"} />
+      )
+    },
+    {
+      title: "something",
+      value: "something",
+      content: (
+        <Content title={"something"} />
+      )
+    },
+    {
+      title: "something",
+      value: "something",
+      content: (
+        <Content title={"something"} />
+      )
+    }, 
+    {
+      title: "something",
+      value: "something",
+      content: (
+        <Content title={"something"} />
+      )
+    }, 
+    {
+      title: "something",
+      value: "something",
+      content: (
+        <Content title={"something"} />
+      )
+    }, 
+    {
+      title: "All",
+      value: "All",
+      content: (
+        <Content title={"All"} />
+      )
     },
   ];
 

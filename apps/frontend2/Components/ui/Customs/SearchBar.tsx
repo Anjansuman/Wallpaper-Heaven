@@ -5,7 +5,7 @@ import { PlaceholdersAndVanishInput } from "../../../components/ui/placeholders-
 export function SearchBar() {
   const placeholders = [
     "Create your home a happy space...",
-    "Give your a heavenly vibe...",
+    "Give your home a heavenly vibe...",
     "Space that inspire...",
     "CHOOSE THE LOOK THAT MATCHES YOUR VIBE",
     "Choose now",

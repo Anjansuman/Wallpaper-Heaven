@@ -1,4 +1,4 @@
-import { TabSwitcher } from "../Slider/TabSwitcher";
+import { TabSwitcher } from "../../Slider/TabSwitcher";
 
 
 export default function Genre() {

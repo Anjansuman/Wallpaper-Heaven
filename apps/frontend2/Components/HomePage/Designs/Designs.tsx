@@ -1,4 +1,4 @@
-import { MediumSlider } from "../Slider/MediumSlider";
+import { MediumSlider } from "../../Slider/MediumSlider";
 
 
 export default function Designs() {
