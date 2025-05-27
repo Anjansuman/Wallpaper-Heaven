@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div className=" h-full ">
       <UpFront />
-      <div className="w-full flex flex-col items-start mt-7 px-20 gap-7 ">
+      <div className="w-full flex flex-col items-start mt-7 md:px-16 lg:px-20 sm:px-10 px-5 gap-7 ">
         <div className="w-full flex justify-center items-center font-semibold text-lg text-[#0B2814]">
           Give your home a heavenly vibe.
         </div>

@@ -7,7 +7,7 @@ export default function Page() {
 
     // backend call for content of the page
 
-    return <div className="h-full w-full px-20 ">
+    return <div className="h-full w-full ">
         <Top />
         <div className="flex justify-between pt-10 " >
             <Filter />

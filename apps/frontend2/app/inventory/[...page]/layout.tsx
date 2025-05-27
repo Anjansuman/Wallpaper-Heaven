@@ -6,7 +6,7 @@ export default function InventoryLayout({
 }: {
     children: React.ReactNode;
 }) {
-    return <div className="px-20">
+    return <div className="md:px-16 lg:px-20 sm:px-10 px-5 ">
         {children}
     </div>;
 }

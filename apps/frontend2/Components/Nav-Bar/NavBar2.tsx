@@ -7,10 +7,12 @@ import { SearchBar } from "../ui/Customs/SearchBar";
 import gsap from "gsap";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import PhoneNavElements from "./PhoneNavElements";
 
 export const NavBar2 = () => {
   const [searchPanel, setSearchPanel] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const [hamburgerPanel, setHamburgerPanel] = useState<boolean>(false);
   const searchRef = useRef<HTMLDivElement>(null);
 
   // Animate search panel
@@ -60,22 +62,23 @@ export const NavBar2 = () => {
   return (
     <div
       className={cn(
-        "w-screen bg-[#faf0e640] backdrop-blur-2xl py-5 px-6 md:px-16 fixed z-50 flex justify-between items-center transition-shadow duration-300",
+        "w-screen bg-[#faf0e640] backdrop-blur-2xl py-3 md:py-5 px-6 md:px-16 fixed z-50 flex justify-between items-center transition-shadow duration-300",
         isScrolled && "shadow-lg"
       )}
     >
       <div className="hidden md:flex">
         <Link href={"/"}>
-            <BrandName size={"sm"} />
+          <BrandName size={"sm"} />
         </Link>
       </div>
       <div className="md:hidden">
         <Link href={"/"}>
-            <BrandName size={"xs"} />
+          <BrandName size={"xs"} />
         </Link>
       </div>
 
       <div className="flex items-center gap-x-3 relative">
+
         {/* Desktop Menu */}
         <div className="hidden md:flex justify-center items-center gap-x-6 text-[#0B2814] font-semibold">
           {["Designs", "Genre", "Brands", "Designers"].map((e, key) => (
@@ -99,8 +102,19 @@ export const NavBar2 = () => {
         </div>
 
         {/* Mobile Hamburger */}
-        <div className="md:hidden cursor-pointer">☰</div>
+        <div className="md:hidden cursor-pointer"
+          onClick={() => setHamburgerPanel((value) => !value)}
+        >
+          ☰
+        </div>
       </div>
+      
+      {/* Hamburger panel */}
+      {hamburgerPanel ? (
+        <div className="md:hidden fixed inset-0 z-40 flex justify-end bg-[#faf0e6]">
+          <PhoneNavElements close={() => setHamburgerPanel(false)} />
+        </div>
+      ) : ""}
     </div>
   );
 };

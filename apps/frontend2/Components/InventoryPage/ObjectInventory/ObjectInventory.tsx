@@ -1,12 +1,10 @@
-import Image from "next/image";
-import image from "../../../public/tree.jpeg";
+import Object from "./Object";
+
 
 export default function ObjectInventory() {
-    return <div className="grid grid-cols-3 gap-26mm ">
-        {["Image", "video", "phone"].map((e) => (
-            <div className="">
-                <Image src={image} alt="image" />
-            </div>
+    return <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 ">
+        {["Image", "video", "phone"].map((e, index) => (
+            <Object key={index} />
         ))}
     </div>
 }
