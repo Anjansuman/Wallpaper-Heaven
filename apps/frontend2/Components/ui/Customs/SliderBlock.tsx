@@ -7,7 +7,7 @@ type SliderBlockProps =
 
 export const SliderBlock = (props: SliderBlockProps) => {
   return (
-    <div className="h-80 w-80 flex justify-center items-center flex-shrink-0 rounded-lg overflow-hidden bg-white shadow-md">
+    <div className="h-50 w-50 md:h-80 md:w-80 flex justify-center items-center flex-shrink-0 rounded-lg overflow-hidden bg-white shadow-md">
       {"image" in props ? (
         <Image src={props.image} alt="image" className="w-full h-full object-cover" />
       ) : (

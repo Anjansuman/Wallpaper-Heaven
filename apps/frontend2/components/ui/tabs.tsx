@@ -35,20 +35,7 @@ export const Tabs = ({
       )}
     >
       {/* Tag content on left */}
-      <div className={cn("h-full w-full md:w-2/3", contentClassName)}>
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={active.value}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3 }}
-            className="h-full rounded-xl bg-white/40 dark:bg-white/10"
-          >
-            {active.content}
-          </motion.div>
-        </AnimatePresence>
-      </div>
+      {/* here should be the tab contents */}
 
       {/* Tabs buttons on right */}
       <div className="w-full grid grid-cols-3 gap-3 ">
@@ -58,7 +45,7 @@ export const Tabs = ({
               key={tab.value}
               onClick={() => setActiveTab(tab.value)}
               className={cn(
-                "h-20 relative px-6 py-3 rounded-xl text-center text-gray-800 font-medium border border-green-300 backdrop-blur-lg bg-white/40 dark:bg-white/10 transition-all",
+                "h-20 relative px-3 py-0.5 sm:px-6 sm:py-3 rounded-xl text-sm sm:text-[16px] flex justify-center items-center text-center text-gray-800 font-medium border border-green-300 backdrop-blur-lg bg-white/40 dark:bg-white/10 transition-all",
                 tabButtonClassName,
                 activeTab === tab.value &&
                 cn(

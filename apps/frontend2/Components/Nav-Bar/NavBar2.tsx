@@ -13,7 +13,10 @@ export const NavBar2 = () => {
   const [searchPanel, setSearchPanel] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [hamburgerPanel, setHamburgerPanel] = useState<boolean>(false);
+  const [showHamburger, setShowHamburger] = useState(false);
+
   const searchRef = useRef<HTMLDivElement>(null);
+  const hamburgerRef = useRef<HTMLDivElement>(null);
 
   // Animate search panel
   useEffect(() => {
@@ -58,6 +61,39 @@ export const NavBar2 = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (hamburgerRef.current) {
+      if (hamburgerPanel) {
+        gsap.fromTo(
+          hamburgerRef.current,
+          { x: "100%", opacity: 0 },
+          {
+            x: "0%",
+            opacity: 1,
+            duration: 0.4,
+            ease: "power2.out"
+          }
+        );
+      } else {
+        gsap.to(hamburgerRef.current, {
+          x: "100%",
+          opacity: 0,
+          duration: 0.3,
+          ease: "power2.in"
+        });
+      }
+    }
+  }, [hamburgerPanel]);
+
+  useEffect(() => {
+    if (hamburgerPanel) {
+      setShowHamburger(true);
+    } else {
+      // Delay removal to let animation play
+      setTimeout(() => setShowHamburger(false), 300);
+    }
+  }, [hamburgerPanel]);
 
   return (
     <div
@@ -111,7 +147,9 @@ export const NavBar2 = () => {
 
       {/* Hamburger panel */}
       {hamburgerPanel ? (
-        <div className="md:hidden h-screen w-full sm:w-[50%] absolute z-50 top-0 right-0 bg-red-200 ">
+        <div
+          ref={hamburgerRef}
+          className="md:hidden h-screen w-full sm:w-[50%] absolute z-50 top-0 right-0 ">
           <PhoneNavElements close={() => setHamburgerPanel(false)} />
         </div>
       ) : ""}

@@ -36,14 +36,14 @@ export default function Brands() {
                 {/* Content */}
                 <div
                     ref={scrollRef}
-                    className="h-fit w-full pb-2 flex gap-x-4 overflow-x-scroll [::-webkit-scrollbar]:hidden [scrollbar-width:none] scroll-smooth "
+                    className=" pb-2 flex gap-x-4 overflow-x-scroll [::-webkit-scrollbar]:hidden [scrollbar-width:none] scroll-smooth "
                 >
                     {[...Array(10)].map((_, i) => (
                         <SliderBlock key={i} image={image} />
                     ))}
                     <SliderBlock children={<div className="flex flex-col justify-center items-center" >
                         <div className="flex flex-col items-center justify-center ">
-                            <div className="text-red-500 font-bold text-lg mr-1">Explore</div>
+                            <div className="text-red-500 font-bold text-lg ">Explore</div>
                             <div>our exclusive Brands</div>
                         </div>
                         <div className="bg-[#0B2814] w-fit px-4 py-2 rounded-md text-[#E6E0C5] ">See more</div>
@@ -62,11 +62,16 @@ export default function Brands() {
 
             {/* bottom bar */}
             <div className="lg:h-28 sm:h-20 h-16 w-full relative">
-                <Image src={tree} alt="tree" className="w-full h-full object-cover object-[center_70%] top-10 rounded-lg " />
-                <div className="absolute top-1/2 left-1/2 -translate-1/2 2xl:text-3xl lg:text-xl md:text-lg sm:text-xl text-xs font-extrabold text-white ">
+                <Image
+                    src={tree}
+                    alt="tree"
+                    className="w-full h-full object-cover object-[center_70%] rounded-lg"
+                />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 2xl:text-3xl lg:text-xl md:text-lg sm:text-xl text-xs font-extrabold text-white text-center px-2">
                     The names you know. The quality you expect.
                 </div>
             </div>
+
         </div>
     );
 }

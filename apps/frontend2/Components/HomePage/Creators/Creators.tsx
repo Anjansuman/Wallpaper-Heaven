@@ -48,13 +48,13 @@ const people = [
 
 export default function Creators() {
     return <div className="w-full flex flex-col items-start gap-y-3 mb-7">
-        <div className="text-3xl text-[#0B2814] font-bold">
+        <div className="text-lg md:text-3xl text-[#0B2814] font-bold">
             Our Top Creators
         </div>
-        <div className="flex flex-row items-center mb-10 w-full">
+        <div className="flex flex-row items-center w-full">
             <AnimatedTooltip items={people} />
         </div>
-        <div className="text-3xl text-[#0B2814] font-bold">
+        <div className="text-lg md:text-3xl text-[#0B2814] font-bold">
             And the creativity they unleash.
         </div>
         <GiantSlider />

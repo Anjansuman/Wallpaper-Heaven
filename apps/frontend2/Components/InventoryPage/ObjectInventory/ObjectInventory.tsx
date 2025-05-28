@@ -7,7 +7,7 @@ export default function ObjectInventory() {
 
     return <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-8 ">
         {["Image", "video", "phone", "Image", "video", "phone", "Image", "video", "phone", "Image", "video", "phone", "Image", "video", "phone"].map((e, index) => (
-            <Object key={index} />
+            <Object title={e} key={index} />
         ))}
     </div>
 }
