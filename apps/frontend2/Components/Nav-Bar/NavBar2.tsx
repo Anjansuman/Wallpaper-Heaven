@@ -108,10 +108,10 @@ export const NavBar2 = () => {
           ☰
         </div>
       </div>
-      
+
       {/* Hamburger panel */}
       {hamburgerPanel ? (
-        <div className="md:hidden fixed inset-0 z-40 flex justify-end bg-[#faf0e6]">
+        <div className="md:hidden h-screen w-full sm:w-[50%] absolute z-50 top-0 right-0 bg-red-200 ">
           <PhoneNavElements close={() => setHamburgerPanel(false)} />
         </div>
       ) : ""}

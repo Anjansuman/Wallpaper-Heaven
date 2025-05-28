@@ -1,6 +1,5 @@
 import Image from "next/image";
 import homePage from "../../../public/home3.png";
-import footer from "../../../public/footer.jpeg";
 
 
 export default function UpFront() {

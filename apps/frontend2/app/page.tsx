@@ -1,5 +1,3 @@
-import Footer from "../Components/Footer/Footer";
-import { NavBar2 } from "@/Components/Nav-Bar/NavBar2";
 import Creators from "@/Components/HomePage/Creators/Creators";
 import Genre from "@/Components/HomePage/Genre/Genre";
 import Designs from "@/Components/HomePage/Designs/Designs";
@@ -19,7 +17,6 @@ export default function Home() {
         <Brands />
         <Creators />
       </div>                  
-      <Footer />
     </div>
   );
 }

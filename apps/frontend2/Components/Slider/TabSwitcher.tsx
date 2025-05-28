@@ -42,45 +42,45 @@ export function TabSwitcher() {
       ),
     },
     {
-      title: "something",
-      value: "something",
+      title: "something1",
+      value: "something1",
       content: (
-        <Content title={"something"} />
+        <Content title={"something1"} />
       )
     },
     {
-      title: "something",
-      value: "something",
+      title: "something2",
+      value: "something2",
       content: (
-        <Content title={"something"} />
+        <Content title={"something2"} />
       )
     },
     {
-      title: "something",
-      value: "something",
+      title: "something3",
+      value: "something3",
       content: (
-        <Content title={"something"} />
+        <Content title={"something3"} />
       )
     },
     {
-      title: "something",
-      value: "something",
+      title: "something4",
+      value: "something4",
       content: (
-        <Content title={"something"} />
+        <Content title={"something4"} />
       )
     }, 
     {
-      title: "something",
-      value: "something",
+      title: "something5",
+      value: "something5",
       content: (
-        <Content title={"something"} />
+        <Content title={"something5"} />
       )
     }, 
     {
-      title: "something",
-      value: "something",
+      title: "something6",
+      value: "something6",
       content: (
-        <Content title={"something"} />
+        <Content title={"something6"} />
       )
     }, 
     {
