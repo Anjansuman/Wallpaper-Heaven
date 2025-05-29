@@ -119,7 +119,9 @@ export const NavBar2 = () => {
         <div className="hidden md:flex justify-center items-center gap-x-6 text-[#0B2814] font-semibold">
           {["Designs", "Genre", "Brands", "Designers"].map((e, key) => (
             <div className="hover:underline cursor-pointer" key={key}>
-              {e}
+              <Link href={`/inventory/${e.toLowerCase()}`} >
+                {e}
+              </Link>
             </div>
           ))}
           <div className="relative">
