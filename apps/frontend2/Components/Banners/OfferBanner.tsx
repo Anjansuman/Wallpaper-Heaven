@@ -55,7 +55,7 @@ export default function OfferBanner({ tag, highlightedText }: OfferBannerProps) 
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
         >
-            <IconX className="size-4 absolute right-1 top-1 cursor-pointer hover:text-[red] transition-colors " onClick={() => setCloseOffer(true)} />
+            <IconX className="size-4 absolute right-1 top-1 cursor-pointer text-[red] transition-colors " onClick={() => setCloseOffer(true)} />
 
             <div className="w-full flex flex-col justify-center items-center text-lg font-semibold ">
                 <div>
@@ -71,9 +71,12 @@ export default function OfferBanner({ tag, highlightedText }: OfferBannerProps) 
                     {highlightedText}
                 </div>
             </div>
-            <Link href={`/terms&conditions/offers`}>
-                <div className="text-[blue] text-xs underline flex justify-center items-center text-center ">
-                    terms & conditions applied
+            <Link href={`/terms&conditions/offers`} className="flex justify-center items-center gap-x-1 text-xs" >
+                <div className="text-[blue] underline flex justify-center items-center text-center ">
+                    terms & conditions
+                </div>
+                <div>
+                    applied
                 </div>
             </Link>
         </div>}
