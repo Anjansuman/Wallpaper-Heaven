@@ -12,7 +12,7 @@ export default function ChooseProduct() {
     const [selected, setSelected] = useState<string | null>(null);
 
     return (
-        <div className="h-full text-[#6DA165] px-6 ">
+        <div className="text-[#6DA165] ">
             <div className="flex flex-col items-start mb-6 ">
                 <div className="font-semibold text-3xl">Choose a Product</div>
                 <div className="">Choose a type that fits your product well.</div>
