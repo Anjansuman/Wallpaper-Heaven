@@ -18,8 +18,20 @@ export const NavBar2 = () => {
   const [signinPanel, setSigninPanel] = useState<boolean>(false);
   const [signinBox, setSigninBox] = useState<boolean>(false);
 
+  const navTextRef = useRef<HTMLDivElement>(null);
   const searchRef = useRef<HTMLDivElement>(null);
   const hamburgerRef = useRef<HTMLDivElement>(null);
+
+
+  useEffect(() => {
+    if(!navTextRef) return;
+
+    gsap.to(navTextRef.current, {
+      color: isScrolled ? "#000000" : "#ffffff",
+      duration: 0.4,
+      ease: "power2.out"
+    })
+  }, [isScrolled])
 
   // Animate search panel
   useEffect(() => {
@@ -74,7 +86,7 @@ export const NavBar2 = () => {
           {
             x: "0%",
             opacity: 1,
-            duration: 0.4,
+            duration: 0.2,
             ease: "power2.out"
           }
         );
@@ -120,7 +132,9 @@ export const NavBar2 = () => {
         <div className="flex items-center gap-x-3 relative">
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex justify-center items-center gap-x-7 text-[#000000] font-semibold text-md ">
+          <div 
+          ref={navTextRef}
+          className="hidden md:flex justify-center items-center gap-x-7 font-semibold text-md ">
             {["Designs", "Genre", "Brands", "Designers"].map((e, key) => (
               <div className="hover:underline cursor-pointer" key={key}>
                 <Link href={`/inventory/${e.toLowerCase()}`} >

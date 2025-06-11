@@ -13,7 +13,6 @@ interface Brand {
     name: string;
     logo: string;
     description: string;
-    wallpaperCount: number;
     featured: boolean;
     slug: string;
 }
@@ -29,7 +28,6 @@ const mockBrands: Brand[] = [
         name: "Prestigious",
         logo: "../../../public/home2.png",
         description: "Luxury wallpapers with timeless elegance",
-        wallpaperCount: 245,
         featured: true,
         slug: "prestigious-textiles"
     },
@@ -38,7 +36,6 @@ const mockBrands: Brand[] = [
         name: "Cole",
         logo: "/api/placeholder/200/120",
         description: "Heritage designs meet contemporary style",
-        wallpaperCount: 189,
         featured: true,
         slug: "cole-and-son"
     },
@@ -47,7 +44,6 @@ const mockBrands: Brand[] = [
         name: "Farrow & Ball",
         logo: "/api/placeholder/200/120",
         description: "Handcrafted with the finest ingredients",
-        wallpaperCount: 156,
         featured: false,
         slug: "farrow-and-ball"
     },
@@ -56,7 +52,6 @@ const mockBrands: Brand[] = [
         name: "Morris & Co",
         logo: "/api/placeholder/200/120",
         description: "Victorian artistry for modern homes",
-        wallpaperCount: 203,
         featured: true,
         slug: "morris-and-co"
     },
@@ -65,7 +60,6 @@ const mockBrands: Brand[] = [
         name: "Sanderson",
         logo: "/api/placeholder/200/120",
         description: "British design heritage since 1860",
-        wallpaperCount: 178,
         featured: false,
         slug: "sanderson"
     },
@@ -74,7 +68,6 @@ const mockBrands: Brand[] = [
         name: "Ralph Lauren",
         logo: "/api/placeholder/200/120",
         description: "American luxury and sophistication",
-        wallpaperCount: 134,
         featured: true,
         slug: "ralph-lauren"
     },
@@ -83,7 +76,6 @@ const mockBrands: Brand[] = [
         name: "Designers Guild",
         logo: "/api/placeholder/200/120",
         description: "Contemporary patterns and bold colors",
-        wallpaperCount: 167,
         featured: false,
         slug: "designers-guild"
     },
@@ -92,7 +84,6 @@ const mockBrands: Brand[] = [
         name: "Zoffany",
         logo: "/api/placeholder/200/120",
         description: "Sophisticated designs with global inspiration",
-        wallpaperCount: 142,
         featured: false,
         slug: "zoffany"
     }
@@ -222,27 +213,32 @@ const Brands: React.FC<BrandsProps> = ({
     }, []);
 
     return (
-        <section className={`w-full h-screen flex flex-col ${className}`}>
+        <section className={`w-full h-full flex flex-col ${className}`}>
             {/* Header */}
-            <div className="px-6 lg:px-12 py-8 lg:py-10">
+            <div className="px-6 lg:px-12 py-8 lg:py-10 mb-8">
                 <div className="max-w-10xl mx-auto">
                     <Link
                         href="/brands"
-                        className="group inline-flex items-center mb-0 hover:text-blue-600 transition-colors duration-300"
+                        className="group flex justify-between items-center mb-0 hover:text-blue-600 transition-colors duration-300"
                     >
-                        <h1 className="text-4xl lg:text-3xl font-bold text-gray-900 tracking-tight">
+                        <h1 className="text-4xl lg:text-3xl border-b-2 border-b-purple-400 font-bold text-gray-900 tracking-normal">
                             BRANDS
                         </h1>
-                        <ExternalLink className="w-4 h-4 lg:w-6 lg:h-6 ml-3 text-gray-400 group-hover:text-blue-600 transition-colors duration-300" />
+                        {/* <ExternalLink className="w-4 h-4 lg:w-6 lg:h-6 ml-3 text-gray-400 group-hover:text-blue-600 transition-colors duration-300" /> */}
+                        <div className="flex">
+                            <span className="text-[25px] tracking-widest font-light text-purple-400 px-4 py-1 md:text-md">
+                                -----------------------------------------
+                            </span>
+                            <p className="text-[24px] tracking-wider font-light bg-purple-400 px-4 py-1 md:text-md text-[#000000]">
+                                DISCOVER DESIGNS FROM THE MOST PRESTIGIOUS DESIGN HOUSES
+                            </p>
+                        </div>
                     </Link>
-                    <p className="text-black text-lg lg:text-[18px] max-w-5xl">
-                        DISCOVER DESIGNS FROM THE MOST PRESTIGIOUS DESIGN HOUSES
-                    </p>
                 </div>
             </div>
 
             {/* Scrollable Brands Section */}
-            <div className="flex-1 relative px-6 lg:px-12">
+            <div className="flex-1 relative mb-10 px-6 lg:px-12">
                 <div className="max-w-9xl mx-auto relative h-full">
                     {/* Left Scroll Button */}
                     <button
@@ -297,7 +293,7 @@ const Brands: React.FC<BrandsProps> = ({
             </div>
 
             {/* Bottom Section */}
-            <div className="px-6 lg:px-12 pb-80">
+            <div className="px-6 lg:px-12 pb-40">
                 <div className="max-w-9xl mx-auto">
                     <div className="relative h-32 lg:h-32 rounded-2xl overflow-hidden bg-gradient-to-r from-gray-900 via-gray-800 to-black">
                         {/* Background Pattern */}

@@ -1,6 +1,6 @@
+"use client"
+
 import { IconX } from "@tabler/icons-react"
-
-
 
 export default function SetTags() {
     return <div className="text-[#6DA165] ">

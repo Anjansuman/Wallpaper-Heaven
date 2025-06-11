@@ -1,18 +1,18 @@
 import Image from "next/image";
 import BrandName from "../ui/Customs/BrandName";
-import { LinkTabsAnimation } from "./LinkTabsAnimation";
+import { Feedback } from "@/components/ui/FeedbackCard";
 
 export default function Footer() {
   return (
-    <div className="w-full p-4 bg-[#51794b] relative overflow-hidden text-stone-400 ">
+    <div className="w-full p-4 bg-gradient-to-br from-[#000] to-[#0d0833] relative overflow-hidden text-stone-300 ">
       {/* Background image using next/image */}
-      <Image
+      {/* <Image
         src="/footer.jpeg"
         alt="footer"
         fill
         className="object-cover z-0 scale-x-[-1]"
         style={{ objectPosition: 'center -800px' }}
-        />
+        /> */}
 
       {/* Content on top of image */}
       <div className="w-fit relative z-10">
@@ -53,7 +53,9 @@ export default function Footer() {
             </div>
           ))}
         </div>
-        <LinkTabsAnimation />
+        <div className="flex justify-end items-end pr-25 pb-2">
+          <Feedback/>
+        </div>
       </div>
     </div>
   );

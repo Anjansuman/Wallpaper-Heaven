@@ -10,9 +10,19 @@ export function MediumSlider() {
 
     return (
         <div className="w-full ">
-            <h2 className="max-w-7xl mx-auto text-lg md:text-3xl font-bold text-neutral-800 dark:text-neutral-200 font-sans">
-                Take a peek at our happy homes.
-            </h2>
+            <div className="flex justify-between mx-10">
+                <span className="border-b-2 border-yellow-500 text-lg md:text-3xl font-bold text-neutral-800 dark:text-neutral-200 font-sans">
+                    PROOF OF WORK
+                </span>
+                <div>
+                    <span className="text-[25px] tracking-widest font-light text-yellow-500 px-4 py-1 md:text-md ">
+                        -------------------------------------------------------------
+                        </span>
+                <span className="text-[24px] tracking-wider font-light bg-yellow-500 px-4 py-1 md:text-md text-[#000000]  ">
+                    SOME RANDOM TEXT HEHEHEHEHEHE
+                </span>
+                </div>
+            </div>
             <Carousel items={cards} />
         </div>
     );
