@@ -22,7 +22,8 @@
     "next-auth": "^4.24.11",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "tailwind-merge": "^3.3.0"
+    "tailwind-merge": "^3.3.0",
+    "@repo/db": "workspace:*"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

@@ -8,12 +8,15 @@ import gsap from "gsap";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import PhoneNavElements from "./PhoneNavElements";
+import SignIn from "../Auth/Signin";
 
 export const NavBar2 = () => {
   const [searchPanel, setSearchPanel] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [hamburgerPanel, setHamburgerPanel] = useState<boolean>(false);
   const [showHamburger, setShowHamburger] = useState(false);
+  const [signinPanel, setSigninPanel] = useState<boolean>(false);
+  const [signinBox, setSigninBox] = useState<boolean>(false);
 
   const searchRef = useRef<HTMLDivElement>(null);
   const hamburgerRef = useRef<HTMLDivElement>(null);
@@ -117,7 +120,7 @@ export const NavBar2 = () => {
         <div className="flex items-center gap-x-3 relative">
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex justify-center items-center gap-x-6 text-[#0B2814] font-semibold">
+          <div className="hidden md:flex justify-center items-center gap-x-7 text-[#000000] font-semibold text-md ">
             {["Designs", "Genre", "Brands", "Designers"].map((e, key) => (
               <div className="hover:underline cursor-pointer" key={key}>
                 <Link href={`/inventory/${e.toLowerCase()}`} >
@@ -137,7 +140,32 @@ export const NavBar2 = () => {
                 <SearchBar />
               </div>
             </div>
-            <div className="h-7 w-7 border-2 border-red-500 rounded-full"></div>
+
+            {/* SignIn */}
+            <div
+              onClick={(prev) => setSigninPanel(prev => !prev)}
+              className="h-7 w-7 border-2 border-gray-400 bg-black rounded-full cursor-pointer"
+              title="Admin Sign In"
+            ></div>
+
+            {signinPanel && (
+              <div className="bg-[#222222] absolute top-8 right-1 w-auto shadow-lg rounded-sm border border-neutral-200/20">
+
+                <div
+                  onClick={() => setSigninBox(prev => !prev)}
+                  className="flex flex-col text-[18px] text-gray-300 p-2"
+                >
+                  <span
+                    className="flex justify-center items-center tracking-wide cursor-pointer px-2"
+                  >
+                    Sign In
+                  </span>
+                </div>
+
+              </div>
+            )}
+
+
           </div>
 
           {/* Mobile Hamburger */}
@@ -166,6 +194,12 @@ export const NavBar2 = () => {
           <PhoneNavElements close={() => setHamburgerPanel(false)} />
         </div>
       ) : ""}
+
+      {signinBox && (
+        <div className="absolute z-50">
+          <SignIn handleClick={() => setSigninBox(false)}/>
+        </div>
+      )}
     </div>
   );
 };

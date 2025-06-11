@@ -29,7 +29,7 @@ export function TabSwitcher() {
   ];
 
   return (
-    <div className="relative flex flex-col max-w-6xl mx-auto w-full items-start justify-start">
+    <div className="relative flex flex-col max-w-10xl mx-auto w-full items-start justify-start">
       <Genre2 tabs={tabs} />
     </div>
   );

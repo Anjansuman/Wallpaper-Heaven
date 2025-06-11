@@ -43,19 +43,31 @@ export default function OfferBanner({ tag, highlightedText }: OfferBannerProps) 
     }, [hovered]);
 
     return <div>
-        {closeOffer && <div
-            onClick={() => setCloseOffer(false)}
-            className="fixed z-50 left-0 top-50 text-lg font-semibold -rotate-90 border border-[#6DA165] p-2 rounded-lg bg-white/40 cursor-pointer "
-        >
-            {tag}
-        </div>}
+        {closeOffer &&
+            <div className="flex flex-col">
+                <div
+                    onClick={() => setCloseOffer(false)}
+                    className="fixed flex z-50 right-0 top-50 text-lg font-semibold -rotate-90 border border-[#6DA165] p-2 text-[#d4d4d4] rounded-lg bg-white/10 cursor-pointer "
+                >
+                    <div className="w-full h-auto flex justify-center items-center">
+                        <div className=" w-2 h-2 bg-green-400 rounded-full flex animate-pulse mr-1"></div>
+                    </div>
+                    {tag}
+                </div>
+            </div>
+        }
         {!closeOffer && <div
             ref={offerRef}
-            className={`fixed z-50 left-0 top-40 h-40 w-44 p-2 bg-white/40 border border-[#6DA165] rounded-r-lg flex flex-col items-center justify-between `}
+            className={`fixed z-50 right-0 top-40 h-40 w-44 p-2 bg-white/30 border border-[#6DA165] rounded-l-lg flex flex-col items-center justify-between `}
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
         >
-            <IconX className="size-4 absolute right-1 top-1 cursor-pointer text-[red] transition-colors " onClick={() => setCloseOffer(true)} />
+            <div onClick={() => setCloseOffer(true)} className="absolute top-2 right-2 h-4 w-4 pb-0.5 bg-red-600 text-white rounded-full flex items-center justify-center hover:text-black transition-colors duration-150 cursor-pointer">
+                ×
+            </div>
+
+
+            {/* <IconX className="size-4 absolute right-2 top-2 cursor-pointer text-[#ee2828] transition-colors " onClick={() => setCloseOffer(true)} /> */}
 
             <div className="w-full flex flex-col justify-center items-center text-lg font-semibold ">
                 <div>
@@ -67,12 +79,12 @@ export default function OfferBanner({ tag, highlightedText }: OfferBannerProps) 
                 <div className="">
                     {tags[tag]}
                 </div>
-                <div className="text-[red] font-semibold ">
+                <div className="text-[#9e1b1b] font-semibold ">
                     {highlightedText}
                 </div>
             </div>
             <Link href={`/terms&conditions/offers`} className="flex justify-center items-center gap-x-1 text-xs" >
-                <div className="text-[blue] underline flex justify-center items-center text-center ">
+                <div className="text-[#0000ff] underline flex justify-center items-center text-center ">
                     terms & conditions
                 </div>
                 <div>

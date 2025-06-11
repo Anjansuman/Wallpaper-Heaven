@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#faf0e6] text-[#0B2814]`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#ececec] text-[#0B2814]`}
       >
         <NavBar2 />
         <OfferBanner tag="Offer" highlightedText={"20% off"} />
