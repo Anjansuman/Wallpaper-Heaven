@@ -47,10 +47,10 @@ export default function OfferBanner({ tag, highlightedText }: OfferBannerProps) 
             <div className="flex flex-col">
                 <div
                     onClick={() => setCloseOffer(false)}
-                    className="fixed flex z-50 right-0 top-50 text-lg font-semibold -rotate-90 border border-[#6DA165] p-2 text-[#d4d4d4] rounded-lg bg-white/10 cursor-pointer "
+                    className="fixed flex z-50 right-0 top-50 text-lg font-semibold -rotate-90 border border-[#c9c483] p-2 text-gray-300 rounded-lg bg-black/20 cursor-pointer "
                 >
                     <div className="w-full h-auto flex justify-center items-center">
-                        <div className=" w-2 h-2 bg-green-400 rounded-full flex animate-pulse mr-1"></div>
+                        <div className=" w-2 h-2 bg-green-500 rounded-full flex animate-pulse mr-1"></div>
                     </div>
                     {tag}
                 </div>
@@ -58,11 +58,11 @@ export default function OfferBanner({ tag, highlightedText }: OfferBannerProps) 
         }
         {!closeOffer && <div
             ref={offerRef}
-            className={`fixed z-50 right-0 top-40 h-40 w-44 p-2 bg-white/30 border border-[#6DA165] rounded-l-lg flex flex-col items-center justify-between `}
+            className={`fixed z-50 right-0 top-40 h-40 w-44 p-2 bg-black/20 border border-[#c9c483] rounded-l-lg flex flex-col items-center justify-between `}
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
         >
-            <div onClick={() => setCloseOffer(true)} className="absolute top-2 right-2 h-4 w-4 pb-0.5 bg-red-600 text-white rounded-full flex items-center justify-center hover:text-black transition-colors duration-150 cursor-pointer">
+            <div onClick={() => setCloseOffer(true)} className="absolute top-2 right-2 h-4 w-4 pb-0.5 bg-red-800 text-white rounded-full flex items-center justify-center hover:text-black transition-colors duration-150 cursor-pointer">
                 ×
             </div>
 
@@ -73,7 +73,7 @@ export default function OfferBanner({ tag, highlightedText }: OfferBannerProps) 
                 <div>
                     {tag}
                 </div>
-                <div className="border border-[#6DA165] w-full"></div>
+                <div className="border border-[#c9c483] w-full"></div>
             </div>
             <div className="w-full flex flex-col items-center ">
                 <div className="">

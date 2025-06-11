@@ -4,7 +4,7 @@ export default function About() {
       <div className="max-w-4xl mx-auto text-center py-14 space-y-6">
 
         {/* Heading */}
-        <h2 className="text-4xl font-bold tracking-tight text-gray-900">About</h2>
+        <h2 className="text-4xl font-serif font-bold tracking-tight text-gray-900">About</h2>
 
         {/* Paragraphs */}
         <p className="text-lg leading-relaxed">

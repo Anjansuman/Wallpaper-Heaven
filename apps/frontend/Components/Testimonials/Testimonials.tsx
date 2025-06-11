@@ -103,10 +103,10 @@ export default function Testimonials() {
       <div className="absolute right-0 top-0 h-full w-32 bg-gradient-to-l from-gray-50 to-transparent z-10"></div>
 
       <div className="container mx-auto px-4">
-        <h2 className="testimonials-title text-4xl md:text-5xl font-semibold text-center mb-4">
+        <h2 className="testimonials-title font-serif text-4xl md:text-5xl font-semibold text-center mb-4">
           Customer Stories
         </h2>
-        <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+        <p className="text-gray-600 font-serif text-[20px] text-center mb-12 max-w-2xl mx-auto">
           Hear from designers and homeowners who have transformed their spaces with our premium wallpapers.
         </p>
       </div>

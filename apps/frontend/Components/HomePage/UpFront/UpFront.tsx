@@ -26,7 +26,7 @@ export default function UpFront() {
                     Give your home a <span className=" font-semibold text-[#ccc5b5]">heavenly</span> vibe with designer walls.
                 </p>
 
-                <button className="mt-3 w-fit px-6 py-3 bg-gradient-to-br from-[#0b1d51]  to-[#725cad] hover:from-[#725cad] hover:to-[#0b1d51] text-[#e4e4e4] font-semibold rounded-md cursor-pointer shadow-lg hover:-translate-y-1 hover:shadow-black/50 transition duration-300">
+                <button className="mt-3 w-fit px-6 py-3 bg-gradient-to-br from-[#0b1d51]  to-[#725cad]  text-[#e4e4e4] font-semibold rounded-md cursor-pointer shadow-lg hover:text-white hover:-translate-y-1 hover:shadow-black/30 transition duration-250">
                     Explore Designs
                 </button>
             </div>
