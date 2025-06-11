@@ -1,29 +1,36 @@
 import Image from "next/image";
-import homePage from "../../../public/upfront.jpeg";
-
+import homePage from "../../../public/upfrontNew.jpeg";
 
 export default function UpFront() {
-    return <div className="w-full text-[#0B2814] relative " >
-        <Image
-            src={homePage}
-            alt="Home"
-            className="w-full  max-h-[1000px] object-cover object-center relative "
-            unoptimized
-        />
-        <div className="absolute inset-0 top-10 bg-black/20 z-10 pointer-events-none" />
+    return (
+        <div className="relative w-full text-white">
+            <Image
+                src={homePage}
+                alt="Wallpaper heaven"
+                className="w-full h-[100vh] object-cover object-center"
+                unoptimized
+            />
 
-        <div className=" h-40 z-20 w-fit absolute top-1/2 left-1/12 -translate-y-1/2 flex flex-col gap-y-3 ">
-            <div>
-                <div className="text-xl text-[#d8d8d8] md:text-2xl lg:text-4xl xl:text-7xl font-extrabold ">
-                    Wallpaper heaven
+            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent z-10" />
+
+            <div className="absolute top-1/2 left-[10%] -translate-y-1/2 z-20 flex flex-col gap-5 max-w-xl">
+
+                <div className="text-sm uppercase tracking-wide bg-white/10 px-3 py-1 rounded-full w-fit font-medium text-[#d1d8be] shadow-md backdrop-blur-md">
+                    Curated by Artists
                 </div>
-                <div className="text-sm xl:text-3xl text-[#cfcbb9] font-bold ">
-                    Give your home a <span className="text-[#ceb630]">heavenly</span> vibe.
-                </div>
+                <h1 className="text-4xl sm:text-6xl font-extrabold leading-tight drop-shadow-md">
+                    Wallpaper Heaven
+                </h1>
+
+                <p className="text-lg sm:text-2xl text-[#e5e5e5] font-medium">
+                    Give your home a <span className=" font-semibold text-[#ccc5b5]">heavenly</span> vibe with designer walls.
+                </p>
+
+                <button className="mt-3 w-fit px-6 py-3 bg-gradient-to-br from-[#0b1d51]  to-[#725cad] hover:from-[#725cad] hover:to-[#0b1d51] text-[#e4e4e4] font-semibold rounded-md cursor-pointer shadow-lg hover:-translate-y-1 hover:shadow-black/50 transition duration-300">
+                    Explore Designs
+                </button>
             </div>
-            <div className="w-fit md:py-2 md:px-4 py-1 px-2 text-md md:text-md font-medium md:rounded-md rounded-sm bg-[#4e7c47] hover:bg-[#466d40] transition-colors duration-250 shadow-xl shadow-[#000000] cursor-pointer text-[#000000] ">
-                See our Designs
-            </div>
+
         </div>
-    </div>
+    );
 }

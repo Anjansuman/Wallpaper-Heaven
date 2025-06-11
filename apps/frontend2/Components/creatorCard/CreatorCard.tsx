@@ -17,7 +17,7 @@ const CreatorCard: React.FC<CreatorCardProps> = ({ image, name, brand }) => {
       className="w-[150px] h-[200px] flex flex-col items-center justify-start bg-white rounded-xl shadow-md overflow-hidden border border-neutral-200"
     >
       {/* Top Half */}
-      <div className="w-full h-[60%] flex items-center justify-center bg-[#41c0a5]">
+      <div className="w-full h-[60%] flex items-center justify-center bg-[#c5c5c5]">
         <div className="w-24 h-24 rounded-full bg-white flex items-center justify-center ">
           <img
             src={image}

@@ -6,7 +6,7 @@ import { gsap } from 'gsap';
 import { MoreVertical } from 'lucide-react';
 import SignIn from '../Auth/Signin';
 
-export default function Navbar2() {
+export default function UserPageNavbar() {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [signinOption, setSigninOption] = useState<boolean>(false);
@@ -29,7 +29,7 @@ export default function Navbar2() {
 
   return (
     <>
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-[#ffffff] text-black bg-opacity-90 backdrop-blur-md shadow-md py-2' : 'bg-transparent py-4'}`}>
+      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-[#000000] text-black bg-opacity-90 backdrop-blur-md shadow-md py-2' : 'bg-transparent py-4'}`}>
         <div className="relative container mx-auto px-2 flex justify-between items-center">
           {/* Logo */}
           <Link href="/" className="flex items-center">

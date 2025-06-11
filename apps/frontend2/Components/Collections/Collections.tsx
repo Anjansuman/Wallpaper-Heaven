@@ -3,91 +3,65 @@
 import { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { DirectionAwareHover } from '../ui/direction-aware-hover';
+import { DirectionAwareHover } from '../../components/ui/direction-aware-hover';
 
 const wallpapers = [
   {
     id: 1,
     title: "Botanicals",
     category: "Floral",
-    image: "/heroBG.jpeg",
+    image: "/col1.jpeg",
   },
   {
     id: 2,
     title: "Modern Geometric",
     category: "Minimalist",
-    image: "/col1.jpeg",
+    image: "/col2.jpeg",
   },
   {
     id: 3,
     title: "Baroque Revival",
     category: "Classic",
-    image: "/col2.jpeg",
+    image: "/col3.jpeg",
   },
   {
     id: 4,
     title: "Pastel Dreams",
     category: "Abstract",
-    image: "/col3.jpeg",
+    image: "/col4.jpeg",
   },
   {
     id: 5,
     title: "Vintage Floral",
     category: "Floral",
-    image: "/col4.jpeg",
+    image: "/col5.jpeg",
   },
   {
     id: 6,
     title: "Nordic Lines",
     category: "Minimalist",
-    image: "/col5.jpeg",
+    image: "/col1.jpeg",
+  },
+  {
+    id: 7,
+    title: "Nordic Lines",
+    category: "Minimalist",
+    image: "/col2.jpeg",
+  },
+  {
+    id: 8,
+    title: "Nordic Lines",
+    category: "Minimalist",
+    image: "/col3.jpeg",
   },
 ];
 
 const categories = ["All", "Floral", "Minimalist", "Classic", "Abstract"];
 
-export default function FeaturedGrid() {
+export default function TopCollections() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [filteredWallpapers, setFilteredWallpapers] = useState(wallpapers);
   const gridRef = useRef(null);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      gsap.registerPlugin(ScrollTrigger);
-    }
-
-    gsap.from('.section-title', {
-      y: 50,
-      opacity: 0,
-      duration: 0.8,
-      scrollTrigger: {
-        trigger: '.section-title',
-        start: 'top bottom-=100',
-      }
-    });
-
-    gsap.from('.category-pill', {
-      opacity: 0,
-      y: 20,
-      stagger: 0.1,
-      duration: 0.5,
-      scrollTrigger: {
-        trigger: '.categories-container',
-        start: 'top bottom-=50',
-      }
-    });
-
-    gsap.from('.wallpaper-card', {
-      opacity: 0,
-      y: 50,
-      stagger: 0.1,
-      duration: 0.8,
-      scrollTrigger: {
-        trigger: gridRef.current,
-        start: 'top bottom-=100',
-      }
-    });
-  }, []);
 
   useEffect(() => {
     if (activeCategory === "All") {
@@ -111,12 +85,12 @@ export default function FeaturedGrid() {
   }, [activeCategory]);
 
   return (
-    <section id="collections" className="py-20 px-4">
+    <section id="collections" className="py-20 ">
       <div className="container mx-auto">
-        <h2 className="section-title text-4xl md:text-5xl font-semibold text-center mb-4">
+        <h2 className="section-title font-serif text-4xl md:text-5xl font-semibold text-center mb-4">
           Featured Collections
         </h2>
-        <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+        <p className="text-gray-600 font-serif text-[20px] text-center mb-12 max-w-2xl mx-auto">
           Explore our selection of premium wallpapers, designed to transform any space into a stunning environment.
         </p>
 
@@ -126,7 +100,7 @@ export default function FeaturedGrid() {
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`category-pill px-6 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${activeCategory === category
+              className={`category-pill px-6 py-2 rounded-[8px] text-sm font-medium transition-all duration-300 ${activeCategory === category
                   ? 'bg-black text-white'
                   : 'bg-gray-100 hover:bg-gray-200 text-gray-800 hover:shadow-md'
                 }`}
@@ -139,7 +113,7 @@ export default function FeaturedGrid() {
         {/* wallpaper grid */}
         <div
           ref={gridRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 place-items-center"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-[90px] gap-y-8 place-items-center"
         >
           {filteredWallpapers.map((wallpaper) => (
             <div
@@ -161,7 +135,7 @@ export default function FeaturedGrid() {
         </div>
 
         <div className="text-center mt-12">
-          <button className="px-8 py-3 border border-black text-black font-medium rounded-full hover:bg-black hover:text-white transition-colors duration-300 cursor-pointer">
+          <button className="px-8 py-3 border border-black text-black font-medium rounded-full hover:bg-black hover:text-white transition-colors duration-300">
             View All Collections
           </button>
         </div>
