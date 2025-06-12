@@ -2,10 +2,7 @@
   "name": "@repo/db",
   "version": "1.0.0",
   "exports": {
-    ".": {
-      "import": "./index.ts",
-      "require": "./index.ts"
-    }
+    "./prisma": "./src/index.ts"
   },
   "scripts": {
     "generate": "prisma generate"
@@ -15,6 +12,7 @@
     "prisma": "^6.6.0"
   },
   "devDependencies": {
-    "@types/node": "^24.0.0"
+    "@types/node": "^24.0.0",
+    "@repo/typescript-config": "workspace:*"
   }
 }

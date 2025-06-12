@@ -124,7 +124,22 @@ exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
   password: 'password',
+  name: 'name',
+  admin: 'admin'
+};
+
+exports.Prisma.TagScalarFieldEnum = {
+  id: 'id',
   name: 'name'
+};
+
+exports.Prisma.ProductScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  images: 'images',
+  addedAt: 'addedAt',
+  addedById: 'addedById'
 };
 
 exports.Prisma.SortOrder = {
@@ -139,7 +154,9 @@ exports.Prisma.QueryMode = {
 
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  Tag: 'Tag',
+  Product: 'Product'
 };
 
 /**
