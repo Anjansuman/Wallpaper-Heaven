@@ -5,13 +5,13 @@ import jwt from "jsonwebtoken";
 import prisma from "@repo/db/prisma";
 
 
-export interface CustomSession { 
+export interface CustomSession {
   user?: CustomUser,
   expires: ISODateString
 }
 
 export interface CustomUser {
-  id? : string | null,
+  id?: string | null,
   name?: string | null,
   email?: string | null,
   image?: string | null,
@@ -39,6 +39,7 @@ export const authOptions: AuthOptions = {
     async signIn({ user }: { user: CustomUser }) {
       try {
 
+<<<<<<< HEAD
         const allowedEmail = "piyushraj26102004@gmail.com"
 
         if (!user.email) {
@@ -53,13 +54,17 @@ export const authOptions: AuthOptions = {
 
         if (!user.name) {
           console.log("Name is required");
+=======
+        if (!user.email) {
+          console.log("email is required");
+>>>>>>> a4a6623ac226970e3c6b94a6647451b966cbcfe2
           return false;
         }
         const existingUser = await prisma.user.findUnique({
           where: { email: user.email }
         })
         let myUser;
-        if(existingUser) {
+        if (existingUser) {
           myUser = await prisma.user.update({
             where: { email: user.email },
             data: {
@@ -72,22 +77,22 @@ export const authOptions: AuthOptions = {
           myUser = await prisma.user.create({
             data: {
               email: user.email,
-              name: user.name,
+              name: user.name!,
               image: user.image
             }
           })
         }
-  
+
         const jwtPayload = {
           name: myUser.name,
           email: myUser.email,
           id: myUser.id
         }
-  
+
         const token = jwt.sign(jwtPayload, process.env.NEXTAUTH_SECRET || "mysecret", {
           expiresIn: "365d"
         })
-  
+
         user.id = myUser.id.toString();
         user.token = token;
         console.log("options user: ", user)
@@ -97,17 +102,17 @@ export const authOptions: AuthOptions = {
         return false;
       }
     },
-  
+
     async jwt({ token, user }) {
-      if(user) {
+      if (user) {
         token.user = user as CustomUser;
       }
       return token;
     },
-  
+
     async session({ session, token }: { session: CustomSession, token: JWT }) {
       if (token.user) {
-        session.user = token.user as CustomUser ;
+        session.user = token.user as CustomUser;
       }
       return session;
     },

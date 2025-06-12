@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"root":["./src/index.ts","./src/aws/S3.ts","./src/routes/product.ts","./src/routes/tag.ts"],"errors":true,"version":"5.8.2"}
+=======
+{"root":["./src/config.ts","./src/index.ts","./src/aws/S3.ts","./src/routes/product.ts","./src/routes/tag.ts"],"version":"5.8.2"}
+>>>>>>> a4a6623ac226970e3c6b94a6647451b966cbcfe2
