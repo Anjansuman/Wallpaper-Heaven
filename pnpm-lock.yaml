@@ -61,9 +61,6 @@ importers:
       '@repo/db':
         specifier: workspace:*
         version: link:../../packages/db
-      '@repo/secrets':
-        specifier: workspace:*
-        version: link:../../packages/secrets
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
@@ -219,19 +216,6 @@ importers:
       typescript-eslint:
         specifier: ^8.32.0
         version: 8.32.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.2)
-
-  packages/secrets:
-    dependencies:
-      '@types/dotenv':
-        specifier: ^8.2.3
-        version: 8.2.3
-      dotenv:
-        specifier: ^16.5.0
-        version: 16.5.0
-    devDependencies:
-      '@repo/typescript-config':
-        specifier: workspace:*
-        version: link:../typescript-config
 
   packages/typescript-config: {}
 
@@ -1429,10 +1413,6 @@ packages:
   '@types/cors@2.8.18':
     resolution: {integrity: sha512-nX3d0sxJW41CqQvfOzVG1NCTXfFDrDWIghCZncpHeWlVFd81zxB/DLhg7avFg6eHLCRX7ckBmoIIcqa++upvJA==}
 
-  '@types/dotenv@8.2.3':
-    resolution: {integrity: sha512-g2FXjlDX/cYuc5CiQvyU/6kkbP1JtmGzh0obW50zD7OKeILVL0NSpPWLXVfqoAGQjom2/SLLx9zHq0KXvD6mbw==}
-    deprecated: This is a stub types definition. dotenv provides its own type definitions, so you do not need this installed.
-
   '@types/draco3d@1.4.10':
     resolution: {integrity: sha512-AX22jp8Y7wwaBgAixaSvkoG4M/+PlAcm3Qs4OW8yT9DM4xUpWKeFhLueTAyZF39pviAdcDdeJoACapiAceqNcw==}
 
@@ -1987,10 +1967,6 @@ packages:
 
   dotenv@16.0.3:
     resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
-    engines: {node: '>=12'}
-
-  dotenv@16.5.0:
-    resolution: {integrity: sha512-m/C+AwOAr9/W1UOIZUo232ejMNnJAJtYQjUbHoNTBNTJSvqzzDh7vnrei3o3r3m9blf6ZoDkvcw0VmozNRFJxg==}
     engines: {node: '>=12'}
 
   draco3d@1.5.7:
@@ -5555,10 +5531,6 @@ snapshots:
     dependencies:
       '@types/node': 22.15.30
 
-  '@types/dotenv@8.2.3':
-    dependencies:
-      dotenv: 16.5.0
-
   '@types/draco3d@1.4.10': {}
 
   '@types/estree@1.0.7': {}
@@ -6204,8 +6176,6 @@ snapshots:
       no-case: 2.3.2
 
   dotenv@16.0.3: {}
-
-  dotenv@16.5.0: {}
 
   draco3d@1.5.7: {}
 

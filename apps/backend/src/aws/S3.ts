@@ -1,4 +1,4 @@
-import { region, accessKeyId, secretAccessKey } from "@repo/secrets/aws";
+import { region, accessKeyId, secretAccessKey } from "../config";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 
 

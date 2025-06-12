@@ -1,5 +1,6 @@
 import { Router } from "express";
-import prisma from "@repo/db/prisma";
+import { prisma } from "@repo/db/prisma";
+// const prisma = require("@repo/db/prisma");
 
 const router = Router();
 
@@ -16,6 +17,8 @@ router.post("/add-tag", async (req, res) => {
             return;
         }
 
+        console.log("name found: ", name);
+
         const existingTag = await prisma.tag.findUnique({
             where: {
                 name: name
@@ -28,6 +31,8 @@ router.post("/add-tag", async (req, res) => {
             });
             return;
         }
+
+        console.log("No existing tag");
 
         const newTag = await prisma.tag.create({
             data: {
@@ -49,7 +54,8 @@ router.post("/add-tag", async (req, res) => {
         
     } catch (error) {
         res.status(500).json({
-            message: "Internal server error"
+            message: "Internal server error",
+            error: error
         });
         return;
     }
