@@ -1,6 +1,8 @@
-import { Router } from "express";
+import { Request, Router } from "express";
 import multer from "multer";
 import { v4 as uuidv4 } from "uuid";
+import multerS3 from "multer-s3";
+import s3client from "../aws/S3";
 
 const router: Router = Router();
 // router.use(express.urlencoded({ extended: true }));
@@ -17,8 +19,20 @@ const storage = multer.diskStorage({
 });
 
 const multerS3Config = multerS3({
+    s3: s3client,
+    bucket: 'wallpaper-heaven',
+    metadata: (req: Request, file, cb) => {
+        cb(null, { fieldName: file.fieldname });
+    },
+    key: (req, file, cb) => {
+        cb(null, new Date().toISOString() + "-" + uuidv4() + "-" + file.originalname);
+    }
+});
 
-})
+const upload = multer({
+    storage: multerS3Config,
+    limits: { fieldSize: 25 * 1024 * 1024 }
+});
 
 // add admin middleware
 router.post("/add-product", upload.any(), (req, res) => {
