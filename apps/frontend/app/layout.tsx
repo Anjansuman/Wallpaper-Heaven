@@ -1,3 +1,4 @@
+"use client"
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -5,6 +6,7 @@ import NavBar2 from "@/Components/Nav-Bar/NavBar2";
 import Footer from "@/Components/Footer/Footer";
 import ContactBanner from "@/Components/Banners/ContactBanner";
 import OfferBanner from "@/Components/Banners/OfferBanner";
+import { SessionProvider } from "next-auth/react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,10 +18,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Wallpaper Heaven",
-  description: "Luxury Wallpapers",
-};
+// export const metadata: Metadata = {
+//   title: "Wallpaper Heaven",
+//   description: "Luxury Wallpapers",
+// };
 
 export default function RootLayout({
   children,
@@ -31,9 +33,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#ffffff] text-[#0B2814]`}
       >
-        <NavBar2 />
         <OfferBanner tag="Offer" highlightedText={"20% off"} />
-        {children}
+        <SessionProvider>
+          {children}
+        </SessionProvider>
         <Footer />
         <ContactBanner />
       </body>

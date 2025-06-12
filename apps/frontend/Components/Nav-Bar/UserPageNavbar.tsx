@@ -29,11 +29,11 @@ export default function UserPageNavbar() {
 
   return (
     <>
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-[#000000] text-black bg-opacity-90 backdrop-blur-md shadow-md py-2' : 'bg-transparent py-4'}`}>
+      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? ' text-black bg-opacity-90 bg-white shadow-md py-2' : 'bg-transparent py-4'}`}>
         <div className="relative container mx-auto px-2 flex justify-between items-center">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <span className={` ${isScrolled ? " text-black text-2xl font-semibold font-playfair" : "text-2xl font-semibold font-playfair text-neutral-100"}`}>Wallpaper Heaven</span>
+            <span className={` ${isScrolled ? " text-black text-2xl font-semibold font-playfair" : "text-2xl font-semibold font-playfair text-neutral-800"}`}>Wallpaper Heaven</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -42,37 +42,12 @@ export default function UserPageNavbar() {
               <Link
                 key={href}
                 href={href}
-                className={`nav-item transition-colors duration-300 ${isScrolled ? 'text-neutral-800 hover:text-gray-600' : 'text-neutral-100 hover:text-white'}`}
+                className={`nav-item transition-colors duration-300 ${isScrolled ? 'text-neutral-800 hover:text-gray-600' : 'text-neutral-800 hover:text-neutral-600'}`}
               >
                 {['Collections', 'Genre', 'Brands', 'Designers'][idx]}
               </Link>
             ))}
 
-            {/* MoreVertical Button */}
-            <div className="relative">
-              <button
-                title="Only For Admin"
-                onClick={() => setSigninOption(prev => !prev)}
-                className={`nav-item px-4 py-2 rounded-full transition-colors duration-300 ${isScrolled ? 'text-black hover:text-[#9e9e9e]' : 'text-neutral-100 hover:text-neutral-600'}`}
-              >
-                <MoreVertical />
-              </button>
-
-              {/* Dropdown */}
-              {signinOption && (
-                <div className="absolute top-12 right-0 bg-white text-black shadow-lg rounded-sm border border-neutral-200 z-20">
-                  <div
-                    onClick={() => {
-                      setSignin(true);
-                      setSigninOption(false);
-                    }}
-                    className="flex text-[18px] p-2 hover:bg-black hover:text-white transition-colors cursor-pointer"
-                  >
-                    <div className="flex pl-2 pr-2 w-[70px] whitespace-nowrap">Sign In</div>
-                  </div>
-                </div>
-              )}
-            </div>
           </div>
 
           {/* Mobile Menu Toggle */}

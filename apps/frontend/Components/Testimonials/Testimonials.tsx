@@ -97,7 +97,7 @@ export default function Testimonials() {
   return (
     <section
       ref={testimonialsRef}
-      className="py-20 px-10 w-screen bg-gray-50 relative overflow-hidden"
+      className="py-20 px-10 w-full bg-gray-50 relative overflow-hidden"
     >
       <div className="absolute left-0 top-0 h-full w-32 bg-gradient-to-r from-gray-50 to-transparent z-10"></div>
       <div className="absolute right-0 top-0 h-full w-32 bg-gradient-to-l from-gray-50 to-transparent z-10"></div>

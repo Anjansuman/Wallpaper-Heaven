@@ -2,7 +2,7 @@ import GoogleProvider from "next-auth/providers/google";
 import { ISODateString, Session, User, type AuthOptions } from "next-auth";
 import { JWT } from "next-auth/jwt";
 import jwt from "jsonwebtoken";
-import prisma from "@repo/db";
+import prisma from "@repo/db/prisma";
 
 
 export interface CustomSession { 
@@ -39,8 +39,20 @@ export const authOptions: AuthOptions = {
     async signIn({ user }: { user: CustomUser }) {
       try {
 
-        if(!user.email) {
-          console.log("email is required");
+        const allowedEmail = "piyushraj26102004@gmail.com"
+
+        if (!user.email) {
+          console.log("Email is required");
+          return false;
+        }
+    
+        if(user.email != allowedEmail) {
+          console.log("only admins are allowed");
+          return false;
+        }
+
+        if (!user.name) {
+          console.log("Name is required");
           return false;
         }
         const existingUser = await prisma.user.findUnique({
@@ -51,7 +63,7 @@ export const authOptions: AuthOptions = {
           myUser = await prisma.user.update({
             where: { email: user.email },
             data: {
-              name: user.email,
+              name: user.name,
               email: user.email,
               image: user.image
             }

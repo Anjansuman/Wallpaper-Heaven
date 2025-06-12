@@ -3,14 +3,18 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { gsap } from 'gsap';
-import { MoreVertical } from 'lucide-react';
+import { ArrowRightFromLine, MoreVertical, User } from 'lucide-react';
 import SignIn from '../Auth/Signin';
+import { signOut, useSession } from 'next-auth/react';
 
 export default function Navbar2() {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [signinOption, setSigninOption] = useState<boolean>(false);
   const [signin, setSignin] = useState<boolean>(false);
+  const [logoutPanel, setLogoutPanel] = useState<boolean>(false);
+  const { data: session, status } = useSession();
+
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
@@ -48,30 +52,74 @@ export default function Navbar2() {
               </Link>
             ))}
 
-            {/* MoreVertical Button */}
+            {/* User Button */}
             <div className="relative">
               <button
                 title="Only For Admin"
                 onClick={() => setSigninOption(prev => !prev)}
-                className={`nav-item px-4 py-2 rounded-full transition-colors duration-300 ${isScrolled ? 'text-black hover:text-[#9e9e9e]' : 'text-neutral-100 hover:text-neutral-600'}`}
+                className={`nav-item px-4 py-2 rounded-full transition-colors duration-300 ${isScrolled ? 'text-black hover:text-[#9e9e9e]' : 'text-neutral-100 hover:text-neutral-600 cursor-pointer'}`}
               >
-                <MoreVertical />
+                <User />
               </button>
 
               {/* Dropdown */}
               {signinOption && (
-                <div className="absolute top-12 right-0 bg-white text-black shadow-lg rounded-sm border border-neutral-200 z-20">
-                  <div
-                    onClick={() => {
-                      setSignin(true);
-                      setSigninOption(false);
-                    }}
-                    className="flex text-[18px] p-2 hover:bg-black hover:text-white transition-colors cursor-pointer"
-                  >
-                    <div className="flex pl-2 pr-2 w-[70px] whitespace-nowrap">Sign In</div>
-                  </div>
+                <div className="absolute top-12 right-0 bg-white text-black hover:bg-white/70 shadow-lg rounded-sm border border-neutral-400 z-20 transition-colors duration-200">
+                  {session ? (
+                    <div className='flex justify-center items-center px-2'>
+                      <div className="flex text-[18px] p-2 font-medium whitespace-nowrap">
+                        Hello, {session.user?.name || "User"}
+                      </div>
+                      <span
+                        onClick={() => setLogoutPanel(true)}
+                        title='Logout'
+                        className='text-red-700 hover:text-red-600 cursor-pointer transition-colors duration-200'>
+                        <ArrowRightFromLine />
+                      </span>
+
+                    </div>
+                  ) : (
+                    <div
+                      onClick={() => {
+                        setSignin(true);
+                        setSigninOption(false);
+                      }}
+                      className="flex text-[18px] p-2  hover:text-black transition-colors cursor-pointer"
+                    >
+                      <div className="flex pl-2 pr-2 w-[70px] whitespace-nowrap">Sign In</div>
+                    </div>
+                  )}
+
+                  {logoutPanel && (
+                    <div className="fixed inset-0 z-40 bg-black/50 flex items-center justify-center">
+                      <div className="bg-white text-black p-6 rounded-lg shadow-xl shadow-black/50 text-center space-y-4 w-[90%] max-w-sm">
+                        <p className="text-xl font-semibold">Are you sure?</p>
+                        <div className="flex justify-center space-x-5">
+                          <button
+                            onClick={() => {
+                              setLogoutPanel(false);
+                              signOut({ callbackUrl: "/" })
+                              console.log('Logging out...');
+                            }}
+                            className="px-4 py-2 bg-red-700 hover:bg-red-800 text-white rounded-md shadow-md cursor-pointer transition-colors duration-200"
+                          >
+                            Logout
+                          </button>
+                          <button
+                            onClick={() => setLogoutPanel(false)}
+                            className="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-black rounded-md shadow-md cursor-pointer transition-colors duration-200"
+                          >
+                            Cancel
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+
                 </div>
               )}
+
             </div>
           </div>
 
@@ -105,7 +153,8 @@ export default function Navbar2() {
               ))}
               <button
                 onClick={() => setSignin(true)}
-                className="bg-black text-white px-2 w-auto rounded-full hover:bg-gray-800 transition duration-300"
+                className="bg-
+                 text-white px-2 w-auto rounded-full hover:bg-gray-800 transition duration-300"
               >
                 SignIn
               </button>

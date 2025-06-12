@@ -61,7 +61,7 @@ export default function Creators() {
         The minds behind the masterpieces
       </div>
       <div 
-      onClick={() => router.push("/user/1")}
+      onClick={() => router.push("/creator/1")}
       title="Click to view more"
       className="flex flex-wrap gap-6 justify-center mt-6 cursor-pointer">
         {people.map((creator, i) => (

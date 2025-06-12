@@ -17,8 +17,8 @@ export default function Footer() {
       {/* Content on top of image */}
       <div className="w-fit relative z-10">
         <BrandName size="lg" />
-        <div className=" flex justify-center items-center font-normal mt-2 text-[#E6E0C5] ">
-          YOU SAY AND WE MAKE
+        <div className=" flex text-[20px] justify-center items-center font-normal mt-2 text-[#E6E0C5] ">
+          YOU SAY - WE MAKE
         </div>
       </div>
 
