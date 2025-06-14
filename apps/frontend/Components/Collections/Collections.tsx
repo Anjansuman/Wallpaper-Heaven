@@ -135,7 +135,7 @@ export default function TopCollections() {
         </div>
 
         <div className="text-center mt-12">
-          <button className="px-8 py-3 border border-black text-black font-medium rounded-full hover:bg-black hover:text-white transition-colors duration-300">
+          <button className="px-8 py-3 border border-black text-black font-medium rounded-full hover:bg-black hover:text-white cursor-pointer transition-colors duration-300">
             View All Collections
           </button>
         </div>

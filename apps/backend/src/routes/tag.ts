@@ -1,8 +1,9 @@
 import { Router } from "express";
 import { prisma } from "@repo/db/prisma";
 // const prisma = require("@repo/db/prisma");
+import express from "express"
 
-const router = Router();
+const router: express.Router = express.Router();
 
 // add admin middleware
 router.post("/add-tag", async (req, res) => {

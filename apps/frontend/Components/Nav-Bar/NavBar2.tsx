@@ -53,7 +53,7 @@ export default function Navbar2() {
             ))}
 
             {/* User Button */}
-            <div className="relative">
+            <div className="relative cursor-pointer">
               <button
                 title="Only For Admin"
                 onClick={() => setSigninOption(prev => !prev)}

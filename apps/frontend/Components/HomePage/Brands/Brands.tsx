@@ -81,7 +81,7 @@ const mockBrands: Brand[] = [
 const BrandCard: React.FC<{ brand: Brand }> = ({ brand }) => {
     return (
         <Link
-            href={`/brands/${brand.slug}`}
+            href={`/inventory/${brand.slug}`}
             className="group relative flex-shrink-0 w-[280px] h-[340px] bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100"
         >
             {/* Image area */}

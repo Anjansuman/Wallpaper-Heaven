@@ -1,21 +1,20 @@
 import GoogleProvider from "next-auth/providers/google";
-import { ISODateString, Session, User, type AuthOptions } from "next-auth";
+import { ISODateString, type AuthOptions } from "next-auth";
 import { JWT } from "next-auth/jwt";
 import jwt from "jsonwebtoken";
-import prisma from "@repo/db/prisma";
-
+import { prisma } from "@repo/db/prisma";
 
 export interface CustomSession {
-  user?: CustomUser,
-  expires: ISODateString
+  user?: CustomUser;
+  expires: ISODateString;
 }
 
 export interface CustomUser {
-  id?: string | null,
-  name?: string | null,
-  email?: string | null,
-  image?: string | null,
-  token?: string | null
+  id?: string | null;
+  name?: string | null;
+  email?: string | null;
+  image?: string | null;
+  token?: string | null;
 }
 
 export const authOptions: AuthOptions = {
@@ -25,80 +24,78 @@ export const authOptions: AuthOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
       authorization: {
         params: {
           prompt: "consent",
           access_type: "offline",
-          response_type: "code"
-        }
-      }
+          response_type: "code",
+        },
+      },
     }),
   ],
   callbacks: {
     async signIn({ user }: { user: CustomUser }) {
       try {
-
-<<<<<<< HEAD
-        const allowedEmail = "piyushraj26102004@gmail.com"
+        const allowedEmail = "piyushraj26102004@gmail.com";
 
         if (!user.email) {
           console.log("Email is required");
           return false;
         }
-    
-        if(user.email != allowedEmail) {
-          console.log("only admins are allowed");
+
+        if (user.email !== allowedEmail) {
+          console.log("Only admins are allowed");
           return false;
         }
 
         if (!user.name) {
           console.log("Name is required");
-=======
-        if (!user.email) {
-          console.log("email is required");
->>>>>>> a4a6623ac226970e3c6b94a6647451b966cbcfe2
           return false;
         }
+
         const existingUser = await prisma.user.findUnique({
-          where: { email: user.email }
-        })
+          where: { email: user.email },
+        });
+
         let myUser;
         if (existingUser) {
           myUser = await prisma.user.update({
             where: { email: user.email },
             data: {
               name: user.name,
-              email: user.email,
-              image: user.image
-            }
-          })
+              image: user.image,
+            },
+          });
         } else {
           myUser = await prisma.user.create({
             data: {
               email: user.email,
-              name: user.name!,
-              image: user.image
-            }
-          })
+              name: user.name,
+              image: user.image,
+            },
+          });
         }
 
         const jwtPayload = {
           name: myUser.name,
           email: myUser.email,
-          id: myUser.id
-        }
+          id: myUser.id,
+        };
 
-        const token = jwt.sign(jwtPayload, process.env.NEXTAUTH_SECRET || "mysecret", {
-          expiresIn: "365d"
-        })
+        const token = jwt.sign(
+          jwtPayload,
+          process.env.NEXTAUTH_SECRET || "mysecret",
+          { expiresIn: "365d" }
+        );
 
         user.id = myUser.id.toString();
         user.token = token;
-        console.log("options user: ", user)
+
+        console.log("options user: ", user);
         return true;
       } catch (error) {
-        console.error("signin failed : ", error)
+        console.error("SignIn failed: ", error);
         return false;
       }
     },
@@ -110,11 +107,11 @@ export const authOptions: AuthOptions = {
       return token;
     },
 
-    async session({ session, token }: { session: CustomSession, token: JWT }) {
+    async session({ session, token }: { session: CustomSession; token: JWT }) {
       if (token.user) {
         session.user = token.user as CustomUser;
       }
       return session;
     },
-  }
+  },
 };
