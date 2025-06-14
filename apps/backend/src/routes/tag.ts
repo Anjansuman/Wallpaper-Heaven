@@ -1,9 +1,8 @@
 import { Router } from "express";
-import { prisma } from "@repo/db/prisma";
-// const prisma = require("@repo/db/prisma");
+import { prisma } from "@repo/db";
 import express from "express"
 
-const router: express.Router = express.Router();
+const router: Router = express.Router();
 
 // add admin middleware
 router.post("/add-tag", async (req, res) => {
@@ -11,14 +10,12 @@ router.post("/add-tag", async (req, res) => {
 
         const name = req.body.name;
 
-        if(!name) {
+        if (!name) {
             res.status(400).json({
                 message: "Provide a valid tag name"
             });
             return;
         }
-
-        console.log("name found: ", name);
 
         const existingTag = await prisma.tag.findUnique({
             where: {
@@ -26,14 +23,13 @@ router.post("/add-tag", async (req, res) => {
             }
         });
 
-        if(existingTag) {
+
+        if (existingTag) {
             res.status(409).json({
                 message: "tag with this name already exists"
             });
             return;
         }
-
-        console.log("No existing tag");
 
         const newTag = await prisma.tag.create({
             data: {
@@ -41,7 +37,7 @@ router.post("/add-tag", async (req, res) => {
             }
         })
 
-        if(!newTag) {
+        if (!newTag) {
             res.status(500).json({
                 message: "Tag creation failed due to internal server error"
             });
@@ -52,11 +48,10 @@ router.post("/add-tag", async (req, res) => {
             message: "Tag created successfully"
         });
         return;
-        
+
     } catch (error) {
         res.status(500).json({
-            message: "Internal server error",
-            error: error
+            message: "Internal server error"
         });
         return;
     }

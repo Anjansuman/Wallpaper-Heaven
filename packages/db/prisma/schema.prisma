@@ -38,7 +38,19 @@ model Product {
   images          String[]
   addedAt         DateTime        @default(now())
   addedById       String
+  creatorId       Int
 
   addedBy         User            @relation("UserProducts", fields: [addedById], references: [id])
   tags            Tag[]
+  creator         Creator         @relation("CreatorProduct", fields: [creatorId], references: [id])
+}
+
+model Creator {
+  id              Int             @id         @default(autoincrement())
+  name            String
+  about           String
+  description     String?
+  image           String?
+
+  products        Product[]       @relation("CreatorProduct")
 }
