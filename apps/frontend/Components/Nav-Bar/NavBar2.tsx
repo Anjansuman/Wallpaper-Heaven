@@ -6,7 +6,7 @@ import { gsap } from 'gsap';
 import { ArrowRightFromLine, User } from 'lucide-react';
 import SignIn from '../Auth/Signin';
 import { signOut, useSession } from 'next-auth/react';
-import { IconCaretDownFilled, IconSquarePlus } from '@tabler/icons-react';
+import { IconCaretDownFilled, IconSearch, IconSquarePlus } from '@tabler/icons-react';
 import { getToken } from "next-auth/jwt";
 
 export async function handler(req: any, res: any) {
@@ -16,12 +16,13 @@ export async function handler(req: any, res: any) {
 }
 
 export default function Navbar2() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [signinOption, setSigninOption] = useState(false);
-  const [signin, setSignin] = useState(false);
-  const [logoutPanel, setLogoutPanel] = useState(false);
-  const [adminPanel, setAdminPanel] = useState(false);
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [signinOption, setSigninOption] = useState<boolean>(false);
+  const [signin, setSignin] = useState<boolean>(false);
+  const [logoutPanel, setLogoutPanel] = useState<boolean>(false);
+  const [adminPanel, setAdminPanel] = useState<boolean>(false);
+  const [searchPanel, setSearchPanel] = useState<boolean>(false)
 
   const dropdownRef = useRef<HTMLDivElement>(null);
   const adminPanelRef = useRef<HTMLDivElement>(null);
@@ -75,7 +76,7 @@ export default function Navbar2() {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8">
-            {['#collections', '#inspiration', '#about', '#contact'].map((href, idx) => (
+            {['collections', 'inspiration', 'about', 'contact'].map((href, idx) => (
               <Link
                 key={href}
                 href={href}
@@ -86,14 +87,26 @@ export default function Navbar2() {
             ))}
 
             {/* User Dropdown */}
-            <div className="relative">
+            <div className="relative ">
+              <button 
+              onClick={() => setSearchPanel(prev => !prev)}
+              className='relative mr-3 cursor-pointer'>
+                <IconSearch />
+              </button>
               <button
                 title="Only For Admin"
                 onClick={() => setSigninOption(prev => !prev)}
-                className={`nav-item px-4 py-2 rounded-full transition-colors duration-300 cursor-pointer ${isScrolled ? 'text-black hover:text-[#9e9e9e]' : 'text-white hover:text-neutral-400'}`}
+                className={`nav-item px-4 py-2 rounded-full transition-colors duration-300 cursor-pointer ${isScrolled ? 'text-black hover:text-[9e9e9e]' : 'text-white hover:text-neutral-400'}`}
               >
                 <User />
               </button>
+
+              {searchPanel && (
+                <input placeholder='search' className='absolute justify-center items-start hover:text-gray-500 px-8 top-15 right-10 bg-white/80 h-[35px] w-[340px] text-[#949494] rounded-full '>
+                  
+                </input>
+              )}
+
 
               {signinOption && (
                 <div

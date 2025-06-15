@@ -1,11 +1,8 @@
 import { Router } from "express";
-<<<<<<< HEAD
+
 import { prisma } from "@repo//db";
 import express from "express"
-=======
-import { prisma } from "@repo/db";
-import express from "express";
->>>>>>> e3ddf5b (wrote s3 and some routes.)
+
 
 const router: Router = express.Router();
 

@@ -21,6 +21,11 @@ const images = [
         title: "Product 3",
         description: "This is for Gunnu Bhaiya.",
     },
+    {
+        src: "/col3.jpeg",
+        title: "Product 3",
+        description: "This is for Gunnu Bhaiya.",
+    }
 ];
 
 export default function Product() {
