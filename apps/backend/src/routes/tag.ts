@@ -1,6 +1,11 @@
 import { Router } from "express";
+<<<<<<< HEAD
 import { prisma } from "@repo//db";
 import express from "express"
+=======
+import { prisma } from "@repo/db";
+import express from "express";
+>>>>>>> e3ddf5b (wrote s3 and some routes.)
 
 const router: Router = express.Router();
 
@@ -46,6 +51,83 @@ router.post("/add-tag", async (req, res) => {
 
         res.status(201).json({
             message: "Tag created successfully"
+        });
+        return;
+
+    } catch (error) {
+        res.status(500).json({
+            message: "Internal server error"
+        });
+        return;
+    }
+});
+
+router.post("/remove-tag", async (req, res) => {
+    try {
+
+        const name = req.body.name;
+
+        const existingTag = await prisma.tag.findUnique({
+            where: {
+                name: name
+            }
+        });
+
+        if(!existingTag) {
+            res.status(402).json({
+                message: "Tag doesn't exist"
+            });
+            return;
+        }
+
+        await prisma.tag.delete({
+            where: {
+                name: name
+            }
+        });
+
+        res.status(201).json({
+            message: "Tag deleted successfully"
+        });
+        return;
+        
+    } catch (error) {
+        res.status(500).json({
+            message: "Internal server error"
+        });
+        return;
+    }
+});
+
+router.post("/edit-tag", async (req, res) => {
+    try {
+   
+        const { name } = req.body;
+
+        const existingTag = await prisma.tag.findUnique({
+            where: {
+                name: name
+            }
+        });
+
+        if(!existingTag) {
+            res.status(402).json({
+                message: "Tag doesn't exist"
+            });
+            return;
+        }
+
+        await prisma.tag.update({
+            where: {
+                id: existingTag.id
+            },
+            data: {
+                name: name
+            }
+        });
+
+        res.status(200).json({
+            message: "Tag edited successfully"
         });
         return;
 

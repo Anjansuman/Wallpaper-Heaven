@@ -1,7 +1,7 @@
 
 // Backend specific
 export const FRONTEND_URL = process.env.FRONTEND_URL;
-export const JWT_SECRET = process.env.JWT_SECRET;
+export const JWT_SECRET = process.env.JWT_SECRET || "13e23iydv2uy!@ywejhvw";
 
 
 // AWS S3 specific

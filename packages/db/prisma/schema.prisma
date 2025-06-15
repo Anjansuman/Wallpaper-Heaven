@@ -39,10 +39,12 @@ model Product {
   addedAt         DateTime        @default(now())
   addedById       String
   creatorId       Int
+  brandId         Int
+  tags            Tag[]
 
   addedBy         User            @relation("UserProducts", fields: [addedById], references: [id])
-  tags            Tag[]
-  creator         Creator         @relation("CreatorProduct", fields: [creatorId], references: [id])
+  creator         Creator?        @relation("CreatorProduct", fields: [creatorId], references: [id])
+  brand           Brand?          @relation("BrandProduct", fields: [brandId], references: [id])
 }
 
 model Creator {
@@ -53,4 +55,14 @@ model Creator {
   image           String?
 
   products        Product[]       @relation("CreatorProduct")
+}
+
+model Brand {
+  id              Int             @id         @default(autoincrement())
+  name            String          @unique
+  about           String
+  description     String?
+  image           String?
+
+  products        Product[]       @relation("BrandProduct")
 }
