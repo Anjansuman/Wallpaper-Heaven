@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { prisma } from "@repo/db";
+import { prisma } from "@repo//db";
 import express from "express"
 
 const router: Router = express.Router();

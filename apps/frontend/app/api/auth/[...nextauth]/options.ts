@@ -85,7 +85,7 @@ export const authOptions: AuthOptions = {
 
         const token = jwt.sign(
           jwtPayload,
-          process.env.NEXTAUTH_SECRET || "mysecret",
+          process.env.NEXTAUTH_SECRET || "13e23iydv2uy!@ywejhvw",
           { expiresIn: "365d" }
         );
 
