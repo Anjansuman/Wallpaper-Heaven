@@ -4,57 +4,73 @@ import { Feedback } from "@/components/ui/FeedbackCard";
 
 export default function Footer() {
   return (
-    <div className="w-full p-4 bg-gradient-to-br from-[#000] to-[#0d0833] relative overflow-hidden text-stone-300 ">
-      {/* Background image using next/image */}
-      {/* <Image
-        src="/footer.jpeg"
-        alt="footer"
-        fill
-        className="object-cover z-0 scale-x-[-1]"
-        style={{ objectPosition: 'center -800px' }}
-        /> */}
-
-      {/* Content on top of image */}
-      <div className="w-fit relative z-10">
+    <div className="w-full p-4 bg-gradient-to-br from-[#000] to-[#0d0833] relative overflow-hidden text-stone-300">
+      {/* Brand */}
+      <div className="relative z-10 w-fit mb-6">
         <BrandName size="lg" />
-        <div className=" flex text-[20px] justify-center items-center font-normal mt-2 text-[#E6E0C5] ">
+        <div className="text-[20px] text-[#E6E0C5] mt-2 font-normal">
           YOU SAY - WE MAKE
         </div>
       </div>
 
-      <div className="h-80 w-full rounded-2xl px-10 py-5 bg-white/10 backdrop-blur-xs border-2 border-[#6DA165] flex justify-between relative z-10 mt-4">
-        
-        {/* Connect center */}
-        <div className="flex flex-col gap-y-2 w-full">
-          <div className="text-xl font-bold ">Connect</div>
-          {["Call", "Whatsapp", "E-mail", "Address"].map((tags, key) => (
-            <div key={key} className="w-fit text-md font-medium hover:underline cursor-pointer" >
-              {tags}
-            </div>
-          ))}
-        </div>
+      {/* Main content container */}
+      <div className="relative z-10 mt-4 rounded-2xl border-2 border-[#6DA165] bg-white/10 backdrop-blur-xs px-6 py-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Connect */}
+          <div className="flex flex-col gap-y-2">
+            <div className="text-xl font-bold">Connect</div>
+            {["Call", "Whatsapp", "E-mail", "Address"].map((tag, key) => (
+              <div
+                key={key}
+                className="text-md font-medium hover:underline cursor-pointer w-fit"
+              >
+                {tag}
+              </div>
+            ))}
+          </div>
 
-        {/* Shop Links */}
-        <div className="flex flex-col gap-y-2 w-full">
-          <div className="text-xl font-bold ">Shop Links</div>
-          {["Designers Collection", "Shop by Brand", "Shop by Design", "Shop by Genre", "Trending Collecitons", "Custom Wallpapers"].map((tags, key) => (
-            <div key={key} className="w-fit text-md font-medium hover:underline cursor-pointer" >
-              {tags}
-            </div>
-          ))}
-        </div>
+          {/* Shop Links */}
+          <div className="flex flex-col gap-y-2">
+            <div className="text-xl font-bold">Shop Links</div>
+            {[
+              "Designers Collection",
+              "Shop by Brand",
+              "Shop by Design",
+              "Shop by Genre",
+              "Trending Collections",
+              "Custom Wallpapers",
+            ].map((tag, key) => (
+              <div
+                key={key}
+                className="text-md font-medium hover:underline cursor-pointer w-fit"
+              >
+                {tag}
+              </div>
+            ))}
+          </div>
 
-        {/* Help Center */}
-        <div className="flex flex-col gap-y-2 w-full">
-          <div className="text-xl font-bold ">Help</div>
-          {["Contract Us", "Privacy Policy", "Terms & Conditions", "Installation Guidlines"].map((tags, key) => (
-            <div key={key} className="w-fit text-md font-medium hover:underline cursor-pointer" >
-              {tags}
-            </div>
-          ))}
-        </div>
-        <div className="flex justify-end items-end pr-25 pb-2">
-          <Feedback/>
+          {/* Help */}
+          <div className="flex flex-col gap-y-2">
+            <div className="text-xl font-bold">Help</div>
+            {[
+              "Contact Us",
+              "Privacy Policy",
+              "Terms & Conditions",
+              "Installation Guidelines",
+            ].map((tag, key) => (
+              <div
+                key={key}
+                className="text-md font-medium hover:underline cursor-pointer w-fit"
+              >
+                {tag}
+              </div>
+            ))}
+          </div>
+
+          {/* Feedback */}
+          <div className="flex justify-end items-end">
+            <Feedback />
+          </div>
         </div>
       </div>
     </div>

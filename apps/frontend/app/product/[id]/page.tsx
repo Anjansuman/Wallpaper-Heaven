@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import Image from "next/image";
 import UserPageNavbar from "@/Components/Nav-Bar/UserPageNavbar";
 import { useSession } from "next-auth/react";
+import Button from "@/components/ui/Button";
 
 const images = [
     {
@@ -21,11 +22,6 @@ const images = [
         title: "Product 3",
         description: "This is for Gunnu Bhaiya.",
     },
-    {
-        src: "/col3.jpeg",
-        title: "Product 3",
-        description: "This is for Gunnu Bhaiya.",
-    }
 ];
 
 export default function Product() {
@@ -55,16 +51,45 @@ export default function Product() {
         }
     };
 
+    const handleClick = () => {
+        console.log("clicked")
+    }
+
     return (
         <div className="min-h-screen bg-gray-50 text-black">
             <UserPageNavbar />
-            <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-10  pt-30">
 
-                {/* Left: Large Image */}
-                <div className="col-span-2">
+                {/* Left: Thumbnails */}
+                <div className="order-2 md:order-1 flex md:flex-col gap-4 justify-center items-center md:items-start">
+                    {images.map((img, idx) => {
+                        const isActive = img.src === selectedImage.src;
+                        return (
+                            <div
+                                key={idx}
+                                onClick={() => setSelectedImage(img)}
+                                onMouseMove={isActive ? handleSmallBlockHover : undefined}
+                                onMouseEnter={isActive ? activateZoom : undefined}
+                                onMouseLeave={isActive ? resetZoom : undefined}
+                                className={`relative h-20 w-20 md:h-24 md:w-24 rounded-xl overflow-hidden cursor-pointer border-2 group transition-all duration-200 ${isActive ? "border-black scale-[1.03]" : "border-gray-200"
+                                    }`}
+                            >
+                                <Image
+                                    src={img.src}
+                                    alt={img.title}
+                                    fill
+                                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                                />
+                            </div>
+                        );
+                    })}
+                </div>
+
+                {/* Center: Large Image */}
+                <div className="order-1 md:order-2 col-span-2 flex flex-col items-center md:items-start">
                     <div
                         ref={zoomRef}
-                        className="relative w-full h-[500px] rounded-xl border bg-center bg-no-repeat bg-contain"
+                        className="relative w-full h-[400px] md:h-[500px] rounded-xl border bg-center bg-no-repeat bg-contain"
                         style={{ backgroundImage: `url(${selectedImage.src})` }}
                     >
                         <Image
@@ -76,46 +101,18 @@ export default function Product() {
                         />
                     </div>
 
-                    <div className="grid grid-cols-3 gap-4 mt-4">
-                        {images.map((img, idx) => {
-                            const isActive = img.src === selectedImage.src;
-                            return (
-                                <div
-                                    key={idx}
-                                    onClick={() => setSelectedImage(img)}
-                                    onMouseMove={isActive ? handleSmallBlockHover : undefined}
-                                    onMouseEnter={isActive ? activateZoom : undefined}
-                                    onMouseLeave={isActive ? resetZoom : undefined}
-                                    className={`relative w-full h-50 rounded-xl overflow-hidden cursor-pointer border-2 group transition-transform ${isActive ? "border-black scale-[1.02]" : "border-gray-200"
-                                        }`}
-                                >
-                                    <Image
-                                        src={img.src}
-                                        alt={img.title}
-                                        fill
-                                        className="object-cover transition-transform duration-300 group-hover:scale-105"
-                                    />
-                                </div>
-                            );
-                        })}
-                    </div>
-                </div>
-
-                {/* Right: Product Info */}
-                <div className="flex flex-col justify-start gap-6">
-                    <div>
-                        <h1 className="text-3xl font-bold tracking-tight">{selectedImage.title}</h1>
-                        <p className="text-gray-600 mt-2 text-base leading-relaxed">
+                    <div className="mt-6 text-center md:text-left w-full">
+                        <h1 className="text-3xl font-bold">{selectedImage.title}</h1>
+                        <p className="text-gray-600 mt-2 leading-relaxed">
                             {selectedImage.description}
                         </p>
                     </div>
 
                     {session && (
-                        <button className="w-fit px-6 py-3 rounded-full bg-black text-white font-medium cursor-pointer hover:bg-white hover:text-black border border-black transition-colors duration-200">
-                            View More
-                        </button>
+                        <Button text="View More" onClick={handleClick}/>
                     )}
                 </div>
+
             </div>
         </div>
     );

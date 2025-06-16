@@ -82,8 +82,9 @@ const BrandCard: React.FC<{ brand: Brand }> = ({ brand }) => {
     return (
         <Link
             href={`/inventory/${brand.slug}`}
-            className="group relative flex-shrink-0 w-[280px] h-[340px] bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100"
+            className="group relative flex-shrink-0 w-[160px] h-[220px] bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-500 overflow-hidden border border-gray-100"
         >
+
             {/* Image area */}
             <div className="relative w-full h-full bg-gray-100 flex items-center justify-center">
                 <img
@@ -127,8 +128,9 @@ const Brands: React.FC<BrandsProps> = ({ brands = mockBrands, className = "" }) 
                 <div className="relative w-full">
                     <div
                         ref={scrollRef}
-                        className="flex gap-8 overflow-x-auto scrollbar-hide scroll-smooth px-8 pb-4"
+                        className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth px-4 pb-4"
                     >
+
                         <style jsx>{`
               div::-webkit-scrollbar {
                 display: none;

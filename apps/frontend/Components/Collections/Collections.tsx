@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { DirectionAwareHover } from '../../components/ui/direction-aware-hover';
+import Button from '@/components/ui/Button';
 
 const wallpapers = [
   {
@@ -63,6 +64,10 @@ export default function TopCollections() {
   const [filteredWallpapers, setFilteredWallpapers] = useState(wallpapers);
   const gridRef = useRef(null);
 
+  const handleCollectionRedirect = () => {
+    console.log("redirectt");
+  }
+
   useEffect(() => {
     if (activeCategory === "All") {
       setFilteredWallpapers(wallpapers);
@@ -101,8 +106,8 @@ export default function TopCollections() {
               key={category}
               onClick={() => setActiveCategory(category)}
               className={`category-pill px-6 py-2 rounded-[8px] text-sm font-medium transition-all duration-300 ${activeCategory === category
-                  ? 'bg-black text-white'
-                  : 'bg-gray-100 hover:bg-gray-200 text-gray-800 hover:shadow-md'
+                ? 'bg-black text-white'
+                : 'bg-gray-100 hover:bg-gray-200 text-gray-800 hover:shadow-md'
                 }`}
             >
               {category}
@@ -113,7 +118,8 @@ export default function TopCollections() {
         {/* wallpaper grid */}
         <div
           ref={gridRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-[90px] gap-y-8 place-items-center"
+          className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8 place-items-center"
+
         >
           {filteredWallpapers.map((wallpaper) => (
             <div
@@ -122,9 +128,10 @@ export default function TopCollections() {
             >
               <DirectionAwareHover
                 imageUrl={wallpaper.image}
-                className="h-80 w-80 rounded-lg shadow-md"
+                className="h-64 w-64 sm:h-72 sm:w-72 md:h-80 md:w-80 rounded-lg shadow-md"
                 imageClassName="object-cover"
               >
+
                 <div className="space-y-1">
                   <h3 className="text-xl font-medium">{wallpaper.title}</h3>
                   <p className="text-sm opacity-80">{wallpaper.category}</p>
@@ -135,9 +142,7 @@ export default function TopCollections() {
         </div>
 
         <div className="text-center mt-12">
-          <button className="px-8 py-3 border border-black text-black font-medium rounded-full hover:bg-black hover:text-white cursor-pointer transition-colors duration-300">
-            View All Collections
-          </button>
+          <Button text='View All Collections' onClick={handleCollectionRedirect} />
         </div>
       </div>
     </section>
