@@ -78,7 +78,7 @@ export default function Navbar2() {
             {/* Search Icon + Input (Desktop only) */}
             <div className="relative">
               <button onClick={() => setSearchPanel(prev => !prev)} className="mr-2">
-                <IconSearch className="w-5 h-5" />
+                <IconSearch className="w-5 h-5 hover:text-gray-300 transition-colors duration-200 cursor-pointer" />
               </button>
               {searchPanel && (
                 <input

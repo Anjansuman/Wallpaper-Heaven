@@ -1,11 +1,20 @@
+"use client"
 import AddImage from "@/Components/admin/add-product/AddImage";
+import ButtonArea from "@/Components/admin/add-product/ButtonArea";
 import ChooseProduct from "@/Components/admin/add-product/ChooseProduct";
 import SetDetails from "@/Components/admin/add-product/SetDetails";
 import SetTags from "@/Components/admin/add-product/SetTags";
 import UserPageNavbar from "@/Components/Nav-Bar/UserPageNavbar";
+import Button from "@/components/ui/Button";
 
 
 export default function addProduct() {
+
+
+    const handleClick = () => {
+        console.log("handle click");
+    }
+
     return <div className="w-full h-full">
         <UserPageNavbar/>
         <div className="flex items-center justify-between pt-30 ">
@@ -17,6 +26,9 @@ export default function addProduct() {
                 <AddImage />
                 <SetDetails />
                 <SetTags />
+                <div className="max-w-2xl flex justify-center items-center">
+                    <ButtonArea/>
+                </div>
             </div>
         </div>
     </div>
