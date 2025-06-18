@@ -102,7 +102,31 @@ router.post("/add-product", upload.fields([{ name: "images", maxCount: 5 }]), as
 
 router.post("/remove-product", async (req, res) => {
     try {
-        
+
+        const { id, name } = req.body;
+
+        const product = await prisma.product.findUnique({
+            where: {
+                id: id,
+                name: name
+            }
+        })
+
+        if (!product) {
+            res.status(402).json({ message: "Product not found" });
+            return;
+        }
+
+        await prisma.product.delete({
+            where: {
+                id: id
+            }
+        })
+
+        res.json({ message: "Product deleted successfully" });
+        return;
+
+
     } catch (error) {
         res.status(500).json({
             message: "Internal server error"
@@ -111,9 +135,44 @@ router.post("/remove-product", async (req, res) => {
     }
 });
 
-router.post("/edit-product", (req, res) => {
+router.post("/edit-product", upload.fields([{ name: "images", maxCount: 5 }]), async (req, res) => {
     try {
-        
+
+        const files = req.files as Record<string, Express.Multer.File[]>;
+
+        if (!files || !files["images"] || files["images"].length === 0) {
+            res.status(400).json({
+                message: "No files uploaded!"
+            });
+            return;
+        }
+
+        const imageURLs = files["images"].map(file => file.filename);
+
+        const { id, name, description, tags } = req.body;
+
+        const updateProduct = await prisma.product.update({
+            where: {
+                id: id
+            },
+            data: {
+                name,
+                description,
+                images: imageURLs,
+                addedAt: new Date().toISOString(),
+                addedById: id,
+                tags: tags
+            }
+        })
+
+        if(!updateProduct) {
+            res.status(402).json({ message: "Product update failed" });
+            return;
+        }
+
+        res.json({ message: "Product updated successfully" });
+        return;
+
     } catch (error) {
         res.status(500).json({
             message: "Internal server error"

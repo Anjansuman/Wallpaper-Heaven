@@ -22,7 +22,7 @@ router.post("/add-creator", upload.fields([{ name: "images", maxCount: 1 }]), as
         // }
 
         const data = JSON.parse(req.body);
-
+        
         const { name, about, description } = data;
 
         const newCreator = await prisma.creator.create({
@@ -55,7 +55,7 @@ router.post("/add-creator", upload.fields([{ name: "images", maxCount: 1 }]), as
     }
 });
 
-router.post("/remove-creator", async (req, res) => {
+router.delete("/remove-creator", async (req, res) => {
     try {
 
         const { id, name } = req.body;
@@ -101,6 +101,33 @@ router.post("/remove-creator", async (req, res) => {
 // to do
 router.post("/edit-creator", upload.fields([{ name: "images", maxCount: 1 }]), async (req, res) => {
     try {
+
+        const file = req.file;
+
+        const data = JSON.parse(req.body);
+
+        const { id, name, about, description, image } = data;
+
+        const updatedCreator = await prisma.creator.update({
+            where: {
+                id: id
+            }, 
+            data: {
+                name: name,
+                about: about,
+                description: description,
+                image: file?.filename
+            }
+        })
+
+        if(!updatedCreator) {
+            res.status(402).json({ message: "Creator update failed" });
+            return;
+        }
+
+        res.json({ message: "Creator updated successfully" });
+        return;
+
         
     } catch (error) {
         res.status(500).json({

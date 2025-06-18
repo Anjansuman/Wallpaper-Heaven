@@ -114,6 +114,21 @@ router.post("/remove-brand", async (req, res) => {
 // to do
 router.post("/edit-brand", upload.fields([{ name: "images", maxCount: 1 }]), async (req, res) => {
     try {
+
+        const file = req.file;
+
+        const { id, name, about, description } = req.body;
+
+        const updatedBrand = await prisma.brand.update({
+            where: {
+                id: id
+            },
+            data: {
+                name: name,
+                about: about,
+                description: description
+            }
+        })
         
     } catch (error) {
         res.status(500).json({
