@@ -77,23 +77,23 @@ export default function Navbar2() {
 
             {/* Search Icon + Input (Desktop only) */}
             <div className="relative">
-              <button onClick={() => setSearchPanel(prev => !prev)} className="mr-2">
-                <IconSearch className="w-5 h-5 hover:text-gray-300 transition-colors duration-200 cursor-pointer" />
+              <button onClick={() => setSearchPanel(prev => !prev)}>
+                <IconSearch className="w-6 h-6 mt-1 hover:text-gray-300 transition-colors duration-200 cursor-pointer" />
               </button>
               {searchPanel && (
                 <input
                   type="text"
                   placeholder="Search"
-                  className="absolute top-8 right-0 w-[300px] h-[35px] px-4 text-sm text-gray-700 bg-white rounded-full shadow-md outline-none z-40"
+                  className="absolute top-10 right-0 w-[300px] h-[35px] px-4 text-sm text-gray-700 bg-white rounded-full shadow-md outline-none z-40"
                 />
               )}
             </div>
 
             {/* User Dropdown */}
-            <div className="relative">
+            <div className="relative right-5">
               <button
                 onClick={() => setSigninOption(prev => !prev)}
-                className={`nav-item px-4 py-2 rounded-full transition-colors duration-300 cursor-pointer ${isScrolled ? 'text-black hover:text-[9e9e9e]' : 'text-white hover:text-neutral-400'}`}
+                className={`nav-item px-4 py-1 rounded-full transition-colors duration-300 cursor-pointer ${isScrolled ? 'text-black hover:text-[9e9e9e]' : 'text-white hover:text-neutral-400'}`}
               >
                 <User />
               </button>
@@ -182,13 +182,13 @@ export default function Navbar2() {
       {/* Logout Confirmation Modal */}
       {logoutPanel && (
         <div className="fixed inset-0 z-40 bg-black/50 flex items-center justify-center">
-          <div className="bg-white text-black p-6 rounded-lg shadow-xl text-center space-y-4 w-[90%] max-w-sm">
-            <p className="text-xl font-semibold">Are you sure?</p>
+          <div className="bg-[#181818] text-white p-6 rounded-lg shadow-xl text-center space-y-4 w-[80%] max-w-[340px]">
+            <p className="text-xl pb-0.5 font-normal">Are you sure {session?.user?.name}?</p>
             <div className="flex justify-center space-x-5">
-              <button onClick={() => { setLogoutPanel(false); signOut({ callbackUrl: "/" }); }} className="px-4 py-2 bg-red-700 hover:bg-red-800 text-white rounded-md">
+              <button onClick={() => { setLogoutPanel(false); signOut({ callbackUrl: "/" }); }} className="px-4 py-2 bg-red-700 hover:bg-red-800 cursor-pointer text-white rounded-md">
                 Logout
               </button>
-              <button onClick={() => setLogoutPanel(false)} className="px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded-md">
+              <button onClick={() => setLogoutPanel(false)} className="px-4 py-2 bg-gray-500 hover:bg-gray-600 rounded-md cursor-pointer">
                 Cancel
               </button>
             </div>
