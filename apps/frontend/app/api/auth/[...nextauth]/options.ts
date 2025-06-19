@@ -2,7 +2,7 @@ import GoogleProvider from "next-auth/providers/google";
 import { ISODateString, type AuthOptions } from "next-auth";
 import { JWT } from "next-auth/jwt";
 import jwt from "jsonwebtoken";
-import { prisma } from "@repo/db";
+import { prisma } from "@repo/db"
 
 export interface CustomSession {
   user?: CustomUser;

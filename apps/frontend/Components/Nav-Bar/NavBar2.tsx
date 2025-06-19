@@ -77,7 +77,7 @@ export default function Navbar2() {
 
             {/* Search Icon + Input (Desktop only) */}
             <div className="relative">
-              <button onClick={() => setSearchPanel(prev => !prev)}>
+              <button onClick={() => {setSearchPanel(prev => !prev); setSigninOption(false)}}>
                 <IconSearch className="w-6 h-6 mt-1 hover:text-gray-300 transition-colors duration-200 cursor-pointer" />
               </button>
               {searchPanel && (
@@ -92,7 +92,10 @@ export default function Navbar2() {
             {/* User Dropdown */}
             <div className="relative right-5">
               <button
-                onClick={() => setSigninOption(prev => !prev)}
+                onClick={() => {
+                  setSigninOption(prev => !prev);
+                  setSearchPanel(false)}
+                }
                 className={`nav-item px-4 py-1 rounded-full transition-colors duration-300 cursor-pointer ${isScrolled ? 'text-black hover:text-[9e9e9e]' : 'text-white hover:text-neutral-400'}`}
               >
                 <User />
