@@ -67,7 +67,7 @@ router.post("/add-brand", upload.fields([{ name: "images", maxCount: 1 }]), asyn
     }
 });
 
-router.post("/remove-brand", async (req, res) => {
+router.delete("/remove-brand", async (req, res) => {
     try {
 
         const { id, name } = req.body;
@@ -112,12 +112,22 @@ router.post("/remove-brand", async (req, res) => {
 });
 
 // to do
-router.post("/edit-brand", upload.fields([{ name: "images", maxCount: 1 }]), async (req, res) => {
+router.put("/edit-brand", upload.fields([{ name: "images", maxCount: 1 }]), async (req, res) => {
     try {
 
         const file = req.file;
 
         const { id, name, about, description } = req.body;
+
+        if(!id) {
+            res.status(402).json({ message: "Brand not identified" });
+            return;
+        }
+
+        if (!name || !about || !description) {
+            res.status(402).json({ message: "data not found" });
+            return;
+        }
 
         const updatedBrand = await prisma.brand.update({
             where: {
@@ -128,7 +138,17 @@ router.post("/edit-brand", upload.fields([{ name: "images", maxCount: 1 }]), asy
                 about: about,
                 description: description
             }
-        })
+        });
+
+        if(!updatedBrand) {
+            res.status(402).json({ message: "Brand update failed" });
+            return;
+        }
+
+        res.json({ message: "Brand updated successfully" });
+        return;
+
+
         
     } catch (error) {
         res.status(500).json({
