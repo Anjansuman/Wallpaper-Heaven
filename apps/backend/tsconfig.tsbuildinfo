@@ -1,1 +1,3 @@
+
 {"root":["./src/config.ts","./src/global.d.ts","./src/index.ts","./src/aws/S3.ts","./src/aws/S3FileManager.ts","./src/middleware/adminMiddleware.ts","./src/routes/brand.ts","./src/routes/creator.ts","./src/routes/helping.ts","./src/routes/offer.ts","./src/routes/offerCleanup.ts","./src/routes/product.ts","./src/routes/tag.ts"],"version":"5.8.2"}
+

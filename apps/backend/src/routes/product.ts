@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import multerS3 from "multer-s3";
 import s3client from "../aws/S3";
 import { prisma } from "@repo/db";
-import { multerS3Upload } from "../aws/S3FileManager";
+import { deleteFile, multerS3Upload } from "../aws/S3FileManager";
 
 const router: Router = Router();
 // router.use(express.urlencoded({ extended: true }));
@@ -117,6 +117,21 @@ router.delete("/remove-product", async (req, res) => {
             return;
         }
 
+        const existingProduct = await prisma.product.findUnique({
+            where: {
+                id: id
+            }
+        });
+
+        if(!existingProduct) {
+            res.status(402).json({
+                message: "Product doesn't exist"
+            });
+            return;
+        }
+
+        const imageURLs = existingProduct.images;
+
         await prisma.product.delete({
             where: {
                 id: id
@@ -126,7 +141,15 @@ router.delete("/remove-product", async (req, res) => {
         res.json({ message: "Product deleted successfully" });
         return;
 
+        for(let image in imageURLs) {
+            deleteFile(`products/${image}`);
+        }
 
+        res.status(200).json({
+            message: "Product deleted successfully"
+        });
+        return;
+        
     } catch (error) {
         res.status(500).json({
             message: "Internal server error"
@@ -172,6 +195,27 @@ router.put("/edit-product", upload.fields([{ name: "images", maxCount: 5 }]), as
 
         res.json({ message: "Product updated successfully" });
         return;
+
+    } catch(error) {
+        res.status(500).json({
+            message: "Internal server error",
+        });
+        return;
+    }
+});
+
+router.put("/edit-product", (req, res) => {
+    try {
+
+        const { name, description, removedImages, newImages, brandId }: {
+            name: string,
+            description: string,
+            removedImages: string[],
+            newImages: string[],
+            brandId: string
+        } = req.body;
+
+        
 
     } catch (error) {
         res.status(500).json({
