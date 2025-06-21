@@ -1,5 +1,4 @@
 import Creators from "@/Components/HomePage/Creators/Creators";
-import Genre from "@/Components/HomePage/Genre/Genre";
 import Designs from "@/Components/HomePage/Designs/Designs";
 import UpFront from "@/Components/HomePage/UpFront/UpFront";
 import Brands from "@/Components/HomePage/Brands/Brands";
@@ -19,7 +18,6 @@ export default function Home() {
           Give your home a heavenly vibe.
         </div>
         <TopCollections />
-        {/* <Genre /> */}
         <Brands />
         <Creators />
         <Designs />

@@ -60,10 +60,11 @@ export default function Creators() {
       <div className="text-md font-serif md:text-xl text-center font-light tracking-wide text-gray-600">
         The minds behind the masterpieces
       </div>
-      <div 
-      onClick={() => router.push("/creator/1")}
-      title="Click to view more"
-      className="flex flex-wrap gap-6 justify-center mt-6 cursor-pointer">
+      <div
+        onClick={() => router.push("/creator/1")}
+        title="Click to view more"
+        className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6 mt-6 cursor-pointer"
+      >
         {people.map((creator, i) => (
           <CreatorCard
             key={i}
@@ -73,6 +74,7 @@ export default function Creators() {
           />
         ))}
       </div>
+
     </div>
   );
 }

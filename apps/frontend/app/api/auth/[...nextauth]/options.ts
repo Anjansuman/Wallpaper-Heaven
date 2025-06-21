@@ -10,7 +10,7 @@ export interface CustomSession {
 }
 
 export interface CustomUser {
-  id?: string | null;
+  id: string;
   name?: string | null;
   email?: string | null;
   image?: string | null;
@@ -80,7 +80,7 @@ export const authOptions: AuthOptions = {
         const jwtPayload = {
           name: myUser.name,
           email: myUser.email,
-          id: myUser.id,
+          id: myUser.id.toString(),
         };
 
         const token = jwt.sign(

@@ -33,8 +33,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#ffffff] text-[#0B2814]`}
       >
-        <OfferBanner tag="Offer" highlightedText={"20% off"} />
         <SessionProvider>
+          <OfferBanner  />
           {children}
         </SessionProvider>
         <Footer />
