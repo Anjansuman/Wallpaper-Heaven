@@ -1,3 +1,5 @@
 export default TermsAndCondition() {
-    git 
+    return (
+        
+    )
 }
