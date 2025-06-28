@@ -8,6 +8,7 @@ import SignIn from '../Auth/Signin';
 import { signOut, useSession } from 'next-auth/react';
 import { IconCaretDownFilled, IconSearch, IconSquarePlus } from '@tabler/icons-react';
 import { getToken } from "next-auth/jwt";
+import OfferPanel from '../SetOfferPanel/OfferPanel';
 
 export async function handler(req: any, res: any) {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
@@ -15,16 +16,15 @@ export async function handler(req: any, res: any) {
   res.end();
 }
 
-// no changes needed at the top imports
-
 export default function Navbar2() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [signinOption, setSigninOption] = useState(false);
-  const [signin, setSignin] = useState(false);
-  const [logoutPanel, setLogoutPanel] = useState(false);
-  const [adminPanel, setAdminPanel] = useState(false);
-  const [searchPanel, setSearchPanel] = useState(false);
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [signinOption, setSigninOption] = useState<boolean>(false);
+  const [signin, setSignin] = useState<boolean>(false);
+  const [logoutPanel, setLogoutPanel] = useState<boolean>(false);
+  const [adminPanel, setAdminPanel] = useState<boolean>(false);
+  const [searchPanel, setSearchPanel] = useState<boolean>(false);
+  const [offerPanel, setOfferPanel] = useState<boolean>(false);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
   const adminPanelRef = useRef<HTMLDivElement>(null);
@@ -60,7 +60,7 @@ export default function Navbar2() {
   return (
     <>
       <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white text-black shadow-md py-2' : 'bg-transparent text-white py-4'}`}>
-        <div className="container mx-auto px-4 flex justify-between items-center">
+        <div className="w-full px-8 flex justify-between items-center">
           <Link href="/" className="flex items-center">
             <span className={`text-2xl font-semibold font-playfair ${isScrolled ? 'text-black' : 'text-white'}`}>
               Wallpaper Heaven
@@ -68,58 +68,71 @@ export default function Navbar2() {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center gap-6">
             {['collections', 'inspiration', 'about', 'contact'].map((href, idx) => (
               <Link key={href} href={href} className={`nav-item transition-colors duration-300 ${isScrolled ? 'text-neutral-800 hover:text-gray-600' : 'text-white hover:text-gray-300'}`}>
                 {['Collections', 'Genre', 'Brands', 'Designers'][idx]}
               </Link>
             ))}
 
-            {/* Search Icon + Input (Desktop only) */}
             <div className="relative">
-              <button onClick={() => {setSearchPanel(prev => !prev); setSigninOption(false)}}>
+              <button onClick={() => setSearchPanel(prev => !prev)}>
                 <IconSearch className="w-6 h-6 mt-1 hover:text-gray-300 transition-colors duration-200 cursor-pointer" />
               </button>
               {searchPanel && (
                 <input
                   type="text"
                   placeholder="Search"
-                  className="absolute top-10 right-0 w-[300px] h-[35px] px-4 text-sm text-gray-700 bg-white rounded-full shadow-md outline-none z-40"
+                  className="absolute top-12 right-0 w-[300px] h-[35px] px-4 text-sm text-gray-700 bg-white rounded-full shadow-md outline-none z-40"
                 />
               )}
             </div>
 
-            {/* User Dropdown */}
-            <div className="relative right-5">
+            <div className="relative">
               <button
-                onClick={() => {
-                  setSigninOption(prev => !prev);
-                  setSearchPanel(false)}
-                }
+                onClick={() => setSigninOption(prev => !prev)}
                 className={`nav-item px-4 py-1 rounded-full transition-colors duration-300 cursor-pointer ${isScrolled ? 'text-black hover:text-[9e9e9e]' : 'text-white hover:text-neutral-400'}`}
               >
                 <User />
               </button>
 
               {signinOption && (
-                <div ref={dropdownRef} className="absolute top-12 right-0 bg-white text-black shadow-lg rounded-md border border-neutral-300 min-w-[240px] z-30">
+                <div
+                  ref={dropdownRef}
+                  className="absolute top-12 right-0 bg-white text-black shadow-lg rounded-md border border-neutral-300 z-30"
+                >
                   {session ? (
-                    <div className="p-4 space-y-3">
+                    <div className="p-4 space-y-3 min-w-[240px]">
                       <div className="text-sm font-semibold text-gray-800">Hello, {session.user?.name || "User"}</div>
                       <div className="flex gap-3">
-                        <div onClick={() => setAdminPanel(prev => !prev)} className="px-4 py-2 flex items-center gap-2 rounded-md bg-white border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-100 shadow-sm cursor-pointer">
+                        <div
+                          onClick={() => setAdminPanel(prev => !prev)}
+                          className="px-4 py-2 flex items-center gap-2 rounded-md bg-white border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-100 shadow-sm cursor-pointer"
+                        >
                           <span>Admin</span>
                           <IconCaretDownFilled />
                         </div>
-                        <div onClick={() => setLogoutPanel(true)} className="flex items-center gap-2 px-4 py-2 rounded-md bg-white border border-red-200 text-sm font-medium text-red-600 hover:bg-red-50 shadow-sm cursor-pointer">
+                        <div
+                          onClick={() => setLogoutPanel(true)}
+                          className="flex items-center gap-2 px-4 py-2 rounded-md bg-white border border-red-200 text-sm font-medium text-red-600 hover:bg-red-50 shadow-sm cursor-pointer"
+                        >
                           <ArrowRightFromLine className="w-4 h-4" />
                           Logout
                         </div>
                       </div>
                       {adminPanel && (
                         <div ref={adminPanelRef} className="mt-2 flex flex-col space-y-2">
-                          {['Tag', 'Product', 'Brand', 'Creator'].map((item, i) => (
-                            <button key={i} onClick={() => console.log(`${item} clicked`, session)} className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded">
+                          {["Tag", "Product", "Brand", "Offer"].map((item, i) => (
+                            <button
+                              key={i}
+                              onClick={() => {
+                                console.log(`${item} clicked`, session);
+                                if (item == "Offer") {
+                                  setOfferPanel(true);
+                                }
+                              }}
+                              className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded cursor-pointer"
+                            >
                               <IconSquarePlus className="w-4 h-4" />
                               {item}
                             </button>
@@ -128,8 +141,14 @@ export default function Navbar2() {
                       )}
                     </div>
                   ) : (
-                    <div onClick={() => { setSignin(true); setSigninOption(false); }} className="p-4 text-[18px] hover:text-black cursor-pointer">
-                      <div className="pl-2 pr-2">Sign In</div>
+                    <div
+                      onClick={() => {
+                        setSignin(true);
+                        setSigninOption(false);
+                      }}
+                      className="p-3 w-[160px] text-center hover:text-black cursor-pointer"
+                    >
+                      <div className="text-base font-medium">Sign In</div>
                     </div>
                   )}
                 </div>
@@ -137,7 +156,8 @@ export default function Navbar2() {
             </div>
           </div>
 
-          {/* Mobile Search + Hamburger */}
+
+          {/* Mobile Nav */}
           <div className="flex items-center md:hidden space-x-4">
             <button onClick={() => setSearchPanel(prev => !prev)}>
               <IconSearch className="w-5 h-5" />
@@ -154,7 +174,6 @@ export default function Navbar2() {
           </div>
         </div>
 
-        {/* Search input */}
         {searchPanel && (
           <div className="md:hidden px-4 mt-2">
             <input
@@ -165,10 +184,9 @@ export default function Navbar2() {
           </div>
         )}
 
-        {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden bg-white py-4">
-            <div className="container mx-auto px-4 flex flex-col space-y-4">
+          <div className="md:hidden bg-white mt-2 py-4">
+            <div className="container mx-auto px-4 flex flex-col gap-4">
               {['#collections', '#inspiration', '#about', '#contact'].map((href, idx) => (
                 <Link key={href} href={href} className="text-gray-800 hover:text-gray-600">
                   {['Collections', 'Inspiration', 'About Us', 'Contact'][idx]}
@@ -182,7 +200,6 @@ export default function Navbar2() {
         )}
       </nav>
 
-      {/* Logout Confirmation Modal */}
       {logoutPanel && (
         <div className="fixed inset-0 z-40 bg-black/50 flex items-center justify-center">
           <div className="bg-[#181818] text-white p-6 rounded-lg shadow-xl text-center space-y-4 w-[80%] max-w-[340px]">
@@ -199,7 +216,23 @@ export default function Navbar2() {
         </div>
       )}
 
-      {/* Sign In Modal */}
+      {offerPanel && (
+        <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex justify-center items-center">
+          <div className="relative bg-white p-6 rounded-lg shadow-lg w-[90%] max-w-md">
+            <button
+              onClick={() => setOfferPanel(false)}
+              className="absolute top-2 right-2 text-gray-600 hover:text-black"
+            >
+              ✕
+            </button>
+            {session?.user?.id && (
+              <OfferPanel adminId={session.user.id} />
+            )}
+          </div>
+        </div>
+      )}
+
+
       {signin && (
         <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex justify-center items-center">
           <div className="relative z-50">

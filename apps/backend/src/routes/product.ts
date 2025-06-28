@@ -100,7 +100,7 @@ router.post("/add-product", upload.fields([{ name: "images", maxCount: 5 }]), as
     }
 });
 
-router.post("/remove-product", async (req, res) => {
+router.delete("/remove-product", async (req, res) => {
     try {
 
         const { id, name } = req.body;
@@ -135,7 +135,7 @@ router.post("/remove-product", async (req, res) => {
     }
 });
 
-router.post("/edit-product", upload.fields([{ name: "images", maxCount: 5 }]), async (req, res) => {
+router.put("/edit-product", upload.fields([{ name: "images", maxCount: 5 }]), async (req, res) => {
     try {
 
         const files = req.files as Record<string, Express.Multer.File[]>;

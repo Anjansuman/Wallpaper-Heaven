@@ -1,5 +1,4 @@
 import Creators from "@/Components/HomePage/Creators/Creators";
-import Genre from "@/Components/HomePage/Genre/Genre";
 import Designs from "@/Components/HomePage/Designs/Designs";
 import UpFront from "@/Components/HomePage/UpFront/UpFront";
 import Brands from "@/Components/HomePage/Brands/Brands";
@@ -7,6 +6,7 @@ import About from "@/Components/HomePage/About/About";
 import TopCollections from "@/Components/Collections/Collections";
 import Testimonials from "@/Components/Testimonials/Testimonials";
 import Navbar2 from "@/Components/Nav-Bar/NavBar2";
+import { TermsAndConditions } from "@/Components/TermsAndCondition/termsAndCondition";
 
 export default function Home() {
   return (
@@ -19,7 +19,6 @@ export default function Home() {
           Give your home a heavenly vibe.
         </div>
         <TopCollections />
-        {/* <Genre /> */}
         <Brands />
         <Creators />
         <Designs />

@@ -58,7 +58,7 @@ router.post("/add-tag", async (req, res) => {
     }
 });
 
-router.post("/remove-tag", async (req, res) => {
+router.delete("/remove-tag", async (req, res) => {
     try {
 
         const name = req.body.name;
@@ -95,7 +95,7 @@ router.post("/remove-tag", async (req, res) => {
     }
 });
 
-router.post("/edit-tag", async (req, res) => {
+router.put("/edit-tag", async (req, res) => {
     try {
    
         const { name } = req.body;

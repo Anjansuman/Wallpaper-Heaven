@@ -99,7 +99,7 @@ router.delete("/remove-creator", async (req, res) => {
 });
 
 // to do
-router.post("/edit-creator", upload.fields([{ name: "images", maxCount: 1 }]), async (req, res) => {
+router.put("/edit-creator", upload.fields([{ name: "images", maxCount: 1 }]), async (req, res) => {
     try {
 
         const file = req.file;

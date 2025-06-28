@@ -14,7 +14,7 @@ const CreatorCard: React.FC<CreatorCardProps> = ({ image, name, brand }) => {
     <motion.div
       whileHover={{ scale: 1.05 }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      className="w-[150px] h-[200px] flex flex-col items-center justify-start bg-white rounded-xl shadow-md overflow-hidden border border-neutral-200"
+      className="w-full max-w-[150px] h-[200px] flex flex-col items-center justify-start bg-white rounded-xl shadow-md overflow-hidden border border-neutral-200"
     >
       {/* Top Half */}
       <div className="w-full h-[60%] flex items-center justify-center bg-[#c5c5c5]">
