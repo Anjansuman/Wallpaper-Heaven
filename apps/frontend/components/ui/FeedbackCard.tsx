@@ -13,7 +13,7 @@ const feedback = [
   { happiness: 1, emoji: Angry, color: 'text-red-600' }
 ]
 
-export const Feedback = () => {
+const Feedback = () => {
   const textRef = useRef<HTMLTextAreaElement>(null)
   const [happiness, setHappiness] = useState<null | number>(null)
 
@@ -191,3 +191,6 @@ const useSubmitFeedback = () => {
     isSent
   }
 }
+
+
+export default Feedback;

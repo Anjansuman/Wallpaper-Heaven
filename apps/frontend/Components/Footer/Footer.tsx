@@ -1,6 +1,7 @@
 import Image from "next/image";
 import BrandName from "../ui/Customs/BrandName";
-import { Feedback } from "@/components/ui/FeedbackCard";
+import Feedback from "../ui/FeedbackCard";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -53,17 +54,18 @@ export default function Footer() {
           <div className="flex flex-col gap-y-2">
             <div className="text-xl font-bold">Help</div>
             {[
-              "Contact Us",
-              "Privacy Policy",
-              "Terms & Conditions",
-              "Installation Guidelines",
-            ].map((tag, key) => (
-              <div
+              {label: "Contact Us", href: "/contact"},
+              {label: "Privacy Policy", href: "/privacy"},
+              {label: "Terms & Conditions", href: "/terms&conditions/main" },
+              {label: "Installation Guidelines", href: "/installation"},
+            ].map((item, key) => (
+              <Link
                 key={key}
+                href={item.href}
                 className="text-md font-medium hover:underline cursor-pointer w-fit"
               >
-                {tag}
-              </div>
+                {item.label}
+              </Link>
             ))}
           </div>
 

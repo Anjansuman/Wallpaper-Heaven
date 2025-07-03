@@ -37,7 +37,7 @@ export const authOptions: AuthOptions = {
   callbacks: {
     async signIn({ user }: { user: CustomUser }) {
       try {
-        const allowedEmail = "piyushraj26102004@gmail.com";
+        const allowedEmail = process.env.ALLOWED_EMAIL || "ankitraj828401@gmail.com";
 
         if (!user.email) {
           console.log("Email is required");

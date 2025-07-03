@@ -6,7 +6,6 @@ import About from "@/Components/HomePage/About/About";
 import TopCollections from "@/Components/Collections/Collections";
 import Testimonials from "@/Components/Testimonials/Testimonials";
 import Navbar2 from "@/Components/Nav-Bar/NavBar2";
-import { TermsAndConditions } from "@/Components/TermsAndCondition/termsAndCondition";
 
 export default function Home() {
   return (
@@ -24,7 +23,6 @@ export default function Home() {
         <Designs />
         <Testimonials />
         <About />
-        <TermsAndConditions />
       </div>
     </div>
   );
