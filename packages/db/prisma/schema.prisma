@@ -27,6 +27,13 @@ model Tag {
   products        Product[]
 }
 
+model ProductType {
+  id  Int   @id @default(autoincrement())
+  name  String  @unique
+
+  Product  Product?
+}
+
 model Product {
   id              Int             @id         @default(autoincrement())
   name            String
@@ -37,10 +44,12 @@ model Product {
   creatorId       Int
   brandId         Int
   tags            Tag[]
+  productTypeId   Int             @unique
+  ProductType     ProductType     @relation(fields: [productTypeId], references: [id], onDelete: Cascade)
 
   addedBy         User            @relation("UserProducts", fields: [addedById], references: [id])
   creator         Creator?        @relation("CreatorProduct", fields: [creatorId], references: [id])
-  brand           Brand?          @relation("BrandProduct", fields: [brandId], references: [id])
+  brand           Brand?          @relation("BrandProduct", fields: [brandId], references: [id], onDelete: Cascade)
 }
 
 model Creator {

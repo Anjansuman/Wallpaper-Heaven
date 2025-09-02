@@ -27,7 +27,7 @@ export default function addProduct() {
                 <SetDetails />
                 <SetTags />
                 <div className="max-w-2xl flex justify-center items-center">
-                    <ButtonArea/>
+                    <Button text={'Submit'} />
                 </div>
             </div>
         </div>

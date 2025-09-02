@@ -1,46 +1,14 @@
-import { Request, Router } from "express";
-import multer from "multer";
-import { v4 as uuidv4 } from "uuid";
-import multerS3 from "multer-s3";
-import s3client from "../aws/S3";
+import { Router } from "express";
 import { prisma } from "@repo/db";
 import { deleteFile, multerS3Upload } from "../aws/S3FileManager";
 
 const router: Router = Router();
-// router.use(express.urlencoded({ extended: true }));
-
-// const upload = multer({ dest: 'uploads/' });
-
-// const storage = multer.diskStorage({
-//     destination: (req, file, callback) => {
-//         callback(null, "./uploads");
-//     },
-//     filename: (req, file, callback) => {
-//         callback(null, file.originalname + "-" + new Date().toISOString() + "-" + uuidv4());
-//     }
-// });
-
-// const multerS3Config = multerS3({
-//     s3: s3client,
-//     bucket: 'wallpaper-heaven',
-//     metadata: (req: Request, file, cb) => {
-//         cb(null, { fieldName: file.fieldname });
-//     },
-//     key: (req, file, cb) => {
-//         cb(null, `${new Date().toISOString()}-${uuidv4()}-${file.originalname}`);
-//     }
-// });
-
-// const upload = multer({
-//     storage: multerS3Config,
-//     limits: { fieldSize: 25 * 1024 * 1024 }
-// });
 
 const upload = multerS3Upload({
     folder: "products"
 });
 
-// add admin middleware
+// add admin middleware here
 router.post("/add-product", upload.fields([{ name: "images", maxCount: 5 }]), async (req, res) => {
     try {
 

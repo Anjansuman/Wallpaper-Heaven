@@ -1,5 +1,6 @@
 "use client";
 
+import { useAddProductStore } from "@/store/useAddProductStore";
 import { useState } from "react";
 
 export default function ChooseProduct() {
@@ -10,6 +11,7 @@ export default function ChooseProduct() {
     ];
 
     const [selected, setSelected] = useState<string | null>(null);
+    const { product, updateProduct } = useAddProductStore();
 
     return (
         <div className="text-[#3D5A40] bg-[#F9FAF8] p-6 rounded-xl shadow-sm w-full max-w-3xl">
@@ -26,7 +28,7 @@ export default function ChooseProduct() {
                         key={idx}
                         onClick={() => setSelected(type)}
                         className={`px-5 py-3 rounded-md text-md font-medium transition-all duration-200 border
-              ${selected === type
+              ${product?.productType === type
                                 ? "bg-[#6DA165] text-white border-[#6DA165] shadow"
                                 : "bg-white text-[#3D5A40] border-[#D1D5DB] hover:bg-[#f1f5f3]"
                             }`}
