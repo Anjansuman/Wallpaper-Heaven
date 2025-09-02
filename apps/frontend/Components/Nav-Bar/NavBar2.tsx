@@ -17,14 +17,14 @@ export async function handler(req: any, res: any) {
 }
 
 export default function Navbar2() {
-  const [isScrolled, setIsScrolled] = useState<boolean>(false);
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const [signinOption, setSigninOption] = useState<boolean>(false);
-  const [signin, setSignin] = useState<boolean>(false);
-  const [logoutPanel, setLogoutPanel] = useState<boolean>(false);
-  const [adminPanel, setAdminPanel] = useState<boolean>(false);
-  const [searchPanel, setSearchPanel] = useState<boolean>(false);
-  const [offerPanel, setOfferPanel] = useState<boolean>(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [signinOption, setSigninOption] = useState(false);
+  const [signin, setSignin] = useState(false);
+  const [logoutPanel, setLogoutPanel] = useState(false);
+  const [adminPanel, setAdminPanel] = useState(false);
+  const [searchPanel, setSearchPanel] = useState(false);
+  const [offerPanel, setOfferPanel] = useState(false);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
   const adminPanelRef = useRef<HTMLDivElement>(null);
@@ -76,7 +76,7 @@ export default function Navbar2() {
             ))}
 
             <div className="relative">
-              <button onClick={() => setSearchPanel(prev => !prev)}>
+              <button onClick={() => { setSearchPanel(prev => !prev); setSigninOption(false); }}>
                 <IconSearch className="w-6 h-6 mt-1 hover:text-gray-300 transition-colors duration-200 cursor-pointer" />
               </button>
               {searchPanel && (
@@ -90,7 +90,10 @@ export default function Navbar2() {
 
             <div className="relative">
               <button
-                onClick={() => setSigninOption(prev => !prev)}
+                onClick={() => {
+                  setSigninOption(prev => !prev);
+                  setSearchPanel(false);
+                }}
                 className={`nav-item px-4 py-1 rounded-full transition-colors duration-300 cursor-pointer ${isScrolled ? 'text-black hover:text-[9e9e9e]' : 'text-white hover:text-neutral-400'}`}
               >
                 <User />
@@ -155,7 +158,6 @@ export default function Navbar2() {
               )}
             </div>
           </div>
-
 
           {/* Mobile Nav */}
           <div className="flex items-center md:hidden space-x-4">
@@ -231,7 +233,6 @@ export default function Navbar2() {
           </div>
         </div>
       )}
-
 
       {signin && (
         <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex justify-center items-center">
