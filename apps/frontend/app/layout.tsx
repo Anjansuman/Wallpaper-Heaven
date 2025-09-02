@@ -3,10 +3,10 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import NavBar2 from "@/Components/Nav-Bar/NavBar2";
-import Footer from "@/Components/Footer/Footer";
 import ContactBanner from "@/Components/Banners/ContactBanner";
 import OfferBanner from "@/Components/Banners/OfferBanner";
 import { SessionProvider } from "next-auth/react";
+import HomeScreenFooter from "@/Components/Base/HomeFooter";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,7 +37,7 @@ export default function RootLayout({
           <OfferBanner  />
           {children}
         </SessionProvider>
-        <Footer />
+        <HomeScreenFooter/>
         <ContactBanner />
       </body>
     </html>

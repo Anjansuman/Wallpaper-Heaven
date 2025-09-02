@@ -1,14 +1,15 @@
-"use client"
+import React from "react";
 
 interface ButtonProps {
-    text: string;
     onClick: () => void;
+    className?: string;
+    children?: React.ReactNode;
 }
 
-export default function Button({text, onClick}: ButtonProps) {
-    return <button 
-    onClick={onClick}
-    className="px-8 py-3 border border-black text-black font-medium rounded-full hover:bg-black hover:text-white cursor-pointer transition-colors duration-300">
-        {text}
-    </button>
+export default function Button({ onClick, className, children }: ButtonProps) {
+    return (
+        <button onClick={onClick} className={className}>
+            {children}
+        </button>
+    );
 }

@@ -34,6 +34,7 @@ export default function Navbar2() {
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener('scroll', handleScroll);
 
+    // entrance animation
     gsap.from('.nav-item', {
       y: -20,
       opacity: 0,
@@ -59,10 +60,19 @@ export default function Navbar2() {
 
   return (
     <>
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white text-black shadow-md py-2' : 'bg-transparent text-white py-4'}`}>
+      <nav
+        className={`fixed left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ease-in-out rounded-2xl text-black
+        ${isScrolled
+            ? "top-2 max-w-5xl bg-white text-black shadow-md py-2"
+            : "top-1 w-full bg-transparent text-black py-4 border-none"}`}
+        style={{
+          width: "100%",
+          transition: "max-width 0.6s ease, top 0.4s ease",
+        }}
+      >
         <div className="w-full px-8 flex justify-between items-center">
           <Link href="/" className="flex items-center">
-            <span className={`text-2xl font-semibold font-playfair ${isScrolled ? 'text-black' : 'text-white'}`}>
+            <span className={`text-2xl font-semibold font-playfair ${isScrolled ? 'text-black' : ''}`}>
               Wallpaper Heaven
             </span>
           </Link>
@@ -70,7 +80,7 @@ export default function Navbar2() {
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-6">
             {['collections', 'inspiration', 'about', 'contact'].map((href, idx) => (
-              <Link key={href} href={href} className={`nav-item transition-colors duration-300 ${isScrolled ? 'text-neutral-800 hover:text-gray-600' : 'text-white hover:text-gray-300'}`}>
+              <Link key={href} href={href} className={`nav-item transition-colors duration-300 ${isScrolled ? 'text-neutral-800 hover:text-gray-600' : 'text-black hover:text-neutral-700'}`}>
                 {['Collections', 'Genre', 'Brands', 'Designers'][idx]}
               </Link>
             ))}
@@ -94,7 +104,7 @@ export default function Navbar2() {
                   setSigninOption(prev => !prev);
                   setSearchPanel(false);
                 }}
-                className={`nav-item px-4 py-1 rounded-full transition-colors duration-300 cursor-pointer ${isScrolled ? 'text-black hover:text-[9e9e9e]' : 'text-white hover:text-neutral-400'}`}
+                className={`nav-item px-4 py-1 rounded-full transition-colors duration-300 cursor-pointer ${isScrolled ? 'text-black hover:text-[9e9e9e]' : 'text-black hover:text-neutral-700'}`}
               >
                 <User />
               </button>

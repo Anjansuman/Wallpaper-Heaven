@@ -2,7 +2,7 @@ import GoogleProvider from "next-auth/providers/google";
 import { ISODateString, type AuthOptions } from "next-auth";
 import { JWT } from "next-auth/jwt";
 import jwt from "jsonwebtoken";
-import { prisma } from "@repo/db"
+import { prisma } from "@repo/db";
 
 export interface CustomSession {
   user?: CustomUser;
@@ -37,20 +37,8 @@ export const authOptions: AuthOptions = {
   callbacks: {
     async signIn({ user }: { user: CustomUser }) {
       try {
-        const allowedEmail = process.env.ALLOWED_EMAIL || "ankitraj828401@gmail.com";
-
         if (!user.email) {
           console.log("Email is required");
-          return false;
-        }
-
-        if (user.email !== allowedEmail) {
-          console.log("Only admins are allowed");
-          return false;
-        }
-
-        if (!user.name) {
-          console.log("Name is required");
           return false;
         }
 
@@ -63,7 +51,7 @@ export const authOptions: AuthOptions = {
           myUser = await prisma.user.update({
             where: { email: user.email },
             data: {
-              name: user.name,
+              name: user.name!,
               image: user.image,
             },
           });
@@ -71,7 +59,7 @@ export const authOptions: AuthOptions = {
           myUser = await prisma.user.create({
             data: {
               email: user.email,
-              name: user.name,
+              name: user.name!,
               image: user.image,
             },
           });
@@ -85,7 +73,7 @@ export const authOptions: AuthOptions = {
 
         const token = jwt.sign(
           jwtPayload,
-          process.env.NEXTAUTH_SECRET || "13e23iydv2uy!@ywejhvw",
+          process.env.NEXTAUTH_SECRET || "fallback_secret_key",
           { expiresIn: "365d" }
         );
 

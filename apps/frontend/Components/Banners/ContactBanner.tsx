@@ -41,19 +41,19 @@ export default function ContactBanner() {
     return (
         <div
             ref={containerRef}
-            className="h-16 fixed z-50 bottom-10 right-10 border border-[#6DA165] rounded-full bg-white/60 flex items-center py-2 pr-4 pl-2 gap-3 overflow-hidden "
+            className="h-14 fixed bottom-8 right-8 z-50 rounded-full bg-black/60 backdrop-blur-3xl text-neutral-200 flex items-center justify-center overflow-hidden"
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
-            style={{ width: "100px" }}
+            style={{ width:"110px" }}
         >
             <div
                 ref={numberRef}
-                className="absolute left-4 text-lg font-semibold opacity-0 whitespace-nowrap pointer-events-none"
+                className="absolute left-5 text-lg font-semibold opacity-0 whitespace-nowrap pointer-events-none"
                 style={{ transform: "translateX(-20px)" }}
             >
                 8882448998
             </div>
-            <div className="flex justify-center items-center gap-x-2 absolute right-4 h-full ">
+            <div className="flex justify-center items-center gap-x-3 absolute right-4 h-full ">
                 <Link target={"_blank"} href={`tel:88824489998`}>
                     <IconPhone className="size-8 shrink-0" title={"call us"} />
                 </Link>

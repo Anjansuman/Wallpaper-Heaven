@@ -51,12 +51,12 @@ export default function TopCollections() {
   }, [activeCategory]);
 
   return (
-    <section id="collections" className="py-16 px-4 sm:px-6 lg:px-0">
+    <section id="collections" className="py-16 px-4 sm:px-6 lg:px-0 mt-20 relative z-30">
       <div className="container mx-auto">
-        <h2 className="section-title font-serif text-3xl sm:text-4xl md:text-5xl font-semibold text-center mb-4">
+        <h2 className="section-title text-3xl sm:text-4xl md:text-5xl text-center mb-4">
           Featured Collections
         </h2>
-        <p className="text-gray-600 font-serif text-base sm:text-lg md:text-xl text-center mb-10 max-w-2xl mx-auto">
+        <p className="text-neutral-800 font-light text-base sm:text-lg md:text-xl text-center mb-10 max-w-2xl mx-auto">
           Explore our selection of premium wallpapers, designed to transform any space into a stunning environment.
         </p>
 
@@ -67,8 +67,8 @@ export default function TopCollections() {
               key={category}
               onClick={() => setActiveCategory(category)}
               className={`category-pill px-4 sm:px-6 py-2 rounded-[8px] text-sm font-medium transition-all duration-300 ${activeCategory === category
-                  ? 'bg-black text-white'
-                  : 'bg-gray-100 hover:bg-gray-200 text-gray-800 hover:shadow-md'
+                ? 'bg-black text-white'
+                : 'bg-gray-100 hover:bg-gray-200 text-gray-800 hover:shadow-md'
                 }`}
             >
               {category}
@@ -76,15 +76,15 @@ export default function TopCollections() {
           ))}
         </div>
 
-        {/* Wallpaper Grid */}
+        
         <div
           ref={gridRef}
           className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-x-4 sm:gap-x-6 gap-y-8 place-items-center"
         >
           {filteredWallpapers.map((wallpaper) => (
-            <div 
-            key={wallpaper.id} 
-            className="wallpaper-card">
+            <div
+              key={wallpaper.id}
+              className="wallpaper-card">
               <DirectionAwareHover
                 imageUrl={wallpaper.image}
                 className="w-full max-w-[160px] sm:max-w-[280px] md:max-w-[320px] h-auto aspect-[4/5] rounded-lg shadow-md"
@@ -101,8 +101,12 @@ export default function TopCollections() {
         </div>
 
         <div className="text-center mt-10 sm:mt-12">
-          
-          <Button text="View All Collections" onClick={handleCollectionRedirect} />
+
+          <button
+            className='bg-black px-5 py-3 rounded-full text-white text-xl tracking-wide border-2 border-black hover:bg-[#EFEFEF] hover:text-black transition-colors transform duration-300'
+            onClick={handleCollectionRedirect} >
+            View all collections
+          </button>
         </div>
       </div>
     </section>
