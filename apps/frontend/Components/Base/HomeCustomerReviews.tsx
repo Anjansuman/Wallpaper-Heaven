@@ -59,7 +59,7 @@ const ReviewCard = ({
             className={cn(
                 "relative h-full w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
                 "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
-                "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]",
+                "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]" ,
             )}
         >
             <div className="flex flex-row items-center gap-2">
@@ -91,7 +91,7 @@ export function HomeCustomerReviews() {
             </Marquee>
 
             <div
-                className="absolute top-0 left-0 text-5xl px-7 py-10 border-t border-t-[#E1CEE9] border-b border-b-[#E1CEE9] bg-white/20 backdrop-blur-2xl overflow-hidden font-extralight"
+                className="absolute top-0 left-0 text-5xl px-7 py-10 border-t border-t-[#E1CEE9] border-b border-b-[#E1CEE9] backdrop-blur-2xl overflow-hidden font-extralight"
                 style={{
                     WebkitMaskImage:
                         "linear-gradient(to left, transparent 0%, black 70%)",

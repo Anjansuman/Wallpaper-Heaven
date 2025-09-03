@@ -71,8 +71,8 @@ export default function OfferBanner() {
                     onClick={() => setCloseOffer(false)}
                     className="fixed flex z-50 right-0 top-50 -rotate-90 cursor-pointer group"
                 >
-                    <div className="bg-[#2b4166] border p-[2px] rounded-lg shadow-lg hover:-translate-y-0.5 transition-all transform-3d duration-200">
-                        <div className="bg-[#222f44] backdrop-blur-sm px-4 py-2 rounded-lg text-white font-medium text-sm flex items-center gap-2 transition-all duration-300">
+                    <div className="bg-[#253249] p-[2px] rounded-lg shadow-lg hover:-translate-y-0.5 transition-all transform-3d duration-200">
+                        <div className="bg-[#253249] backdrop-blur-sm px-4 py-2 rounded-lg text-white font-medium text-sm flex items-center gap-2 transition-all duration-300">
                             <div className="relative">
                                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                                 <div className="absolute inset-0 w-2 h-2 bg-green-500 rounded-full animate-ping opacity-75"></div>

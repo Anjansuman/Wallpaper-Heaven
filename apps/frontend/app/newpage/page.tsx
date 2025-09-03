@@ -2,9 +2,9 @@
 import { HomeCustomerReviews } from "@/Components/Base/HomeCustomerReviews";
 import HomeEnlargedImage from "@/Components/Base/HomeEnlargedImage";
 import Hero from "@/Components/Base/Hero";
-import HomeImageChangingBanner from "@/Components/Base/HomeImageChangingBanner";
 import TopCollections from "@/Components/Collections/Collections";
 import NavbarMain from "@/Components/Nav-Bar/NavbarMain";
+import HomeTopBrand from "@/Components/Base/HomeTopBrands";
 
 export default function NewPage() {
     return (
@@ -23,7 +23,7 @@ export default function NewPage() {
 
             <HomeEnlargedImage />
             <TopCollections />
-            <HomeImageChangingBanner />
+            <HomeTopBrand/>
             <HomeCustomerReviews />
 
             <style jsx>{`
