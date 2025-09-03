@@ -1,12 +1,14 @@
 "use client";
-import { HomeCustomerReviews } from "@/Components/Base/HomeCustomerReviews";
 import HomeEnlargedImage from "@/Components/Base/HomeEnlargedImage";
 import Hero from "@/Components/Base/Hero";
 import TopCollections from "@/Components/Collections/Collections";
 import NavbarMain from "@/Components/Nav-Bar/NavbarMain";
 import HomeTopBrand from "@/Components/Base/HomeTopBrands";
+import Testimonials from "@/Components/Testimonials/Testimonials";
+import HomeGenre from "@/Components/Base/HomeGenre";
+import HomeDesigners from "@/Components/Base/HomeDesigners";
 
-export default function NewPage() {
+export default function HomeMain() {
     return (
         <div className="relative w-full min-h-screen flex flex-col items-center bg-[#EFEFEF] overflow-hidden select-none">
             <NavbarMain />
@@ -23,8 +25,10 @@ export default function NewPage() {
 
             <HomeEnlargedImage />
             <TopCollections />
-            <HomeTopBrand/>
-            <HomeCustomerReviews />
+            <HomeTopBrand />
+            <HomeGenre />
+            <HomeDesigners />
+            <Testimonials />
 
             <style jsx>{`
         @keyframes wave {

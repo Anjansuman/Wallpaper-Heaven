@@ -13,9 +13,9 @@
 }
 
 .custom-resizer::-webkit-resizer {
-    border-right: 1px solid gray;
-    border-bottom: 1px solid gray;
-    border-radius: 0 0 7px 0;
+  border-right: 1px solid gray;
+  border-bottom: 1px solid gray;
+  border-radius: 0 0 7px 0;
 }
 
 @theme inline {
@@ -56,20 +56,24 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+
   @keyframes marquee {
-  from {
-    transform: translateX(0);
+    from {
+      transform: translateX(0);
     }
-  to {
-    transform: translateX(calc(-100% - var(--gap)));
+
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
     }
   }
+
   @keyframes marquee-vertical {
-  from {
-    transform: translateY(0);
+    from {
+      transform: translateY(0);
     }
-  to {
-    transform: translateY(calc(-100% - var(--gap)));
+
+    to {
+      transform: translateY(calc(-100% - var(--gap)));
     }
   }
 }
@@ -147,7 +151,25 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 2s ease-out forwards;
 }

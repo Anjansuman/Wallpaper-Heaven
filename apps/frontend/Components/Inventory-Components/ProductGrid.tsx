@@ -1,0 +1,90 @@
+import { Product } from "@/app/collections/[type]/page";
+import Image from "next/image";
+import { useState } from "react";
+import { Maximize2, X } from "lucide-react";
+
+export default function ProductGrid({
+    products,
+    onSelect,
+}: {
+    products: Product[];
+    onSelect: (product: Product) => void;
+}) {
+    return (
+        <div className="min-h-[600px] w-full p-10 bg-[#e9e9e9]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center">
+                {products.map((product) => (
+                    <ProductCard
+                        key={product.id}
+                        product={product}
+                        onSelect={() => onSelect(product)}
+                    />
+                ))}
+            </div>
+        </div>
+    );
+}
+
+function ProductCard({
+    product,
+    onSelect,
+}: {
+    product: Product;
+    onSelect: () => void;
+}) {
+    const [fullscreen, setFullscreen] = useState(false);
+
+    return (
+        <>
+            <div
+                className="w-[350px] h-[450px] flex flex-col items-center cursor-pointer"
+                onClick={onSelect}
+            >
+                <div className="w-[350px] h-[350px] rounded-xl relative overflow-hidden shadow-xl">
+                    <Image
+                        src={product.image}
+                        alt={product.name}
+                        fill
+                        className="object-cover"
+                    />
+
+                    <button
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setFullscreen(true);
+                        }}
+                        className="absolute top-3 right-3 bg-black/60 text-white p-2 rounded-full hover:bg-black/80 hover:scale-105 cursor-pointer transition-all transform duration-200"
+                    >
+                        <Maximize2 className="size-5" />
+                    </button>
+
+                    <div className="absolute bottom-0 left-0 w-full h-[90px] bg-gradient-to-t from-black/80 via-black/60 to-transparent text-neutral-100 flex flex-col justify-center items-center px-3 py-2">
+                        <span className="text-xl font-normal tracking-wider">
+                            {product.name}
+                        </span>
+                        <span className="text-md mt-1">
+                            Color: {product.color} | MRP: ₹{product.mrp}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            {fullscreen && (
+                <div className="fixed inset-0 z-[9999] bg-black flex items-center justify-center">
+                    <Image
+                        src={product.image}
+                        alt={product.name}
+                        fill
+                        className="object-contain"
+                    />
+                    <button
+                        onClick={() => setFullscreen(false)}
+                        className="absolute top-6 right-6 bg-black/60 text-white p-2 rounded-full hover:bg-black/80"
+                    >
+                        <X className="size-6" />
+                    </button>
+                </div>
+            )}
+        </>
+    );
+}

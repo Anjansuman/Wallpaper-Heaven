@@ -44,7 +44,7 @@ export default function ContactBanner() {
             className="h-14 fixed bottom-8 right-8 z-50 rounded-full bg-black/60 backdrop-blur-3xl text-neutral-200 flex items-center justify-center overflow-hidden"
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
-            style={{ width:"110px" }}
+            style={{ width:"115px" }}
         >
             <div
                 ref={numberRef}

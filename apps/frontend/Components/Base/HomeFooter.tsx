@@ -24,12 +24,12 @@ const obj = [
 
 const footerSections: FooterSection[] = [
     {
-        title: 'Try Triangulum',
+        title: 'Explore',
         items: [
             { label: 'Overview', href: '/overview' },
-            { label: 'Features', href: '/features' },
-            { label: 'Quiz', href: '/quiz' },
-            { label: 'Live polling', href: '/live-polling' },
+            { label: 'Collections', href: '/collections' },
+            { label: 'Brands', href: '/brands' },
+            { label: 'Designers', href: '/designers' },
         ],
         delay: '100ms',
     },
@@ -37,7 +37,6 @@ const footerSections: FooterSection[] = [
         title: 'Company',
         items: [
             { label: 'Company', href: '/company' },
-            { label: 'Founders', href: '/founders' },
             { label: 'Contact', href: '/contact' },
         ],
         delay: '200ms',
@@ -45,10 +44,8 @@ const footerSections: FooterSection[] = [
     {
         title: 'Details',
         items: [
-            { label: 'Documentation', href: '/docs' },
             { label: 'Privacy policy', href: '/privacy' },
             { label: 'Security', href: '/security' },
-            { label: 'Safety', href: '/safety' },
             { label: 'Legal', href: '/legal' },
         ],
         delay: '300ms',
@@ -79,7 +76,7 @@ export default function HomeScreenFooter() {
     return (
         <footer
             id="animated-footer"
-            className="relative w-full min-h-5xl mt-40 pb-30 text-black overflow-hidden select-none"
+            className="relative w-full min-h-5xl mt-20 pb-30 text-black overflow-hidden select-none"
         >
             <div
                 className={cn(
@@ -112,7 +109,7 @@ export default function HomeScreenFooter() {
                 <div className="grid grid-cols-4 gap-40">
                     <div
                         className={cn(
-                            'flex-col transition-all duration-1000 ease-out',
+                            'flex-col transition-all duration-1000 ease-out text-xl',
                             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6',
                         )}
                         style={{ transitionDelay: '600ms' }}

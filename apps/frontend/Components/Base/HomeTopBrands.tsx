@@ -49,7 +49,7 @@ export default function HomeTopBrand() {
     ];
 
     return (
-        <div className="flex flex-col h-[1000px] w-full max-w-7xl mt-30 mx-auto gap-y-8">
+        <div className="flex flex-col h-[1000px] w-full max-w-7xl mt-40 mx-auto gap-y-8">
             
             <div className="flex justify-between">
                 <div className="text-6xl flex flex-col gap-y-3">
