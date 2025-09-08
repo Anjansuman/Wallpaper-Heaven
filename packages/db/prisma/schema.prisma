@@ -31,7 +31,7 @@ model ProductType {
   id  Int   @id @default(autoincrement())
   name  String  @unique
 
-  Product  Product?
+  Product  Product[]
 }
 
 model Product {
@@ -41,8 +41,8 @@ model Product {
   images          String[]
   addedAt         DateTime        @default(now())
   addedById       String
-  creatorId       Int
-  brandId         Int
+  creatorId       Int?
+  brandId         Int?
   tags            Tag[]
   productTypeId   Int             @unique
   ProductType     ProductType     @relation(fields: [productTypeId], references: [id], onDelete: Cascade)
