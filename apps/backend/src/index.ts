@@ -1,28 +1,15 @@
 import express from "express";
-import { adminMiddleware } from "./middleware/adminMiddleware";
+import "./routes-2/offerCleanup";
+import cors from "cors";
+import router from "./routes/route";
 
 const app = express();
 
 app.use(express.json());
 
-import product from "./routes/product";
-import tag from "./routes/tag";
-import brand from "./routes/brand";
-import creator from "./routes/creator";
-import offer from "./routes/offer"
-import cors from "cors"
-import "./routes/offerCleanup"
-
-import help from "./routes/helping";
 app.use(cors());
 
-app.use("/help", adminMiddleware, help);
-app.use("/products", adminMiddleware, product);
-app.use("/tags", adminMiddleware, tag);
-app.use("/brands", adminMiddleware, brand);
-app.use("/creators", adminMiddleware, creator);
-app.use("/offer", adminMiddleware, offer);
-
+app.use('/api/v1', router);
 
 const PORT = 8080;
 
