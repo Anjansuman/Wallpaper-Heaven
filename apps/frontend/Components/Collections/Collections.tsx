@@ -2,9 +2,12 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { DirectionAwareHover } from '../../components/ui/direction-aware-hover';
 import Button from '@/components/ui/Button';
 import { useRouter } from 'next/navigation';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const wallpapers = [
   { id: 1, title: "Botanicals", category: "Floral", image: "/col1.jpeg" },
@@ -23,7 +26,7 @@ export default function TopCollections() {
   const router = useRouter();
   const [activeCategory, setActiveCategory] = useState("All");
   const [filteredWallpapers, setFilteredWallpapers] = useState(wallpapers);
-  const gridRef = useRef(null);
+  const gridRef = useRef<HTMLDivElement>(null);
 
   const handleCollectionRedirect = () => {
     router.push("/inventory/collections");
@@ -33,22 +36,36 @@ export default function TopCollections() {
     if (activeCategory === "All") {
       setFilteredWallpapers(wallpapers);
     } else {
-      setFilteredWallpapers(wallpapers.filter(item => item.category === activeCategory));
-    }
-
-    if (gridRef.current) {
-      gsap.fromTo('.wallpaper-card',
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          stagger: 0.05,
-          duration: 0.5,
-          ease: 'power2.out'
-        }
+      setFilteredWallpapers(
+        wallpapers.filter(item => item.category === activeCategory)
       );
     }
   }, [activeCategory]);
+
+  useEffect(() => {
+    if (gridRef.current) {
+      const cards = gridRef.current.querySelectorAll('.wallpaper-card');
+
+      cards.forEach((card) => {
+        gsap.fromTo(
+          card,
+          { opacity: 0, y: 50, scale: 0.95 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.6,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 80%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        );
+      });
+    }
+  }, [filteredWallpapers]);
 
   return (
     <section id="collections" className="py-16 px-4 sm:px-6 lg:px-0 mt-20 relative z-30">
@@ -60,7 +77,6 @@ export default function TopCollections() {
           Explore our selection of premium wallpapers, designed to transform any space into a stunning environment.
         </p>
 
-        {/* Filter Categories */}
         <div className="categories-container flex flex-wrap justify-center gap-3 sm:gap-4 mb-10">
           {categories.map((category) => (
             <button
@@ -76,7 +92,6 @@ export default function TopCollections() {
           ))}
         </div>
 
-        
         <div
           ref={gridRef}
           className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-x-4 sm:gap-x-6 gap-y-8 place-items-center"
@@ -84,13 +99,13 @@ export default function TopCollections() {
           {filteredWallpapers.map((wallpaper) => (
             <div
               key={wallpaper.id}
-              className="wallpaper-card">
+              className="wallpaper-card"
+            >
               <DirectionAwareHover
                 imageUrl={wallpaper.image}
                 className="w-full max-w-[160px] sm:max-w-[280px] md:max-w-[320px] h-auto aspect-[4/5] rounded-lg shadow-md"
                 imageClassName="object-cover"
               >
-
                 <div className="space-y-1 text-center">
                   <h3 className="text-lg sm:text-xl font-medium">{wallpaper.title}</h3>
                   <p className="text-sm opacity-80">{wallpaper.category}</p>
@@ -101,9 +116,8 @@ export default function TopCollections() {
         </div>
 
         <div className="text-center mt-10 sm:mt-12">
-
           <button
-            className='bg-black px-5 py-3 rounded-full text-white text-xl tracking-wide border-2 border-black hover:bg-[#EFEFEF] hover:text-black transition-colors transform duration-300'
+            className='bg-black px-5 py-3 rounded-full text-white text-xl tracking-wide border-2 border-black hover:bg-[#EFEFEF] hover:text-black transition-colors transform duration-300 shadow-lg'
             onClick={handleCollectionRedirect} >
             View all collections
           </button>

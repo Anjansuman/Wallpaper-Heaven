@@ -11,7 +11,6 @@ export default function SignIn({ handleClick }: SigninProps) {
         <div className="flex justify-center items-center min-h-screen w-full px-4 sm:px-6">
             <div className="bg-neutral-900 border border-neutral-700 rounded-xl shadow-lg p-6 sm:p-8 w-full max-w-sm sm:max-w-md space-y-6 text-white text-center">
 
-                {/* Header */}
                 <div className="space-y-2">
                     <div className="flex justify-end">
                         <span
@@ -25,7 +24,6 @@ export default function SignIn({ handleClick }: SigninProps) {
                     <p className="text-sm text-neutral-400">Only for Admin</p>
                 </div>
 
-                {/* Google Button */}
                 <button
                     onClick={() => signIn("google", { callbackUrl: "/" })}
                     className="flex items-center justify-center gap-3 bg-neutral-200 hover:bg-neutral-300 text-black w-full py-3 rounded-md text-base font-medium transition duration-200 cursor-pointer"
@@ -39,7 +37,6 @@ export default function SignIn({ handleClick }: SigninProps) {
                     <span>Continue with Google</span>
                 </button>
 
-                {/* Terms */}
                 <p className="text-xs text-neutral-400">
                     By continuing, you agree to our{" "}
                     <span className="underline underline-offset-2 cursor-pointer hover:text-neutral-200 transition-colors duration-200">

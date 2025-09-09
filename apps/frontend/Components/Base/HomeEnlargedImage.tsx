@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import { motion, useAnimation } from "framer-motion";
 
 export default function HomeEnlargedImage() {
     const mainImages = [
@@ -26,15 +27,47 @@ export default function HomeEnlargedImage() {
     ];
 
     const [selected, setSelected] = useState<number>(0);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const controls = useAnimation();
+
+    // Trigger animation when component enters viewport
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    controls.start("visible");
+                    observer.disconnect();
+                }
+            },
+            { threshold: 0.2 } // trigger when 20% visible
+        );
+        if (containerRef.current) observer.observe(containerRef.current);
+    }, [controls]);
+
+    const boxVariants = {
+        hidden: { x: 50, opacity: 0 },
+        visible: (i: number) => ({
+            x: 0,
+            opacity: 1,
+            transition: { duration: 0.5, delay: i * 0.1 },
+        }),
+    };
 
     return (
-        <div className="w-full h-[620px] px-10 overflow-hidden flex gap-x-5 pt-5">
+        <div
+            ref={containerRef}
+            className="w-full h-[620px] px-10 overflow-hidden flex gap-x-5 pt-5"
+        >
             {mainImages.map((img, index) => {
                 const isSelected = selected === index;
                 return (
-                    <div
+                    <motion.div
                         key={index}
-                        className={`relative h-full rounded-xl overflow-hidden transition-all duration-500 cursor-pointer shadow-lg ${isSelected ? "flex-[3]" : "flex-[1] flex items-center justify-center"
+                        custom={index}
+                        initial="hidden"
+                        animate={controls}
+                        variants={boxVariants}
+                        className={`relative h-full rounded-xl overflow-hidden cursor-pointer shadow-lg transition-all duration-500 ${isSelected ? "flex-[3]" : "flex-[1] flex items-center justify-center"
                             }`}
                         onClick={() => setSelected(index)}
                     >
@@ -44,12 +77,11 @@ export default function HomeEnlargedImage() {
                             fill
                             className="object-cover"
                             unoptimized
+                            priority={index === 0} // load first image faster
                         />
 
                         {!isSelected && (
-                            <div
-                                className="absolute inset-0 flex items-center justify-center z-10 select-none bg-black/20"
-                            >
+                            <div className="absolute inset-0 flex items-center justify-center z-10 select-none bg-black/20">
                                 <div
                                     className="text-neutral-100 text-4xl font-medium tracking-widest"
                                     style={{
@@ -65,7 +97,7 @@ export default function HomeEnlargedImage() {
 
                         {isSelected && (
                             <div className="absolute bottom-4 left-6 w-full max-w-3xl text-white z-10">
-                                <div className="h-[300px] rounded-2xl overflow-hidden flex bg-white/20 backdrop-blur-xl">
+                                <div className="h-[300px] rounded-2xl overflow-hidden flex bg-black/10 backdrop-blur-md shadow-sm">
                                     <div className="w-[40%] h-full p-5 flex flex-col justify-between">
                                         <div className="flex justify-around gap-2">
                                             {img.smallImages.slice(0, 2).map((src, i) => (
@@ -111,7 +143,7 @@ export default function HomeEnlargedImage() {
                                 </div>
                             </div>
                         )}
-                    </div>
+                    </motion.div>
                 );
             })}
         </div>

@@ -8,7 +8,7 @@ interface BrandCardProps {
 function BrandCard({ name, image }: BrandCardProps) {
     return (
         <div
-            className="relative w-full h-full rounded-xl overflow-hidden shadow-lg shadow-neutral-300 hover:-translate-y-0.5 transition-all transform duration-200"
+            className="relative w-full h-full rounded-xl overflow-hidden shadow-lg shadow-neutral-300 hover:-translate-y-0.5 transition-all transform duration-200 ease-in-out"
             style={{
                 backgroundImage: `url(${image})`,
                 backgroundSize: "cover",

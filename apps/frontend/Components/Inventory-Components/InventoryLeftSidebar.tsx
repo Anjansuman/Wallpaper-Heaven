@@ -10,10 +10,12 @@ export default function LeftSidebar() {
     const designs = ["Modern", "Classic", "Tropical"];
 
     return (
-        <div className="fixed top-[5rem] left-0 w-[14%] h-[400px] rounded-r-xl border bordet-l-none border-neutral-400 p-4 px-7 flex flex-col gap-y-8 bg-[#e9e9e9]">
+        <div className="fixed top-[5rem] left-0 w-[15%] h-[370px] border-t border-b border-neutral-400 p-2 px-7 flex flex-col gap-y-8">
             
             <div className="w-full">
-                <span className="block text-xl tracking-wider mb-3 uppercase">Products</span>
+                <span className="w-full h-10 flex justify-center items-center bg-[#8CCCDC] shadow-sm rounded-xl text-neutral-900 mb-3 py-1 tracking-wide text-[18px] hover:-translate-y-0.5 transition-all transform duration-200">Filters</span>
+
+                <span className="block text-[18px] tracking-wider mb-2 uppercase">Products</span>
 
                 <div className="flex flex-col gap-y-3">
                     {products.map((item) => (
@@ -41,7 +43,7 @@ export default function LeftSidebar() {
             </div>
 
             <div className="w-full">
-                <span className="block text-xl tracking-wider mb-3 uppercase">
+                <span className="block text-[18px] tracking-wider mb-2 uppercase">
                     Designs
                 </span>
 

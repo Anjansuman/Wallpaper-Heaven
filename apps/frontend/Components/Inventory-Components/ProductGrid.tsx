@@ -1,4 +1,4 @@
-import { Product } from "@/app/collections/[type]/page";
+import { Product } from "@/app/collections/page";
 import Image from "next/image";
 import { useState } from "react";
 import { Maximize2, X } from "lucide-react";
@@ -11,7 +11,7 @@ export default function ProductGrid({
     onSelect: (product: Product) => void;
 }) {
     return (
-        <div className="min-h-[600px] w-full p-10 bg-[#e9e9e9]">
+        <div className="min-h-[600px] w-full p-10 ">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center">
                 {products.map((product) => (
                     <ProductCard
@@ -40,7 +40,7 @@ function ProductCard({
                 className="w-[350px] h-[450px] flex flex-col items-center cursor-pointer"
                 onClick={onSelect}
             >
-                <div className="w-[350px] h-[350px] rounded-xl relative overflow-hidden shadow-xl">
+                <div className="w-[350px] h-[350px] rounded-xl relative overflow-hidden shadow-xl hover:scale-105 transition-all transform duration-200">
                     <Image
                         src={product.image}
                         alt={product.name}

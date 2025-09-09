@@ -56,7 +56,7 @@ export default function HomeDesigners() {
             <div className="mb-10">
                 <div className="text-6xl">Designers</div>
                 <div className="text-xl py-3 mb-5">
-                    Explore the range of genres that suits your home and requirements
+                    Meet the ones that contribute in lighting up your spaces
                 </div>
             </div>
 

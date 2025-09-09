@@ -9,28 +9,29 @@ import HomeGenre from "@/Components/Base/HomeGenre";
 import HomeDesigners from "@/Components/Base/HomeDesigners";
 
 export default function HomeMain() {
-    return (
-        <div className="relative w-full min-h-screen flex flex-col items-center bg-[#EFEFEF] overflow-hidden select-none">
-            <NavbarMain />
+  return (
+    <div className="relative w-full min-h-screen flex flex-col items-center bg-[#EFEFEF] overflow-hidden select-none">
+      <NavbarMain />
 
-            <div className="absolute top-0 left-0 w-full h-screen">
-                <div
-                    className="w-full h-full bg-gradient-to-r from-[#9573E1]/70 via-pink-300/50 to-[#9573E1]/70 opacity-60 blur-3xl animate-wave"
-                />
-            </div>
+      <div className="absolute top-0 left-0 w-full h-screen">
+        <div
+          className="w-full h-full bg-gradient-to-r from-[#9573E1]/70 via-pink-300/50 to-[#9573E1]/70 opacity-60 blur-3xl animate-wave"
+        />
+      </div>
 
-            <div className="relative z-10 w-full flex flex-col max-w-7xl pt-20">
-                <Hero />
-            </div>
+      <div className="relative z-10 w-full flex flex-col max-w-7xl pt-20">
+        <Hero />
 
-            <HomeEnlargedImage />
-            <TopCollections />
-            <HomeTopBrand />
-            <HomeGenre />
-            <HomeDesigners />
-            <Testimonials />
+      </div>
 
-            <style jsx>{`
+      <HomeEnlargedImage />
+      <TopCollections />
+      <HomeTopBrand />
+      <HomeGenre />
+      <HomeDesigners />
+      <Testimonials />
+
+      <style jsx>{`
         @keyframes wave {
           0% { transform: translateX(-25%); }
           50% { transform: translateX(25%); }
@@ -42,6 +43,6 @@ export default function HomeMain() {
         }
       `}</style>
 
-        </div>
-    );
+    </div>
+  );
 }

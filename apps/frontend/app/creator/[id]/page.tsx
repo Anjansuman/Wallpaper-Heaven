@@ -1,5 +1,4 @@
-import Navbar2 from "@/Components/Nav-Bar/NavBar2";
-import UserPageNavbar from "@/Components/Nav-Bar/UserPageNavbar";
+import NavbarMain from "@/Components/Nav-Bar/NavbarMain";
 import Image from "next/image";
 
 export default function UserWork() {
@@ -16,7 +15,7 @@ export default function UserWork() {
 
   return (
     <div className="">
-      <UserPageNavbar/>
+      <NavbarMain/>
       <div className="flex items-start justify-between pt-20 bg-white text-black min-h-screen">
         {/* Sidebar */}
         <div className="h-full w-[20%] hidden md:flex bg-gray-800 border-r border-gray-200 p-4">
