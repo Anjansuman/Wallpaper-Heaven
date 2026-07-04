@@ -1,17 +1,24 @@
 "use client";
 
 import { useAddProductStore } from "@/store/useAddProductStore";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { GET_PRODUCT_TYPES_URL } from "@/routes/routes";
+
+interface ProductType {
+    id: number;
+    name: string;
+}
 
 export default function ChooseProduct() {
-    const productTypes = [
-        "Wallpapers", "Curtains", "Blinds",
-        "Upholstery", "Wood Flooring", "Wall Panels",
-        "Artificial Grass", "Vertical Gardens", "Decor Items",
-    ];
-
-    const [selected, setSelected] = useState<string | null>(null);
+    const [productTypes, setProductTypes] = useState<ProductType[]>([]);
     const { product, updateProduct } = useAddProductStore();
+
+    useEffect(() => {
+        axios.get(GET_PRODUCT_TYPES_URL)
+            .then((res) => setProductTypes(res.data.productTypes ?? []))
+            .catch(() => console.error("Failed to fetch product types"));
+    }, []);
 
     return (
         <div className="text-[#3D5A40] bg-[#F9FAF8] p-6 rounded-xl shadow-sm w-full max-w-3xl">
@@ -23,19 +30,22 @@ export default function ChooseProduct() {
             </div>
 
             <div className="w-full grid grid-cols-2 sm:grid-cols-3 gap-4">
-                {productTypes.map((type, idx) => (
+                {productTypes.map((type) => (
                     <button
-                        key={idx}
-                        onClick={() => setSelected(type)}
+                        key={type.id}
+                        onClick={() => updateProduct({ productTypeId: type.id, productTypeName: type.name })}
                         className={`px-5 py-3 rounded-md text-md font-medium transition-all duration-200 border
-              ${product?.productType === type
+              ${product.productTypeId === type.id
                                 ? "bg-[#6DA165] text-white border-[#6DA165] shadow"
                                 : "bg-white text-[#3D5A40] border-[#D1D5DB] hover:bg-[#f1f5f3]"
                             }`}
                     >
-                        {type}
+                        {type.name}
                     </button>
                 ))}
+                {productTypes.length === 0 && (
+                    <p className="text-[#6D7278] col-span-3">No product types found. Add some via the admin panel.</p>
+                )}
             </div>
         </div>
     );
