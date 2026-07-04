@@ -23,6 +23,7 @@ model User {
 model Tag {
   id              Int             @id         @default(autoincrement())
   name            String          @unique
+  image           String?
 
   products        Product[]
 }
@@ -44,7 +45,7 @@ model Product {
   creatorId       Int?
   brandId         Int?
   tags            Tag[]
-  productTypeId   Int             @unique
+  productTypeId   Int
   ProductType     ProductType     @relation(fields: [productTypeId], references: [id], onDelete: Cascade)
 
   addedBy         User            @relation("UserProducts", fields: [addedById], references: [id])
@@ -68,10 +69,23 @@ model Brand {
   about           String
   description     String?
   image           String?
+  rank            Int?
 
   products        Product[]       @relation("BrandProduct")
 }
 
+
+model SiteSection {
+  id          Int      @id @default(autoincrement())
+  key         String   @unique
+  badge       String?
+  title       String?
+  subtitle    String?
+  description String?
+  rootImage   String?
+  images      String[]
+  updatedAt   DateTime @updatedAt
+}
 
 model Offer {
   id            Int   @id   @default(autoincrement())
@@ -89,4 +103,14 @@ model Offer {
 enum Badge {
   Offer
   New
+}
+
+model UserQuery {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  phone     String?
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
 }

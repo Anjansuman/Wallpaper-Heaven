@@ -8,7 +8,10 @@
   },
   "scripts": {
     "build": "tsc -b",
-    "generate": "prisma generate"
+    "generate": "prisma generate",
+    "migrate": "prisma migrate dev --env-file ../../../.env",
+    "db:push": "prisma db push --env-file ../../../.env",
+    "studio": "prisma studio --env-file ../../../.env"
   },
   "dependencies": {
     "@prisma/client": "^6.9.0",
