@@ -5,7 +5,7 @@ import { Request, Response } from "express";
 export default async function upsertTagController(req: Request, res: Response) {
     try {
 
-        const { id, name } = req.body;
+        const { id, name, image } = req.body;
 
         if (!name) {
             res.status(400).json({
@@ -29,27 +29,15 @@ export default async function upsertTagController(req: Request, res: Response) {
 
             if (existingTag) {
                 const updatedTag = await t.tag.update({
-                    where: {
-                        id: id,
-                    },
-                    data: {
-                        name: name,
-                    },
-                    select: {
-                        id: true,
-                        name: true,
-                    }
+                    where: { id },
+                    data: { name, image },
+                    select: { id: true, name: true, image: true },
                 });
                 return updatedTag;
             } else {
                 const newTag = await t.tag.create({
-                    data: {
-                        name: name,
-                    },
-                    select: {
-                        id: true,
-                        name: true,
-                    }
+                    data: { name, image },
+                    select: { id: true, name: true, image: true },
                 });
                 return newTag;
             }

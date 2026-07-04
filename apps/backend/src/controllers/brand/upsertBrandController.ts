@@ -5,7 +5,7 @@ import { Request, Response } from "express";
 export default async function upsertBrandController(req: Request, res: Response) {
     try {
 
-        const { id, name, about, description, image } = req.body;
+        const { id, name, about, description, image, rank } = req.body;
 
         if (!name || !about) {
             res.status(400).json({
@@ -27,41 +27,18 @@ export default async function upsertBrandController(req: Request, res: Response)
                 });
             }
 
+            const rankVal = rank != null ? Number(rank) : null;
             if (existingBrand) {
                 const updatedBrand = await t.brand.update({
-                    where: {
-                        id: id,
-                    },
-                    data: {
-                        name: name,
-                        about: about,
-                        description: description,
-                        image: image,
-                    },
-                    select: {
-                        id: true,
-                        name: true,
-                        about: true,
-                        description: true,
-                        image: true,
-                    },
+                    where: { id },
+                    data: { name, about, description, image, rank: rankVal },
+                    select: { id: true, name: true, about: true, description: true, image: true, rank: true },
                 });
                 return updatedBrand;
             } else {
                 const newBrand = await t.brand.create({
-                    data: {
-                        name: name,
-                        about: about,
-                        description: description,
-                        image: image,
-                    },
-                    select: {
-                        id: true,
-                        name: true,
-                        about: true,
-                        description: true,
-                        image: true,
-                    },
+                    data: { name, about, description, image, rank: rankVal },
+                    select: { id: true, name: true, about: true, description: true, image: true, rank: true },
                 });
                 return newBrand;
             }
