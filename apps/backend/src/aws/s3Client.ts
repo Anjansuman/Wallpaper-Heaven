@@ -3,7 +3,8 @@ import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { v4 as uuid } from 'uuid';
 import dotenv from 'dotenv';
 dotenv.config();
-const cloudFrontDomain = process.env.AWS_CLOUDFRONT_DOMAIN;
+// strip any protocol prefix so the URL doesn't become https://https://...
+const cloudFrontDomain = (process.env.AWS_CLOUDFRONT_DOMAIN || "").replace(/^https?:\/\//, "");
 
 export default class S3ClientActions {
     private s3: S3Client;
