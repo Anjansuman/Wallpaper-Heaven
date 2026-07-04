@@ -5,54 +5,52 @@ import { Request, Response } from "express";
 export default async function getProductDataController(req: Request, res: Response) {
     try {
 
-        const { productId } = req.body;
+        const productId = parseInt(req.query.productId as string);
 
-        if (!productId || typeof productId !== 'number') {
+        if (!productId || isNaN(productId)) {
             res.status(400).json({
-                message: "Missing product id",
+                message: "Missing or invalid product id",
             });
             return;
         }
 
-        const data = await prisma.$transaction(async (tx) => {
-            const product = await prisma.product.findUnique({
-                where: {
-                    id: productId,
-                },
-                select: {
-                    id: true,
-                    name: true,
-                    description: true,
-                    images: true,
-                    addedAt: true,
-                    creator: true,
-                    tags: true,
-                    ProductType: true,
-                }
-            });
+        const product = await prisma.product.findUnique({
+            where: { id: productId },
+            select: {
+                id: true,
+                name: true,
+                description: true,
+                images: true,
+                addedAt: true,
+                creator: true,
+                brand: true,
+                tags: true,
+                ProductType: true,
+            }
+        });
 
-            const similarProducts = await prisma.product.findMany({
-                where: {
-                    ProductType: product?.ProductType
-                },
-                skip: product?.id,
-                select: {
-                    id: true,
-                    name: true,
-                    images: true,
-                },
-            });
+        if (!product) {
+            res.status(404).json({ message: "Product not found" });
+            return;
+        }
 
-            return {
-                product,
-                similarProducts,
-            };
+        const similarProducts = await prisma.product.findMany({
+            where: {
+                productTypeId: product.ProductType.id,
+                id: { not: productId },
+            },
+            take: 10,
+            select: {
+                id: true,
+                name: true,
+                images: true,
+            },
         });
 
         res.status(200).json({
             message: "Product details fetched successfully",
-            product: data.product,
-            similarProducts: data.similarProducts,
+            product,
+            similarProducts,
         });
         return;
 

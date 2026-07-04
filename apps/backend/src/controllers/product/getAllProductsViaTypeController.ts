@@ -6,25 +6,35 @@ import { Request, Response } from "express";
 export default async function getAllProductsViaTypeController(req: Request, res: Response) {
     try {
 
-        const { productType } = req.body;
+        const productTypeId = parseInt(req.query.productTypeId as string);
 
-        if (!productType) {
+        if (!productTypeId || isNaN(productTypeId)) {
             res.status(400).json({
-                message: "product type not provided",
+                message: "productTypeId not provided or invalid",
             });
             return;
         }
 
         const products = await prisma.product.findMany({
             where: {
-                ProductType: productType
+                productTypeId,
             },
             take: 15,
+            orderBy: { addedAt: "desc" },
+            select: {
+                id: true,
+                name: true,
+                images: true,
+                tags: true,
+                brand: true,
+                creator: true,
+                ProductType: true,
+            },
         });
 
         res.status(200).json({
             message: "Fetched data",
-            products: products,
+            products,
         });
         return;
 
