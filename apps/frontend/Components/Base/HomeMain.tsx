@@ -7,6 +7,7 @@ import HomeTopBrand from "@/Components/Base/HomeTopBrands";
 import Testimonials from "@/Components/Testimonials/Testimonials";
 import HomeGenre from "@/Components/Base/HomeGenre";
 import HomeDesigners from "@/Components/Base/HomeDesigners";
+import QuerySection from "@/Components/Base/QuerySection";
 
 export default function HomeMain() {
   return (
@@ -30,6 +31,7 @@ export default function HomeMain() {
       <HomeGenre />
       <HomeDesigners />
       <Testimonials />
+      <QuerySection />
 
       <style jsx>{`
         @keyframes wave {

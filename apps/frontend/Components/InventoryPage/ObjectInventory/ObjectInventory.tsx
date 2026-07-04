@@ -1,13 +1,34 @@
-import Object from "./Object";
+import ProductObject from "./Object";
 
+interface Product {
+    id: number;
+    name: string;
+    images: string[];
+}
 
-export default function ObjectInventory() {
+interface ObjectInventoryProps {
+    products: Product[];
+}
 
-    // get the data from the backend with all the objects with details and tags for filter
+export default function ObjectInventory({ products }: ObjectInventoryProps) {
+    if (products.length === 0) {
+        return (
+            <div className="flex-1 flex items-center justify-center text-gray-400 py-20">
+                No products found.
+            </div>
+        );
+    }
 
-    return <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-8 ">
-        {["Image", "video", "phone", "Image", "video", "phone", "Image", "video", "phone", "Image", "video", "phone", "Image", "video", "phone"].map((e, index) => (
-            <Object title={e} key={index} />
-        ))}
-    </div>
+    return (
+        <div className="flex-1 grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-8">
+            {products.map((product) => (
+                <ProductObject
+                    key={product.id}
+                    id={product.id}
+                    title={product.name}
+                    imageUrl={product.images[0] ?? ""}
+                />
+            ))}
+        </div>
+    );
 }

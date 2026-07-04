@@ -1,11 +1,11 @@
 "use client";
 
-import { IconX, IconSparkles, IconGift, IconFlame } from "@tabler/icons-react";
+import { IconX, IconSparkles, IconFlame } from "@tabler/icons-react";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import Link from "next/link";
 import axios from "axios";
-import { useSession } from "next-auth/react";
+import { ACTIVE_OFFER_URL } from "@/routes/routes";
 
 type Tag = "Offer" | "New";
 
@@ -32,26 +32,19 @@ export default function OfferBanner() {
     const [closeOffer, setCloseOffer] = useState(false);
     const offerRef = useRef<HTMLDivElement>(null);
     const [hovered, setHovered] = useState(false);
-    const { data: session, status } = useSession();
 
     useEffect(() => {
-        if (status === "authenticated") {
-            fetchOffer();
-        }
-    }, [status]);
+        fetchOffer();
+    }, []);
 
     const fetchOffer = async () => {
         try {
-            const res = await axios.get("http://localhost:8080/offer/active-offer", {
-                headers: {
-                    Authorization: `Bearer ${session?.user.token}`
-                }
-            });
-            if (res.data) {
-                setOffer(res.data);
+            const res = await axios.get(ACTIVE_OFFER_URL);
+            if (res.data?.offer) {
+                setOffer(res.data.offer);
             }
-        } catch (err) {
-            console.error("Failed to fetch offer:", err);
+        } catch {
+            // no active offer — banner stays hidden
         }
     };
 
