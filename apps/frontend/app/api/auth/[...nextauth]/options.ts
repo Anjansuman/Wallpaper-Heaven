@@ -1,8 +1,7 @@
-import GoogleProvider from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
 import { ISODateString, type AuthOptions } from "next-auth";
 import { JWT } from "next-auth/jwt";
 import jwt from "jsonwebtoken";
-import { prisma } from "@repo/db";
 
 export interface CustomSession {
   user?: CustomUser;
@@ -11,90 +10,51 @@ export interface CustomSession {
 
 export interface CustomUser {
   id: string;
-  name?: string | null;
   email?: string | null;
-  image?: string | null;
   token?: string | null;
 }
 
 export const authOptions: AuthOptions = {
   pages: {
-    signIn: "/",
+    signIn: "/admin",
   },
   providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-      authorization: {
-        params: {
-          prompt: "consent",
-          access_type: "offline",
-          response_type: "code",
-        },
+    CredentialsProvider({
+      name: "Admin",
+      credentials: {
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials) {
+        const adminEmail = process.env.ADMIN_EMAIL;
+        const adminPassword = process.env.ADMIN_PASSWORD;
+
+        if (
+          !credentials?.email ||
+          !credentials?.password ||
+          credentials.email !== adminEmail ||
+          credentials.password !== adminPassword
+        ) {
+          return null;
+        }
+
+        const token = jwt.sign(
+          { id: "admin", email: adminEmail },
+          process.env.JWT_SECRET || "fallback_secret",
+          { expiresIn: "365d" }
+        );
+
+        return { id: "admin", email: adminEmail, token };
       },
     }),
   ],
   callbacks: {
-    async signIn({ user }: { user: CustomUser }) {
-      try {
-        if (!user.email) {
-          console.log("Email is required");
-          return false;
-        }
-
-        const existingUser = await prisma.user.findUnique({
-          where: { email: user.email },
-        });
-
-        let myUser;
-        if (existingUser) {
-          myUser = await prisma.user.update({
-            where: { email: user.email },
-            data: {
-              name: user.name!,
-              image: user.image,
-            },
-          });
-        } else {
-          myUser = await prisma.user.create({
-            data: {
-              email: user.email,
-              name: user.name!,
-              image: user.image,
-            },
-          });
-        }
-
-        const jwtPayload = {
-          name: myUser.name,
-          email: myUser.email,
-          id: myUser.id.toString(),
-        };
-
-        const token = jwt.sign(
-          jwtPayload,
-          process.env.NEXTAUTH_SECRET || "fallback_secret_key",
-          { expiresIn: "365d" }
-        );
-
-        user.id = myUser.id.toString();
-        user.token = token;
-
-        console.log("options user: ", user);
-        return true;
-      } catch (error) {
-        console.error("SignIn failed: ", error);
-        return false;
-      }
-    },
-
     async jwt({ token, user }) {
       if (user) {
         token.user = user as CustomUser;
       }
       return token;
     },
-
     async session({ session, token }: { session: CustomSession; token: JWT }) {
       if (token.user) {
         session.user = token.user as CustomUser;
