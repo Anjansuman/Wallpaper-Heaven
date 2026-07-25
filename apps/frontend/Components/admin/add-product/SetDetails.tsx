@@ -43,7 +43,7 @@ export default function SetDetails() {
     return (
         <div className="text-[#3D5A40] bg-[#F9FAF8] p-6 rounded-xl shadow-sm w-full max-w-2xl">
             <div className="flex flex-col items-start mb-6">
-                <div className="font-bold text-3xl">Set Details</div>
+                <div className="font-bold text-2xl sm:text-3xl">Set Details</div>
                 <div className="text-[#6D7278] text-base mt-1">
                     Give your product some details.
                 </div>

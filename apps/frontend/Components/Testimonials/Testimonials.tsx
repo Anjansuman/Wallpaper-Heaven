@@ -97,16 +97,16 @@ export default function Testimonials() {
   return (
     <section
       ref={testimonialsRef}
-      className="py-18 px-10 w-full bg-neutral-200 relative overflow-hidden mt-30"
+      className="py-16 px-4 sm:px-6 lg:px-10 w-full bg-neutral-200 relative overflow-hidden mt-20 sm:mt-24 lg:mt-28"
     >
       {/* <div className="absolute left-0 top-0 h-full w-32 bg-gradient-to-r from-gray-50 to-transparent z-10"></div>
       <div className="absolute right-0 top-0 h-full w-32 bg-gradient-to-l from-gray-50 to-transparent z-10"></div> */}
 
       <div className="container mx-auto px-4">
-        <h2 className="testimonials-title text-4xl md:text-5xl font-normal text-center mb-4">
+        <h2 className="testimonials-title text-3xl sm:text-4xl md:text-5xl font-normal text-center mb-4">
           Customer Stories
         </h2>
-        <p className="text-neutral-950 text-[18px] text-center mb-10 max-w-xl mx-auto font-normal">
+        <p className="text-neutral-950 text-base sm:text-lg text-center mb-10 max-w-xl mx-auto font-normal">
           Hear from designers and homeowners who have transformed their spaces with our premium wallpapers.
         </p>
       </div>

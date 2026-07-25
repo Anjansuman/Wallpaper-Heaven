@@ -146,7 +146,7 @@ export default function HomeGenre() {
     };
 
     return (
-        <div className="h-[500px] w-full flex mt-40 max-w-7xl">
+        <div className="w-full flex flex-col lg:flex-row mt-20 sm:mt-28 lg:mt-40 max-w-7xl lg:h-[500px] gap-y-6 lg:gap-y-0">
             {isAdmin && (
                 <EditPanel
                     title={panelMode === "add" ? "Add Genre" : `Edit: ${editingGenre?.title ?? "Genre"}`}
@@ -186,22 +186,23 @@ export default function HomeGenre() {
                 </EditPanel>
             )}
 
-            <div ref={containerRef} className="h-full w-[60%] flex flex-col">
-                <div className={cn("text-6xl transition-all duration-1000 ease-out", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8")}>
+            {/* Left: heading + genre pills */}
+            <div ref={containerRef} className="w-full lg:w-[60%] flex flex-col">
+                <div className={cn("text-4xl sm:text-5xl lg:text-6xl transition-all duration-1000 ease-out", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8")}>
                     Genre
                 </div>
-                <div className={cn("text-xl transition-all duration-1000 ease-out delay-200", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8")}>
+                <div className={cn("text-base sm:text-xl transition-all duration-1000 ease-out delay-200", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8")}>
                     Explore the range of genres that suits your home and requirements
                 </div>
 
-                <div className={cn("flex flex-wrap gap-3 mt-8 transition-all duration-1000 ease-out delay-400", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8")}>
+                <div className={cn("flex flex-wrap gap-3 mt-6 sm:mt-8 transition-all duration-1000 ease-out delay-400", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8")}>
                     {genres.map((genre, index) => (
                         <div
                             key={genre.id ?? index}
                             onClick={() => setSelected(genre)}
                             style={{ backgroundColor: genre.bgColor }}
                             className={cn(
-                                "relative group/pill text-xl px-4 py-1.5 rounded-full cursor-pointer",
+                                "relative group/pill text-base sm:text-xl px-4 py-1.5 rounded-full cursor-pointer",
                                 "shadow-sm transition-all duration-200 ease-out transform hover:scale-105",
                                 selected?.title === genre.title && "ring-2 ring-black/20",
                                 isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-95"
@@ -224,7 +225,7 @@ export default function HomeGenre() {
                         <button
                             onClick={openAdd}
                             className={cn(
-                                "text-lg px-4 py-1.5 rounded-full cursor-pointer flex items-center gap-1.5",
+                                "text-base sm:text-lg px-4 py-1.5 rounded-full cursor-pointer flex items-center gap-1.5",
                                 "border-2 border-dashed border-neutral-400 text-neutral-500",
                                 "shadow-sm transition-all duration-200 ease-out transform hover:scale-105 hover:border-neutral-600 hover:text-neutral-700",
                                 isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-95"
@@ -248,7 +249,8 @@ export default function HomeGenre() {
                 </button>
             </div>
 
-            <div className="h-full w-[40%] flex items-center justify-center py-6">
+            {/* Right: selected genre preview card */}
+            <div className="w-full lg:w-[40%] h-[280px] sm:h-[360px] lg:h-full flex items-center justify-center py-0 lg:py-6">
                 {selected ? (
                     <div
                         className={cn(
@@ -267,7 +269,7 @@ export default function HomeGenre() {
                         >
                             <ArrowRight className="size-5" />
                         </button>
-                        <span className="relative z-10 text-4xl font-semibold text-white drop-shadow-lg">{selected.title}</span>
+                        <span className="relative z-10 text-3xl sm:text-4xl font-semibold text-white drop-shadow-lg">{selected.title}</span>
                     </div>
                 ) : (
                     <span className={cn("text-xl transition-all duration-1000 ease-out delay-800", isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8")}>

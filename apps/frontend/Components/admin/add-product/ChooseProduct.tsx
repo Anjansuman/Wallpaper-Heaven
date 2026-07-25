@@ -23,7 +23,7 @@ export default function ChooseProduct() {
     return (
         <div className="text-[#3D5A40] bg-[#F9FAF8] p-6 rounded-xl shadow-sm w-full max-w-3xl">
             <div className="flex flex-col items-start mb-6">
-                <div className="font-bold text-3xl">Choose a Product</div>
+                <div className="font-bold text-2xl sm:text-3xl">Choose a Product</div>
                 <div className="text-[#6D7278] text-base mt-1">
                     Choose a type that fits your product well.
                 </div>
@@ -44,7 +44,7 @@ export default function ChooseProduct() {
                     </button>
                 ))}
                 {productTypes.length === 0 && (
-                    <p className="text-[#6D7278] col-span-3">No product types found. Add some via the admin panel.</p>
+                    <p className="text-[#6D7278] col-span-2 sm:col-span-3">No product types found. Add some via the admin panel.</p>
                 )}
             </div>
         </div>

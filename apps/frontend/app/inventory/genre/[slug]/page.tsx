@@ -127,7 +127,7 @@ export default function GenreDetailPage() {
 
                         <div className="w-3 h-3 rounded-full bg-white/50 mb-5" />
 
-                        <h1 className="text-6xl sm:text-7xl font-semibold tracking-tight leading-none text-white drop-shadow-lg">
+                        <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-semibold tracking-tight leading-none text-white drop-shadow-lg">
                             {genreName}
                         </h1>
                         <p className="mt-4 text-white/70 text-lg">

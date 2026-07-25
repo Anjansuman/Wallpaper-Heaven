@@ -76,7 +76,7 @@ export default function HomeScreenFooter() {
     return (
         <footer
             id="animated-footer"
-            className="relative w-full min-h-5xl mt-20 pb-30 text-black overflow-hidden select-none"
+            className="relative w-full mt-16 sm:mt-20 pb-16 sm:pb-24 text-black overflow-hidden select-none"
         >
             <div
                 className={cn(
@@ -85,14 +85,14 @@ export default function HomeScreenFooter() {
                 )}
                 style={{
                     background: `
-            radial-gradient(ellipse at center bottom, 
-            rgba(208, 193, 233, 0.5) 0%, 
-            rgba(208, 193, 233, 0.4) 15%, 
-            rgba(208, 193, 233, 0.3) 25%, 
-            rgba(208, 193, 233, 0.25) 35%, 
-            rgba(208, 193, 233, 0.2) 45%, 
-            rgba(208, 193, 233, 0.15) 55%, 
-            #FFFFFF 65%, 
+            radial-gradient(ellipse at center bottom,
+            rgba(208, 193, 233, 0.5) 0%,
+            rgba(208, 193, 233, 0.4) 15%,
+            rgba(208, 193, 233, 0.3) 25%,
+            rgba(208, 193, 233, 0.25) 35%,
+            rgba(208, 193, 233, 0.2) 45%,
+            rgba(208, 193, 233, 0.15) 55%,
+            #FFFFFF 65%,
             #FFFFFF 100%
         )
         `,
@@ -101,15 +101,15 @@ export default function HomeScreenFooter() {
 
             <div
                 className={cn(
-                    'relative z-10 max-w-7xl mx-auto px-8 pt-20 pb-20',
+                    'relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-10 sm:pb-20',
                     'transition-all duration-[1200ms] ease-out delay-200',
                     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8',
                 )}
             >
-                <div className="grid grid-cols-4 gap-40">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-12 lg:gap-16">
                     <div
                         className={cn(
-                            'flex-col transition-all duration-1000 ease-out text-xl',
+                            'col-span-2 sm:col-span-1 flex-col transition-all duration-1000 ease-out text-xl',
                             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6',
                         )}
                         style={{ transitionDelay: '600ms' }}
@@ -137,7 +137,7 @@ export default function HomeScreenFooter() {
                         <div
                             key={section.title}
                             className={cn(
-                                'space-y-6 transition-all duration-1000 ease-out',
+                                'space-y-4 sm:space-y-6 transition-all duration-1000 ease-out',
                                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6',
                             )}
                             style={{ transitionDelay: section.delay }}
@@ -145,7 +145,7 @@ export default function HomeScreenFooter() {
                             <h4 className="uppercase text-[13px] tracking-[0.15em] text-neutral-800 font-medium">
                                 {section.title}
                             </h4>
-                            <ul className="space-y-4">
+                            <ul className="space-y-3 sm:space-y-4">
                                 {section.items.map((item, itemIndex) => (
                                     <li
                                         key={item.label}

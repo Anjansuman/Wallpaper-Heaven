@@ -112,7 +112,7 @@ export default function CollectionTypePage() {
             <div className="pt-[72px]">
                 {/* Hero header */}
                 <div className="bg-neutral-950 text-white">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-10">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-12 pb-8 sm:pb-10">
                         {/* Breadcrumb */}
                         <div className="flex items-center gap-2 text-sm text-white/40 mb-6">
                             <button onClick={() => router.push("/inventory/collections")} className="hover:text-white/70 transition-colors flex items-center gap-1">
@@ -123,7 +123,7 @@ export default function CollectionTypePage() {
                             <span className="text-white/70">{typeName}</span>
                         </div>
 
-                        <h1 className="text-5xl sm:text-6xl font-semibold tracking-tight leading-none">
+                        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight leading-none">
                             {typeName}
                         </h1>
                         <p className="text-white/40 mt-3 text-base">

@@ -151,7 +151,7 @@ export default function BrandDetailPage() {
                             </div>
                         )}
 
-                        <h1 className="fade-up text-5xl sm:text-6xl lg:text-7xl font-semibold text-white tracking-tight leading-none">
+                        <h1 className="fade-up text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-semibold text-white tracking-tight leading-none">
                             {brandName}
                         </h1>
 

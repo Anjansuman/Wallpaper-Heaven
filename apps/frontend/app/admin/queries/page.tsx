@@ -67,7 +67,7 @@ export default function QueriesPage() {
     return (
         <div className="min-h-screen bg-[#F9FAF8]">
             {/* Header */}
-            <div className="bg-white border-b border-[#E5E7EB] px-6 py-4 flex items-center gap-4">
+            <div className="bg-white border-b border-[#E5E7EB] px-4 sm:px-6 py-4 flex items-center gap-4">
                 <button
                     onClick={() => router.push("/admin/dashboard")}
                     className="text-neutral-400 hover:text-neutral-700 transition-colors"

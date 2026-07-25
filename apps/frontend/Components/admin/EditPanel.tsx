@@ -45,7 +45,7 @@ export default function EditPanel({ title, isOpen, onOpen, onClose, onSave, savi
 
             {/* Drawer */}
             <div
-                className={`fixed top-0 right-0 z-[201] h-full w-[380px] bg-white shadow-2xl flex flex-col transition-transform duration-300 ease-out ${isOpen ? "translate-x-0" : "translate-x-full"}`}
+                className={`fixed top-0 right-0 z-[201] h-full w-full sm:w-[380px] bg-white shadow-2xl flex flex-col transition-transform duration-300 ease-out ${isOpen ? "translate-x-0" : "translate-x-full"}`}
             >
                 {/* Header */}
                 <div className="flex items-center justify-between px-6 py-5 border-b border-neutral-100">

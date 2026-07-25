@@ -264,22 +264,24 @@ export default function CollectionsPage() {
 
             <div className="pt-[72px]">
                 {/* Page heading */}
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-5 flex items-end justify-between">
-                    <div>
-                        <h1 className="text-5xl sm:text-6xl font-semibold tracking-tight">Collections</h1>
-                        <p className="text-neutral-400 mt-2 text-base">
-                            {loading ? "Loading…" : `${products.length} wallpaper${products.length !== 1 ? "s" : ""}`}
-                        </p>
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-5">
+                    <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+                        <div>
+                            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight">Collections</h1>
+                            <p className="text-neutral-400 mt-2 text-base">
+                                {loading ? "Loading…" : `${products.length} wallpaper${products.length !== 1 ? "s" : ""}`}
+                            </p>
+                        </div>
+                        {isAdmin && (
+                            <button
+                                onClick={() => router.push("/admin/add-product")}
+                                className="self-start sm:self-auto flex items-center gap-2 bg-black text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-neutral-800 transition-colors"
+                            >
+                                <Plus className="w-4 h-4" />
+                                Add Product
+                            </button>
+                        )}
                     </div>
-                    {isAdmin && (
-                        <button
-                            onClick={() => router.push("/admin/add-product")}
-                            className="flex items-center gap-2 bg-black text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-neutral-800 transition-colors"
-                        >
-                            <Plus className="w-4 h-4" />
-                            Add Product
-                        </button>
-                    )}
                 </div>
 
                 {/* Sticky filter bar */}

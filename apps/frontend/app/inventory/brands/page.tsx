@@ -51,7 +51,11 @@ function BrandCard({
     onDelete: (e: React.MouseEvent) => void;
     canDelete: boolean;
 }) {
-    const heights = { hero: "h-[520px]", medium: "h-80", normal: "h-64" };
+    const heights = {
+        hero: "h-[300px] sm:h-[400px] lg:h-[520px]",
+        medium: "h-48 sm:h-64 lg:h-80",
+        normal: "h-40 sm:h-52 lg:h-64",
+    };
 
     return (
         <div
@@ -78,16 +82,16 @@ function BrandCard({
 
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-            <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-8">
-                <p className="text-white/60 text-xs font-medium uppercase tracking-widest mb-1 translate-y-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+            <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 lg:p-8">
+                <p className="text-white/60 text-xs font-medium uppercase tracking-widest mb-1 translate-y-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hidden sm:block">
                     {brand.about}
                 </p>
                 <div className="flex items-end justify-between">
-                    <h3 className={`text-white font-semibold leading-tight ${size === "hero" ? "text-4xl sm:text-5xl" : size === "medium" ? "text-2xl sm:text-3xl" : "text-xl sm:text-2xl"}`}>
+                    <h3 className={`text-white font-semibold leading-tight ${size === "hero" ? "text-2xl sm:text-4xl lg:text-5xl" : size === "medium" ? "text-xl sm:text-2xl lg:text-3xl" : "text-lg sm:text-xl lg:text-2xl"}`}>
                         {brand.name}
                     </h3>
-                    <div className="flex-shrink-0 ml-4 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all duration-300">
-                        <ArrowUpRight className="w-5 h-5" />
+                    <div className="flex-shrink-0 ml-3 sm:ml-4 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all duration-300">
+                        <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
                     </div>
                 </div>
             </div>
@@ -329,7 +333,7 @@ export default function BrandsPage() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-20">
                     {/* Header */}
                     <div className="mb-10">
-                        <div className="flex items-start justify-between gap-4">
+                        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
                             <div>
                                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight">Our Brands</h1>
                                 <p className="text-neutral-400 mt-2 text-sm sm:text-base">
@@ -339,7 +343,7 @@ export default function BrandsPage() {
                             {isAdmin && (
                                 <button
                                     onClick={openAdd}
-                                    className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-neutral-800 transition-colors flex-shrink-0"
+                                    className="self-start flex items-center gap-2 bg-black text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-neutral-800 transition-colors flex-shrink-0"
                                 >
                                     <Plus className="w-4 h-4" />
                                     <span className="hidden sm:inline">Add Brand</span>
@@ -356,15 +360,15 @@ export default function BrandsPage() {
 
                     {loading ? (
                         <div className="space-y-4">
-                            <SkeletonBrand className="h-[360px] sm:h-[520px]" />
+                            <SkeletonBrand className="h-[300px] sm:h-[400px] lg:h-[520px]" />
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <SkeletonBrand className="h-56 sm:h-80" />
-                                <SkeletonBrand className="h-56 sm:h-80" />
+                                <SkeletonBrand className="h-48 sm:h-64 lg:h-80" />
+                                <SkeletonBrand className="h-48 sm:h-64 lg:h-80" />
                             </div>
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                                <SkeletonBrand className="h-48 sm:h-64" />
-                                <SkeletonBrand className="h-48 sm:h-64" />
-                                <SkeletonBrand className="h-48 sm:h-64" />
+                                <SkeletonBrand className="h-40 sm:h-52 lg:h-64" />
+                                <SkeletonBrand className="h-40 sm:h-52 lg:h-64" />
+                                <SkeletonBrand className="h-40 sm:h-52 lg:h-64" />
                             </div>
                         </div>
                     ) : brands.length === 0 ? (

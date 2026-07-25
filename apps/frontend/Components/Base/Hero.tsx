@@ -94,17 +94,17 @@ export default function Hero() {
 
             <div
                 ref={heroRef}
-                className={`w-full h-full flex flex-col py-2 items-center gap-y-4 transition-all duration-1000 ease-in-out ${
+                className={`w-full h-full flex flex-col px-4 sm:px-6 lg:px-8 py-2 items-center gap-y-4 transition-all duration-1000 ease-in-out ${
                     isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
                 }`}
             >
                 <span className="border border-black px-3 py-1 rounded-full text-sm bg-white/20 backdrop-blur-3xl transition-all duration-1000">
                     {badge}
                 </span>
-                <div className="w-full flex flex-col items-center text-[70px] font-semibold leading-18 transition-all duration-1000">
+                <div className="w-full flex flex-col items-center text-4xl sm:text-5xl lg:text-7xl xl:text-[70px] font-semibold leading-tight sm:leading-snug lg:leading-18 text-center transition-all duration-1000">
                     {title.split("\n").map((line, i) => <span key={i}>{line}</span>)}
                 </div>
-                <div className="w-full flex flex-col items-center transition-all duration-1000">
+                <div className="w-full flex flex-col items-center text-sm sm:text-base lg:text-lg text-center transition-all duration-1000">
                     {subtitle.split("\n").map((line, i) => <span key={i}>{line}</span>)}
                 </div>
             </div>

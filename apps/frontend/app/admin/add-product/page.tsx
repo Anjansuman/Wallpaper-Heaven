@@ -54,9 +54,8 @@ export default function AddProduct() {
     return (
         <div className="w-full h-full">
             <UserPageNavbar />
-            <div className="flex items-center justify-between pt-30">
-                <div className="h-full w-[20%] hidden md:flex" />
-                <div className="h-full w-[80%] flex flex-col gap-y-10 px-6 mb-20">
+            <div className="pt-[72px]">
+                <div className="flex flex-col gap-y-8 sm:gap-y-10 px-4 sm:px-6 lg:px-10 py-8 mb-10 max-w-4xl mx-auto">
                     <ChooseProduct />
                     <AddImage />
                     <SetDetails />

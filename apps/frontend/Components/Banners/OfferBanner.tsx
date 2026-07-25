@@ -62,7 +62,7 @@ export default function OfferBanner() {
             <div className="flex flex-col">
                 <div
                     onClick={() => setCloseOffer(false)}
-                    className="fixed flex z-50 right-0 top-50 -rotate-90 cursor-pointer group"
+                    className="fixed flex z-50 right-0 top-1/2 -translate-y-1/2 -rotate-90 cursor-pointer group"
                 >
                     <div className="bg-[#253249] p-[2px] rounded-lg shadow-lg hover:-translate-y-0.5 transition-all transform-3d duration-200">
                         <div className="bg-[#253249] backdrop-blur-sm px-4 py-2 rounded-lg text-white font-medium text-sm flex items-center gap-2 transition-all duration-300">
@@ -86,7 +86,7 @@ export default function OfferBanner() {
     return (
         <div
             ref={offerRef}
-            className="fixed z-50 right-0 top-40 h-52 w-55 cursor-pointer group"
+            className="fixed z-50 right-0 top-1/2 -translate-y-1/2 h-52 w-55 cursor-pointer group hidden sm:block"
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
         >

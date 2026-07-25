@@ -63,9 +63,9 @@ export default function Page() {
     }, [typeParam]);
 
     return (
-        <div className="h-full w-full">
+        <div className="min-h-screen w-full pt-[72px]">
             <NavbarMain />
-            <div className="h-full w-full flex flex-col gap-y-5 md:px-16 lg:px-20 sm:px-10 px-5 mb-20">
+            <div className="w-full flex flex-col gap-y-5 px-4 sm:px-6 md:px-10 lg:px-20 mb-20">
                 <Top />
                 <PhoneFilterTab />
                 {loading ? (

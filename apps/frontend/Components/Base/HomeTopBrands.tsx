@@ -185,7 +185,7 @@ export default function HomeTopBrand() {
     };
 
     return (
-        <div className="relative flex flex-col h-[1000px] w-full max-w-7xl mt-40 mx-auto gap-y-8">
+        <div className="relative flex flex-col w-full max-w-7xl mt-20 sm:mt-28 lg:mt-40 mx-auto gap-y-6 sm:gap-y-8">
             {isAdmin && (
                 <EditPanel
                     title={panelMode === "add" ? "Add Brand" : `Edit — ${dName}`}
@@ -208,13 +208,14 @@ export default function HomeTopBrand() {
                 </EditPanel>
             )}
 
-            <div className="flex justify-between">
-                <div className="text-6xl flex flex-col gap-y-3">
+            {/* Header */}
+            <div className="flex flex-col gap-4 sm:flex-row sm:justify-between">
+                <div className="text-4xl sm:text-5xl lg:text-6xl flex flex-col gap-y-2 sm:gap-y-3">
                     <span>Explore our top</span>
                     <span>brands</span>
                 </div>
-                <div className="flex flex-col max-w-xl justify-around">
-                    <div className="flex w-full justify-end gap-3">
+                <div className="flex flex-col sm:max-w-xl sm:justify-around gap-3">
+                    <div className="flex flex-wrap gap-3 sm:justify-end">
                         <button
                             onClick={() => router.push("/inventory/brands")}
                             className="bg-black text-white flex px-4 py-2 items-center justify-center rounded-full group gap-x-2"
@@ -232,13 +233,29 @@ export default function HomeTopBrand() {
                             </button>
                         )}
                     </div>
-                    <div className="flex justify-end items-end text-end max-w-sm mt-2">
+                    <div className="text-sm sm:text-base sm:text-end sm:max-w-sm">
                         Shop from a handpicked collection of trusted brands designed to bring you quality and style
                     </div>
                 </div>
             </div>
 
-            <div className="w-full h-full flex gap-x-4">
+            {/* Brand grid — 1 col mobile, 2 col sm, 3 col lg — with staggered heights on larger screens */}
+            {/* Mobile/tablet: simple equal grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:hidden gap-4 auto-rows-[220px]">
+                {displayed.map((brand, i) => (
+                    <BrandCard
+                        key={isFallback(brand) ? `fb-${i}` : brand.id}
+                        brand={brand}
+                        isAdmin={isAdmin}
+                        canDelete={canDelete}
+                        onEdit={() => !isFallback(brand) && openEdit(brand as Brand)}
+                        onDelete={() => !isFallback(brand) && handleDelete(brand as Brand)}
+                    />
+                ))}
+            </div>
+
+            {/* Desktop: original 3-column staggered layout */}
+            <div className="hidden lg:flex w-full h-[760px] gap-x-4">
                 <div className="w-full h-full flex flex-col gap-y-4">
                     <div className="h-[40%]">
                         <BrandCard brand={displayed[0]} isAdmin={isAdmin} canDelete={canDelete}

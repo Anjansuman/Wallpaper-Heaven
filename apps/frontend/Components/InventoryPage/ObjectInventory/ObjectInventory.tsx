@@ -20,7 +20,7 @@ export default function ObjectInventory({ products }: ObjectInventoryProps) {
     }
 
     return (
-        <div className="flex-1 grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-8">
+        <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-6 sm:gap-y-8">
             {products.map((product) => (
                 <ProductObject
                     key={product.id}

@@ -83,7 +83,7 @@ export default function HomeDesigners() {
     const current = designers[currentIndex] ?? designers[0];
 
     return (
-        <div className="relative w-full max-w-7xl mt-50">
+        <div className="relative w-full max-w-7xl mt-20 sm:mt-32 lg:mt-50">
             {isAdmin && (
                 <EditPanel
                     title="Add Creator"
@@ -101,22 +101,25 @@ export default function HomeDesigners() {
                 </EditPanel>
             )}
 
-            <div className="mb-10 flex items-end justify-between">
+            {/* Header row */}
+            <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
                 <div>
-                    <div className="text-6xl">Designers</div>
-                    <div className="text-xl py-3">Meet the ones that contribute in lighting up your spaces</div>
+                    <div className="text-4xl sm:text-5xl lg:text-6xl">Designers</div>
+                    <div className="text-base sm:text-xl py-2 sm:py-3">Meet the ones that contribute in lighting up your spaces</div>
                 </div>
                 <button
                     onClick={() => router.push("/designers")}
-                    className="flex items-center gap-2 bg-black text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-neutral-800 transition-colors mb-1"
+                    className="self-start sm:self-auto flex items-center gap-2 bg-black text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-neutral-800 transition-colors mb-1"
                 >
                     View all designers
                     <ChevronRight className="size-4" />
                 </button>
             </div>
 
-            <div className="w-full h-[350px] flex relative">
-                <div className="w-[50%] h-full flex justify-start items-center relative">
+            {/* Card + info layout — stacks vertically on mobile */}
+            <div className="w-full flex flex-col sm:flex-row h-auto sm:h-[350px] relative gap-y-6 sm:gap-y-0">
+                {/* Card stack */}
+                <div className="w-full sm:w-[50%] h-[260px] sm:h-full flex justify-start items-center relative">
                     {designers.map((designer, index) => {
                         const isActive = index === currentIndex;
                         const rotateValue = (index - currentIndex) * 4;
@@ -124,7 +127,7 @@ export default function HomeDesigners() {
                         return (
                             <div
                                 key={designer.id ?? designer.name}
-                                className="absolute w-[450px] h-[300px] rounded-3xl transition-all duration-500"
+                                className="absolute w-[260px] sm:w-[340px] lg:w-[450px] h-[220px] sm:h-[260px] lg:h-[300px] rounded-3xl transition-all duration-500"
                                 style={{ transform: `rotate(${rotateValue}deg) translateX(${isActive ? "0" : "20px"})`, zIndex }}
                             >
                                 <div className="relative p-6 rounded-3xl text-2xl h-full w-full overflow-hidden shadow-lg z-20">
@@ -139,13 +142,14 @@ export default function HomeDesigners() {
                     })}
                 </div>
 
-                <div className="w-[50%] h-full flex flex-col p-4 py-10 gap-y-5 relative">
-                    <div className="text-2xl flex flex-col">
+                {/* Info + nav buttons */}
+                <div className="w-full sm:w-[50%] h-auto sm:h-full flex flex-col p-4 py-4 sm:py-10 gap-y-4 sm:gap-y-5 relative">
+                    <div className="text-xl sm:text-2xl flex flex-col">
                         <span>{current.name}</span>
                         {current.role && <span className="text-[15px] text-neutral-800">{current.role}</span>}
                     </div>
-                    <div className="text-[18px]">{current.description}</div>
-                    <div className="flex justify-start absolute bottom-10 left-4 gap-x-4">
+                    <div className="text-base sm:text-[18px]">{current.description}</div>
+                    <div className="flex justify-start gap-x-4 mt-2 sm:absolute sm:bottom-10 sm:left-4">
                         <button onClick={handlePrev} className="h-[40px] w-15 bg-neutral-950 text-neutral-100 rounded-md flex justify-center items-center hover:-translate-y-0.5 transition-all transform duration-200 shadow-sm">
                             <ChevronLeft />
                         </button>

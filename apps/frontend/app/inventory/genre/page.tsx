@@ -213,7 +213,7 @@ export default function GenrePage() {
                 </>
             )}
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[88px] pb-20">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[72px] pb-20">
                 {/* Header */}
                 <div className="mb-10 sm:mb-12">
                     <div className="flex items-start justify-between gap-4">
@@ -231,7 +231,7 @@ export default function GenrePage() {
                             </button>
                         )}
                     </div>
-                    <h1 className="text-5xl sm:text-6xl lg:text-7xl font-semibold tracking-tight text-neutral-900 leading-none mt-5">
+                    <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-semibold tracking-tight text-neutral-900 leading-none mt-5">
                         Genres
                     </h1>
                     <p className="text-neutral-500 mt-4 text-base sm:text-lg max-w-lg font-light">

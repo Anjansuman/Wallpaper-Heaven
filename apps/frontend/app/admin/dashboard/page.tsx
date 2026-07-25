@@ -35,18 +35,18 @@ export default function AdminDashboard() {
     return (
         <div className="min-h-screen bg-[#F9FAF8]">
             {/* Header */}
-            <div className="bg-white border-b border-[#E5E7EB] px-8 py-4 flex justify-between items-center">
+            <div className="bg-white border-b border-[#E5E7EB] px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
                 <div>
                     <h1 className="text-xl font-bold text-[#3D5A40]">Admin Dashboard</h1>
                     <p className="text-xs text-[#6D7278]">{session?.user?.email}</p>
                 </div>
-                <div className="flex items-center gap-4">
-                    <Link href="/" className="text-sm text-[#6D7278] hover:text-[#3D5A40] transition-colors">
+                <div className="flex items-center gap-2 sm:gap-4">
+                    <Link href="/" className="text-sm text-[#6D7278] hover:text-[#3D5A40] transition-colors hidden sm:inline">
                         View Site
                     </Link>
                     <button
                         onClick={() => signOut({ callbackUrl: "/admin" })}
-                        className="text-sm bg-red-50 text-red-500 px-4 py-2 rounded-full hover:bg-red-100 transition-colors font-medium"
+                        className="text-sm bg-red-50 text-red-500 px-3 sm:px-4 py-2 rounded-full hover:bg-red-100 transition-colors font-medium"
                     >
                         Sign Out
                     </button>
@@ -54,7 +54,7 @@ export default function AdminDashboard() {
             </div>
 
             {/* Content */}
-            <div className="max-w-4xl mx-auto px-8 py-12">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
                 <h2 className="text-2xl font-bold text-[#3D5A40] mb-8">Quick Actions</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {adminLinks.map((link) => (

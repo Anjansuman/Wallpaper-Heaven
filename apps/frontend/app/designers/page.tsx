@@ -348,7 +348,7 @@ export default function DesignersPage() {
                             </button>
                         )}
                     </div>
-                    <h1 className="text-5xl sm:text-6xl lg:text-8xl font-semibold tracking-tight text-neutral-900 leading-none max-w-3xl mt-5">
+                    <h1 className="text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-semibold tracking-tight text-neutral-900 leading-none max-w-3xl mt-5">
                         Meet the{" "}
                         <span className="italic font-light">Makers</span>
                     </h1>

@@ -75,7 +75,7 @@ export default function QuerySection() {
                     <div className="fade-up inline-flex items-center gap-2 bg-[#6DA165]/20 text-[#A8D5A2] px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest">
                         Get in Touch
                     </div>
-                    <h2 className="fade-up text-5xl sm:text-6xl font-semibold text-white leading-tight tracking-tight">
+                    <h2 className="fade-up text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-white leading-tight tracking-tight">
                         We&apos;d love to{" "}
                         <span className="italic font-light text-[#6DA165]">hear</span>
                         {" "}from you

@@ -59,7 +59,7 @@ export default function SetTags() {
     return (
         <div className="text-[#3D5A40] max-w-[672px] bg-[#F9FAF8] p-6 rounded-xl shadow-sm">
             <div className="flex flex-col items-start mb-6">
-                <div className="font-bold text-3xl text-[#3D5A40]">Set Tags</div>
+                <div className="font-bold text-2xl sm:text-3xl text-[#3D5A40]">Set Tags</div>
                 <div className="text-[#6D7278] text-base mt-1">
                     Give your product a final touch.
                 </div>
@@ -99,7 +99,7 @@ export default function SetTags() {
                     {product.tagIds.map((id, i) => (
                         <div
                             key={id}
-                            className="flex items-center bg-[#6DA165] text-white rounded-full px-5 py-2 text-base font-semibold hover:bg-[#5a914e] group"
+                            className="flex items-center bg-[#6DA165] text-white rounded-full px-3 py-1.5 sm:px-5 sm:py-2 text-sm sm:text-base font-semibold hover:bg-[#5a914e] group"
                         >
                             <span className="mr-2">{product.tagNames[i]}</span>
                             <button

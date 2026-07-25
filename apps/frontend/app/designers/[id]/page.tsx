@@ -151,7 +151,7 @@ export default function DesignerDetailPage() {
                         {/* Photo */}
                         <div
                             ref={photoRef}
-                            className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-xl cursor-default"
+                            className="relative w-full aspect-[3/4] sm:aspect-[4/5] rounded-3xl overflow-hidden shadow-xl cursor-default"
                             onMouseMove={handleMouseMove}
                             onMouseLeave={handleMouseLeave}
                         >
@@ -167,7 +167,7 @@ export default function DesignerDetailPage() {
                             <div className="fade-up inline-flex items-center gap-2 bg-neutral-900 text-white px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest self-start">
                                 Designer
                             </div>
-                            <h1 className="fade-up text-5xl sm:text-6xl font-semibold tracking-tight leading-tight">
+                            <h1 className="fade-up text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight leading-tight">
                                 {designer?.name ?? "Loading…"}
                             </h1>
                             {designer?.about && (

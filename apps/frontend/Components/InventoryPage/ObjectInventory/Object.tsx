@@ -10,12 +10,13 @@ interface ObjectProps {
 export default function ProductObject({ id, title, imageUrl }: ObjectProps) {
     return (
         <Link href={`/product/${id}`} className="flex flex-col gap-y-2 group">
-            <div className="relative h-48 w-full rounded-lg overflow-hidden border border-gray-200">
+            <div className="relative h-36 sm:h-44 md:h-48 lg:h-56 w-full rounded-lg overflow-hidden border border-gray-200">
                 {imageUrl ? (
                     <Image
                         src={imageUrl}
                         alt={title}
                         fill
+                        unoptimized
                         className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                 ) : (
@@ -24,7 +25,7 @@ export default function ProductObject({ id, title, imageUrl }: ObjectProps) {
                     </div>
                 )}
             </div>
-            <div className="px-1 text-xs md:text-[16px] text-center text-gray-700 group-hover:text-black transition-colors">
+            <div className="px-1 text-xs sm:text-sm md:text-[16px] text-center text-gray-700 group-hover:text-black transition-colors">
                 {title}
             </div>
         </Link>

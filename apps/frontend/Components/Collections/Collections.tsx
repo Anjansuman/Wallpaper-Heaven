@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { DirectionAwareHover } from "../../components/ui/direction-aware-hover";
+import { DirectionAwareHover } from "../../Components/ui/direction-aware-hover";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "sonner";
@@ -280,10 +280,10 @@ export default function TopCollections() {
                 {/* Product grid */}
                 <div
                     ref={gridRef}
-                    className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 sm:gap-x-6 gap-y-8 place-items-center"
+                    className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-4 sm:gap-x-6 gap-y-8 place-items-center"
                 >
                     {products.length === 0 ? (
-                        <p className="col-span-4 text-center text-neutral-400 py-10">No products found in this category.</p>
+                        <p className="col-span-2 sm:col-span-3 lg:col-span-4 text-center text-neutral-400 py-10">No products found in this category.</p>
                     ) : products.map((product) => (
                         <div key={product.id} className="wallpaper-card w-full relative group/card">
                             <div

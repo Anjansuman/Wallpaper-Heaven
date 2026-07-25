@@ -20,7 +20,7 @@ export default function HomeMain() {
         />
       </div>
 
-      <div className="relative z-10 w-full flex flex-col max-w-7xl pt-20">
+      <div className="relative z-10 w-full flex flex-col max-w-7xl pt-[72px]">
         <Hero />
 
       </div>
