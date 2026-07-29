@@ -13,6 +13,13 @@ export default function NavbarMain() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    const navLinks = [
+        { label: "Collections", href: "/inventory/collections" },
+        { label: "Genre", href: "/inventory/genre" },
+        { label: "Brand", href: "/inventory/brands" },
+        { label: "Designers", href: "/designers" },
+    ]
+
     return (
         <>
             <nav
@@ -34,10 +41,15 @@ export default function NavbarMain() {
 
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex items-center gap-x-6 lg:gap-x-8 text-[16px]">
-                        <span>Collections</span>
-                        <span>Genre</span>
-                        <span>Brand</span>
-                        <span>Designers</span>
+                        {navLinks.map((link) => (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                className="hover:opacity-70 transition-opacity"
+                            >
+                                {link.label}
+                            </Link>
+                        ))}
                     </div>
 
                     {/* Mobile Menu Toggle */}
@@ -59,10 +71,16 @@ export default function NavbarMain() {
                 {/* Mobile Dropdown */}
                 {isMenuOpen && (
                     <div className="md:hidden flex flex-col gap-y-3 pt-4 pb-1 text-[16px]">
-                        <span>Collections</span>
-                        <span>Genre</span>
-                        <span>Brand</span>
-                        <span>Designers</span>
+                        {navLinks.map((link) => (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                onClick={() => setIsMenuOpen(false)}
+                                className="hover:opacity-70 transition-opacity"
+                            >
+                                {link.label}
+                            </Link>
+                        ))}
                     </div>
                 )}
             </nav>

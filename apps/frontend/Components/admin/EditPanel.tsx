@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { IconX, IconPencil } from "@tabler/icons-react";
+import { createPortal } from "react-dom";
 
 interface EditPanelProps {
     title: string;
@@ -15,26 +16,23 @@ interface EditPanelProps {
 }
 
 export default function EditPanel({ title, isOpen, onOpen, onClose, onSave, saving, showTrigger = true, children }: EditPanelProps) {
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
     // close on Escape
     useEffect(() => {
-        const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+        const onKey = (e: KeyboardEvent) => {
+            if (e.key === "Escape") onClose();
+        };
         window.addEventListener("keydown", onKey);
         return () => window.removeEventListener("keydown", onKey);
     }, [onClose]);
 
-    return (
+    const drawerContent = (
         <>
-            {/* Pencil trigger */}
-            {showTrigger && (
-                <button
-                    onClick={onOpen}
-                    title="Edit section"
-                    className="absolute top-3 right-3 z-50 bg-white/80 backdrop-blur-sm border border-neutral-200 text-neutral-600 hover:text-[#3D5A40] hover:border-[#6DA165] rounded-full p-2 shadow-sm hover:shadow-md transition-all duration-200 hover:scale-110"
-                >
-                    <IconPencil size={16} />
-                </button>
-            )}
-
             {/* Backdrop */}
             {isOpen && (
                 <div
@@ -77,6 +75,23 @@ export default function EditPanel({ title, isOpen, onOpen, onClose, onSave, savi
                     </button>
                 </div>
             </div>
+        </>
+    )
+
+    return (
+        <>
+            {/* Pencil trigger */}
+            {showTrigger && (
+                <button
+                    onClick={onOpen}
+                    title="Edit section"
+                    className="absolute top-3 right-3 z-50 bg-white/80 backdrop-blur-sm border border-neutral-200 text-neutral-600 hover:text-[#3D5A40] hover:border-[#6DA165] rounded-full p-2 shadow-sm hover:shadow-md transition-all duration-200 hover:scale-110"
+                >
+                    <IconPencil size={16} />
+                </button>
+            )}
+
+            {mounted && createPortal(drawerContent, document.body)}
         </>
     );
 }
